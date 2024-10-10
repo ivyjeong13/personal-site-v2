@@ -34,9 +34,9 @@ export default function Home() {
           <Segment>
             <Projects />
           </Segment>
-          <Segment>
+          {/* <Segment>
             <Me />
-          </Segment>
+          </Segment> */}
         </>
       ) : (
         <Loading />
