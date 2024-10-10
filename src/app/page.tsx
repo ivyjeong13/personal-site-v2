@@ -1,6 +1,5 @@
 'use client';
-import styled from '@emotion/styled';
-import { Box } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import Loading from './_components/loading';
 import { useEffect, useState } from 'react';
 import Intro from './_components/intro';
