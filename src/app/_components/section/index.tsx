@@ -1,3 +1,4 @@
+import { standardContainerPadding } from '@/app/_constants';
 import { Box, styled } from '@mui/material';
 
 type Props = {
@@ -8,12 +9,15 @@ type Props = {
   flexDirection?: 'row' | 'column';
 };
 
-const Container = styled(Box)({
+const Container = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    padding: `0px ${standardContainerPadding}px`,
+  },
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
   display: 'flex',
-});
+}));
 
 const Section = ({
   children,

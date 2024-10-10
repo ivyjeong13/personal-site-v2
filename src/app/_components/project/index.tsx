@@ -1,18 +1,25 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
-import Section from '../section';
 import { Box, Chip, styled, Typography } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
 import { ProjectType } from '@/app/_types';
 import { GithubIcon } from '@/app/assets/icons';
+import { standardBorderRadius } from '@/app/_constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import Placeholder from '../../assets/images/Code_k1IJv9gHDD.png';
-import { standardBorderRadius } from '@/app/_constants';
 
 type Props = {
   project: ProjectType;
 };
+
+const Content = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+  },
+  gap: 16,
+  display: 'flex',
+}));
 
 const ProjectDescription = styled(Typography)({
   color: grey[900],
@@ -59,7 +66,7 @@ const Project = ({ project }: Props) => {
         },
       }}
     >
-      <Section height="auto" gap={2}>
+      <Content>
         <Box
           sx={{
             width: '100%',
@@ -85,8 +92,10 @@ const Project = ({ project }: Props) => {
             </Box>
           )}
         </Box>
-      </Section>
-      <Box sx={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+      </Content>
+      <Box
+        sx={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px' }}
+      >
         {project.technologies.map((technology, i) => (
           <TechnologyChip key={i} label={technology} variant="outlined" />
         ))}

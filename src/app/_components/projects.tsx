@@ -1,12 +1,21 @@
-import { Box, Grid2, Typography } from '@mui/material';
+import { Box, Grid2, styled, Typography } from '@mui/material';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { mountainPurple } from '../_constants';
+import { mountainPurple, standardContainerPadding } from '../_constants';
 import { grey, indigo } from '@mui/material/colors';
 import Section from './section';
 import Project from './project';
 import { ProjectType } from '../_types';
+import useIsMobile from '../_hooks/use-is-mobile';
 
+const ProjectsTitle = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    fontSize: 35,
+  },
+  color: grey[900],
+  fontSize: 100,
+  marginTop: standardContainerPadding,
+}));
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -64,6 +73,7 @@ const Projects = () => {
     },
   ];
 
+  const isMobile = useIsMobile();
   return (
     <Box
       ref={ref}
@@ -133,18 +143,13 @@ const Projects = () => {
       >
         <Section height="auto" flexDirection="column">
           <Box>
-            <Typography
-              sx={{ color: grey[900], fontSize: 100, marginTop: '24px' }}
-              variant="h3"
-            >
-              PROJECTS
-            </Typography>
+            <ProjectsTitle variant="h3">PROJECTS</ProjectsTitle>
             <Typography
               sx={{
                 color: grey[900],
                 textAlign: 'center',
               }}
-              variant="body1"
+              variant={isMobile ? 'caption' : 'body1'}
             >
               Examples of small solo projects I&apos;ve done on my own time.
             </Typography>

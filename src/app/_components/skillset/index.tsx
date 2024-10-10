@@ -1,4 +1,8 @@
-import { smallContainerPadding, standardInputPadding } from '@/app/_constants';
+import {
+  smallContainerPadding,
+  standardContainerPadding,
+  standardInputPadding,
+} from '@/app/_constants';
 import { Box, Paper, styled, Typography } from '@mui/material';
 import WebIcon from '@mui/icons-material/Web';
 import { grey, indigo } from '@mui/material/colors';
@@ -11,12 +15,16 @@ type Props = {
   children: React.ReactNode;
 };
 
-const SkillsetPaper = styled(Paper)({
+const SkillsetPaper = styled(Paper)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    height: 'auto',
+    marginBottom: standardContainerPadding,
+  },
   background: indigo[50],
   width: 275,
   position: 'relative',
   height: 465,
-});
+}));
 
 const Title = styled(motion.div)({
   color: indigo[50],

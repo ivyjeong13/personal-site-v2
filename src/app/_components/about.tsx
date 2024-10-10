@@ -44,17 +44,28 @@ import {
 } from '../assets/icons';
 import { mountainPurple, standardContainerPadding } from '../_constants';
 import { grey } from '@mui/material/colors';
+import useIsMobile from '../_hooks/use-is-mobile';
 
-const Title = styled(Typography)({
+const Title = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    top: 40,
+    right: 'calc(50% - 160px)',
+    transform: 'translateX(-50% - 160px)',
+    fontSize: 100,
+  },
   position: 'absolute',
   top: 175,
   right: 'calc(50% - 200px)',
   transform: 'translateX(-50% - 200px)',
   color: grey[900],
   fontSize: 250,
-});
+}));
 
-const Container = styled(motion.div)({
+const Container = styled(motion.div)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+  },
   borderTopLeftRadius: '10%',
   borderTopRightRadius: '10%',
   display: 'flex',
@@ -63,26 +74,32 @@ const Container = styled(motion.div)({
   position: 'relative',
   width: '100%',
   marginTop: standardContainerPadding,
-});
+}));
 
-const BackgroundImage = styled(Image)({
+const BackgroundImage = styled(Image)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    height: 200,
+  },
   position: 'absolute',
   top: 0,
   left: 0,
   width: '100%',
   height: 400,
   zIndex: -1,
-});
+}));
 
-const SolidBackground = styled(Box)({
+const SolidBackground = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    marginTop: 150,
+  },
   alignItems: 'center',
   width: '100%',
-  marginTop: 350,
+  marginTop: 200,
   background: mountainPurple,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-});
+}));
 
 const variants = {
   hidden: {
@@ -99,6 +116,7 @@ const About = () => {
   const ref = useRef(null);
   const controls = useAnimation();
   const isInView = useInView(ref, { once: true });
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     controls.start('visible');
@@ -234,7 +252,11 @@ const About = () => {
         src={background}
       />
       <SolidBackground>
-        <Section height={600} gap={4}>
+        <Section
+          height={isMobile ? 'auto' : 600}
+          gap={4}
+          flexDirection={isMobile ? 'column' : 'row'}
+        >
           {/* <Typography variant="h4">
       Public APIs to Make Projects With
     </Typography>

@@ -7,10 +7,13 @@ import About from './_components/about';
 import Projects from './_components/projects';
 // import Me from './_components/me';
 
-const Segment = styled(Box)({
+const Segment = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+  },
   display: 'flex',
   justifyContent: 'center',
-});
+}));
 
 //https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
 export default function Home() {

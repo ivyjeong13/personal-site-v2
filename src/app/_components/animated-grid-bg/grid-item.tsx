@@ -13,13 +13,18 @@ type Props = {
   }>;
 };
 
-const GridBox = styled(motion.div)({
+const GridBox = styled(motion.div)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    height: 25,
+    width: 25,
+    margin: 4,
+  },
   margin: 10,
   display: 'inline-block',
   height: 65,
   width: 65,
   borderRadius: 8,
-});
+}));
 
 const itemVariants = {
   hidden: {

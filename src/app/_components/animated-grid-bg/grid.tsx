@@ -8,7 +8,7 @@ type Props = {
   numItems?: number;
 };
 
-const Grid = ({ delayPerPixel = 0.0008, numItems = 40 }: Props) => {
+const Grid = ({ delayPerPixel = 0.0008, numItems = 80 }: Props) => {
   const originOffset = useRef({ top: 0, left: 0 });
   const controls = useAnimation();
   const ref = useRef(null);
