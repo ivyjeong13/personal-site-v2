@@ -5,23 +5,62 @@ import { mountainPurple } from '../_constants';
 import { grey, indigo } from '@mui/material/colors';
 import Section from './section';
 import Project from './project';
+import { ProjectType } from '../_types';
 
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const projects = [
+  const projects: ProjectType[] = [
     {
-      title: 'a',
+      title: '[Coming Soon]',
+      githubUrl: null,
+      url: null,
+      description: 'A silly idea; an interactive Tamagotchi powered by OpenAI.',
+      image: null,
+      technologies: ['OpenAI API', 'React', 'Emotion (CSS-in-JS)', 'Express'],
     },
     {
-      title: 'b',
+      title: '[Coming Soon]',
+      githubUrl: null,
+      url: null,
+      description:
+        'A completionist tracker for my character in Final Fantasy XIV.',
+      image: null,
+      technologies: [
+        'Vue',
+        'SASS',
+        'Universalis API',
+        'FFXIV Collect API',
+        'XIVAPI',
+      ],
     },
     {
-      title: 'c',
+      title: 'Trending Twitter By Country',
+      githubUrl: 'https://github.com/ivyjeong13/twitter-google-trending-react',
+      url: null,
+      description:
+        '(2018) A web app where you could navigate by country and get the top trending tweets happening in the area. Utilized Simple Maps and Twitter API. Created in React.',
+      image: null,
+      technologies: ['React', 'React Simple Maps', 'Twitter API'],
     },
     {
-      title: 'd',
+      title: 'Pro Gamer',
+      githubUrl: 'https://github.com/ivyjeong13/progamer-web',
+      url: null,
+      description:
+        '(2018) Another small web application that listed video games like a library and displayed upcoming progamer tournaments for the game the user had selected. Utilized Giant Bomb and PandaScore API. Created in AngularJS.',
+      image: null,
+      technologies: ['AngularJS', 'SCSS'],
+    },
+    {
+      title: 'Shale D&D Calculator',
+      githubUrl: 'https://github.com/ivyjeong13/heroku-dnd-test',
+      url: null,
+      description:
+        '(2020) A calculator app to determine damage given and received based on own stats, own skills used, and buffs from fellow party members that were active during a fight. It made trying to figure out the numbers on the spot a lot quicker!',
+      image: null,
+      technologies: ['React'],
     },
   ];
 
@@ -94,7 +133,10 @@ const Projects = () => {
       >
         <Section height="auto" flexDirection="column">
           <Box>
-            <Typography sx={{ color: grey[900], fontSize: 175 }} variant="h3">
+            <Typography
+              sx={{ color: grey[900], fontSize: 100, marginTop: '24px' }}
+              variant="h3"
+            >
               PROJECTS
             </Typography>
             <Typography
@@ -112,15 +154,13 @@ const Projects = () => {
                 textAlign: 'center',
                 paddingBottom: '24px',
               }}
-            >
-              <b>(Currently under re-construction.)</b>
-            </Typography>
+            ></Typography>
           </Box>
           <Box sx={{ width: '100%', flexGrow: 1 }}>
-            <Grid2 container spacing={2}>
+            <Grid2 container spacing={4}>
               {projects.map((project) => (
                 <Grid2 key={project.title} size={{ sm: 12, md: 6 }}>
-                  <Project key={project.title} />
+                  <Project key={project.title} project={project} />
                 </Grid2>
               ))}
             </Grid2>

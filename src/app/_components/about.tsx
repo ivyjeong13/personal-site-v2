@@ -40,6 +40,7 @@ import {
   ReactIcon,
   TypescriptIcon,
   ViTestIcon,
+  VsCodeIcon,
 } from '../assets/icons';
 import { mountainPurple, standardContainerPadding } from '../_constants';
 import { grey } from '@mui/material/colors';
@@ -208,8 +209,13 @@ const About = () => {
           Icon: DockerIcon,
         },
         {
-          title: 'Github',
+          title: 'GitHub',
           Icon: GithubIcon,
+          description: '(Also Copilot)',
+        },
+        {
+          title: 'VSCode',
+          Icon: VsCodeIcon,
         },
       ],
     },
