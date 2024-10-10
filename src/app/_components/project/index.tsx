@@ -71,8 +71,8 @@ const Project = ({ project }: Props) => {
           <PlaceholderImage alt="placeholder.png" src={Placeholder} />
         </Box>
         <Box sx={{ width: '100%' }}>
-          <ProjectDescription variant="body1">
-            {project.title}
+          <ProjectDescription variant="body1" sx={{ color: indigo[500] }}>
+            <b>{project.title}</b>
           </ProjectDescription>
           <ProjectDescription variant="caption">
             {project.description}
