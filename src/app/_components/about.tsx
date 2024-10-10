@@ -94,7 +94,7 @@ const SolidBackground = styled(Box)(({ theme }) => ({
   },
   alignItems: 'center',
   width: '100%',
-  marginTop: 200,
+  marginTop: 360,
   background: mountainPurple,
   display: 'flex',
   flexDirection: 'column',
