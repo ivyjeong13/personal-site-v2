@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Intro from './_components/intro';
 import About from './_components/about';
 import Projects from './_components/projects';
-import Me from './_components/me';
+// import Me from './_components/me';
 
 const Segment = styled(Box)({
   display: 'flex',
