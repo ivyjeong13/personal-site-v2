@@ -48,17 +48,28 @@ import useIsMobile from '../_hooks/use-is-mobile';
 
 const Title = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    top: 40,
-    right: 'calc(50% - 160px)',
-    transform: 'translateX(-50% - 160px)',
-    fontSize: 100,
+    top: 24,
+    right: 'calc(50% - 102px)',
+    transform: 'translateX(-50% - 102px)',
+    fontSize: 64,
   },
   position: 'absolute',
-  top: 175,
-  right: 'calc(50% - 200px)',
-  transform: 'translateX(-50% - 200px)',
+  top: 132,
+  right: 'calc(50% - 100px)',
+  transform: 'translateX(-50% - 100px)',
   color: grey[900],
-  fontSize: 250,
+  fontSize: 220,
+}));
+
+const ListContainer = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    gap: 36,
+  },
+  position: 'relative',
+  top: -24,
+  display: 'flex',
+  gap: 24,
 }));
 
 const Container = styled(motion.div)(({ theme }) => ({
@@ -78,7 +89,7 @@ const Container = styled(motion.div)(({ theme }) => ({
 
 const BackgroundImage = styled(Image)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    height: 200,
+    height: '100%',
   },
   position: 'absolute',
   top: 0,
@@ -91,6 +102,7 @@ const BackgroundImage = styled(Image)(({ theme }) => ({
 const SolidBackground = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     marginTop: 150,
+    background: 'transparent',
   },
   alignItems: 'center',
   width: '100%',
@@ -252,41 +264,27 @@ const About = () => {
         src={background}
       />
       <SolidBackground>
-        <Section
-          height={isMobile ? 'auto' : 600}
-          gap={4}
-          flexDirection={isMobile ? 'column' : 'row'}
-        >
-          {/* <Typography variant="h4">
-      Public APIs to Make Projects With
-    </Typography>
-    <Typography variant="body1">
-      https://github.com/public-apis/public-apis#games--comics
-    </Typography>
-    <Typography variant="body1">
-      https://github.com/public-apis/public-apis#entertainment
-    </Typography>
-    <Typography variant="body1">
-      https://github.com/public-apis/public-apis#anime
-    </Typography> */}
-          {skillsets.map(({ Icon, title, skills }) => (
-            <Skillset
-              key={title}
-              Icon={<Icon fontSize="large" />}
-              title={title}
-            >
-              <List>
-                {skills.map(({ title, description, Icon: SkillIcon }) => (
-                  <ListItem key={title}>
-                    <ListItemAvatar>
-                      <SkillIcon />
-                    </ListItemAvatar>
-                    <ListItemText primary={title} secondary={description} />
-                  </ListItem>
-                ))}
-              </List>
-            </Skillset>
-          ))}
+        <Section height={isMobile ? 'auto' : 500}>
+          <ListContainer>
+            {skillsets.map(({ Icon, title, skills }) => (
+              <Skillset
+                key={title}
+                Icon={<Icon fontSize="large" />}
+                title={title}
+              >
+                <List>
+                  {skills.map(({ title, description, Icon: SkillIcon }) => (
+                    <ListItem key={title}>
+                      <ListItemAvatar>
+                        <SkillIcon />
+                      </ListItemAvatar>
+                      <ListItemText primary={title} secondary={description} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Skillset>
+            ))}
+          </ListContainer>
         </Section>
       </SolidBackground>
     </Container>

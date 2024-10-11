@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 import Intro from './_components/intro';
 import About from './_components/about';
 import Projects from './_components/projects';
-// import Me from './_components/me';
+import Me from './_components/me';
+import WhatsNext from './_components/whats-next';
 
 const Segment = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -37,9 +38,12 @@ export default function Home() {
           <Segment>
             <Projects />
           </Segment>
-          {/* <Segment>
+          <Segment>
             <Me />
-          </Segment> */}
+          </Segment>
+          <Segment>
+            <WhatsNext />
+          </Segment>
         </>
       ) : (
         <Loading />

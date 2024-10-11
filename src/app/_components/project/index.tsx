@@ -61,7 +61,7 @@ const Project = ({ project }: Props) => {
         visible: {
           opacity: 1,
           transition: {
-            delay: 1,
+            delay: 0.3,
           },
         },
       }}
