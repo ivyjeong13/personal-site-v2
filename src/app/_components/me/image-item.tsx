@@ -76,7 +76,7 @@ const ImageItem = ({ item }: Props) => {
           >
             <ClickAwayListener
               onClickAway={(event) => {
-                event.stopPropagation();
+                event.preventDefault();
                 setShowBlurb(false);
               }}
             >

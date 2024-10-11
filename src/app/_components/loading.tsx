@@ -14,6 +14,9 @@ const Root = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  position: 'fixed',
+  top: 0,
+  left: 0,
 });
 const Container = styled(motion.div)({
   display: 'flex',
