@@ -22,6 +22,8 @@ const Container = styled(Box)(({ theme }) => ({
   background: indigo[800],
   width: '100%',
   padding: '64px 0',
+  display: 'flex',
+  justifyContent: 'center',
 }));
 
 export const WhatsNext = () => {
