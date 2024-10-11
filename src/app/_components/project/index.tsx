@@ -2,9 +2,14 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { Box, Chip, styled, Typography } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
-import { ProjectType } from '@/app/_types';
+import { ProjectType } from '@/common/types';
 import { GithubIcon } from '@/app/assets/icons';
-import { defaultBoxShadow, standardBorderRadius } from '@/app/_constants';
+import {
+  defaultBoxShadow,
+  defaultInputPadding,
+  standardBorderRadius,
+  standardGap,
+} from '@/common/constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import Placeholder from '../../assets/images/Code_k1IJv9gHDD.png';
@@ -30,10 +35,17 @@ const PlaceholderImage = styled(Image)({
   height: 150,
 });
 
+const Technologies = styled(Box)({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: standardGap,
+  marginTop: defaultInputPadding.medium,
+});
+
 const TechnologyChip = styled(Chip)({
   color: indigo[800],
   borderColor: indigo[300],
-  borderRadius: '8px',
+  borderRadius: standardBorderRadius,
   fontSize: '11px',
 });
 
@@ -94,13 +106,11 @@ const Project = ({ project }: Props) => {
           )}
         </Box>
       </Content>
-      <Box
-        sx={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px' }}
-      >
+      <Technologies>
         {project.technologies.map((technology, i) => (
           <TechnologyChip key={i} label={technology} variant="outlined" />
         ))}
-      </Box>
+      </Technologies>
     </motion.div>
   );
 };

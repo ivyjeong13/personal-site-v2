@@ -1,13 +1,13 @@
 import {
-  smallContainerPadding,
-  standardContainerPadding,
-  standardInputPadding,
-} from '@/app/_constants';
+  defaultContainerPadding,
+  defaultInputPadding,
+} from '@/common/constants';
 import { Box, Paper, styled, Typography } from '@mui/material';
 import WebIcon from '@mui/icons-material/Web';
 import { grey, indigo } from '@mui/material/colors';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { centeredFlexStyles } from '@/common/styles';
 
 type Props = {
   title: string;
@@ -18,7 +18,7 @@ type Props = {
 const SkillsetPaper = styled(Paper)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     height: 'auto',
-    marginBottom: standardContainerPadding,
+    marginBottom: defaultContainerPadding.large,
   },
   background: indigo[50],
   width: 275,
@@ -28,16 +28,17 @@ const SkillsetPaper = styled(Paper)(({ theme }) => ({
 
 const Title = styled(motion.div)({
   color: indigo[50],
-  paddingTop: standardInputPadding + 35,
-  paddingBottom: standardInputPadding,
+  paddingTop: defaultInputPadding.medium + 35,
+  paddingBottom: defaultInputPadding.medium,
   textAlign: 'center',
 });
 
 const Content = styled(Box)({
-  padding: smallContainerPadding,
+  padding: defaultContainerPadding.medium,
 });
 
 const IconContainer = styled(Box)({
+  ...centeredFlexStyles,
   position: 'absolute',
   top: -35,
   left: '50%',
@@ -46,9 +47,6 @@ const IconContainer = styled(Box)({
   height: 70,
   background: indigo[50],
   borderRadius: '50%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
 });
 
 const Skillset = ({ title, Icon = <WebIcon />, children }: Props) => {

@@ -1,4 +1,5 @@
-import { standardContainerPadding } from '@/app/_constants';
+import { defaultContainerPadding } from '@/common/constants';
+import { centeredFlexStyles } from '@/common/styles';
 import { Box, styled } from '@mui/material';
 
 type Props = {
@@ -11,12 +12,10 @@ type Props = {
 
 const Container = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    padding: `0px ${standardContainerPadding}px`,
+    padding: `0px ${defaultContainerPadding.large}px`,
   },
+  ...centeredFlexStyles,
   width: '100%',
-  alignItems: 'center',
-  justifyContent: 'center',
-  display: 'flex',
 }));
 
 const Section = ({

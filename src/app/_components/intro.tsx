@@ -5,13 +5,17 @@ import AnimatedGridBackground from './animated-grid-bg';
 import Image from 'next/image';
 import profilePic from '../assets/images/profile_pic.jpg';
 import Section from './section';
-import { black, mountainPurple, standardContainerPadding } from '../_constants';
-import useIsMobile from '../_hooks/use-is-mobile';
+import {
+  black,
+  defaultContainerPadding,
+  mountainPurple,
+} from '../../common/constants';
+import useIsMobile from '../../common/hooks/use-is-mobile';
 
 const ProfilePic = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     alignSelf: 'center',
-    marginTop: standardContainerPadding,
+    marginTop: defaultContainerPadding.large,
   },
   alignSelf: 'flex-end',
   borderRadius: '50%',

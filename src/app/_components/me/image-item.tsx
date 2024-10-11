@@ -1,10 +1,12 @@
-import { defaultBoxShadow, smallContainerPadding } from '@/app/_constants';
-import useIsMobile from '@/app/_hooks/use-is-mobile';
+import { defaultBoxShadow, defaultContainerPadding } from '@/common/constants';
+import useIsMobile from '@/common/hooks/use-is-mobile';
+import { centeredFlexStyles } from '@/common/styles';
 import {
   Box,
   ClickAwayListener,
   ImageListItem,
   Portal,
+  styled,
   Tooltip,
   Typography,
 } from '@mui/material';
@@ -23,6 +25,20 @@ type ImageItemType = {
 type Props = {
   item: ImageItemType;
 };
+
+const Overlay = styled(Box)({
+  ...centeredFlexStyles,
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  height: '100vh',
+  width: '100%',
+  backgroundColor: 'rgba(0, 0, 0, 0.90)',
+  padding: defaultContainerPadding.large,
+  color: indigo[50],
+  flexDirection: 'column',
+  zIndex: 10,
+});
 
 const ImageItem = ({ item }: Props) => {
   const [showBlurb, setShowBlurb] = useState(false);
@@ -57,23 +73,7 @@ const ImageItem = ({ item }: Props) => {
       </ImageListItem>
       {showBlurb && (
         <Portal>
-          <Box
-            sx={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              height: '100vh',
-              width: '100%',
-              backgroundColor: 'rgba(0, 0, 0, 0.90)',
-              padding: '24px',
-              color: indigo[50],
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column',
-              zIndex: 10,
-            }}
-          >
+          <Overlay>
             <ClickAwayListener
               onClickAway={(event) => {
                 event.preventDefault();
@@ -85,7 +85,7 @@ const ImageItem = ({ item }: Props) => {
             <Typography sx={{ marginTop: 2, maxWidth: 300 }} variant="caption">
               {item.description}
             </Typography>
-          </Box>
+          </Overlay>
         </Portal>
       )}
     </>
@@ -105,7 +105,7 @@ const ImageItem = ({ item }: Props) => {
             backgroundColor: indigo[50],
             color: grey[900],
             fontSize: 14,
-            padding: `${smallContainerPadding}px`,
+            padding: `${defaultContainerPadding.medium}px`,
             borderRadius: 4,
             border: `2px solid ${grey[900]}`,
           },

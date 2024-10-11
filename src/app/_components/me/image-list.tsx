@@ -1,3 +1,7 @@
+import { ImageList as MuiImageList, styled } from '@mui/material';
+import { containerSizes, defaultInputPadding } from '@/common/constants';
+import useIsMobile from '@/common/hooks/use-is-mobile';
+import ImageItem from './image-item';
 import BikeHelmet from '../../assets/images/hobbies/bike_helmet.jpg';
 import Car from '../../assets/images/hobbies/car.jpg';
 import Dogs from '../../assets/images/hobbies/dogs.jpg';
@@ -6,18 +10,15 @@ import Guitar from '../../assets/images/hobbies/guitar.jpg';
 import MuayThai from '../../assets/images/hobbies/muaythai.jpg';
 import Me2 from '../../assets/images/hobbies/me_2.jpg';
 import Me from '../../assets/images/hobbies/me.jpg';
-import { ImageList as MuiImageList, styled } from '@mui/material';
-import useIsMobile from '@/app/_hooks/use-is-mobile';
-import ImageItem from './image-item';
 
 const List = styled(MuiImageList)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    width: 360,
-    paddingLeft: 12,
-    paddingRight: 12,
+    width: containerSizes.mobile,
+    paddingLeft: defaultInputPadding.large,
+    paddingRight: defaultInputPadding.large,
   },
   width: '100%',
-  paddingBottom: 12,
+  paddingBottom: defaultInputPadding.large,
 }));
 
 const ImageList = () => {

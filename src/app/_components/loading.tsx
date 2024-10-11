@@ -1,7 +1,8 @@
 import { Box, styled } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
 import { motion } from 'framer-motion';
-import { iconSizes, standardGap } from '../_constants';
+import { iconSizes, standardGap } from '../../common/constants';
+import { centeredFlexStyles } from '@/common/styles';
 
 const Loader = styled(motion.div)({
   background: '#FFF',
@@ -9,11 +10,9 @@ const Loader = styled(motion.div)({
   height: iconSizes.small,
 });
 const Root = styled(Box)({
+  ...centeredFlexStyles,
   width: '100%',
   height: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
   position: 'fixed',
   top: 0,
   left: 0,

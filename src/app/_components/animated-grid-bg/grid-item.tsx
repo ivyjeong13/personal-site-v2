@@ -1,6 +1,8 @@
+import { defaultInputPadding, standardBorderRadius } from '@/common/constants';
 import { styled } from '@mui/material';
 import { motion } from 'framer-motion';
 import { MutableRefObject, useEffect, useLayoutEffect, useRef } from 'react';
+import { desktopSquarePixels, mobileSquarePixels } from './constants';
 
 type Props = {
   backgroundColor?: string;
@@ -15,15 +17,15 @@ type Props = {
 
 const GridBox = styled(motion.div)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    height: 25,
-    width: 25,
-    margin: 4,
+    height: mobileSquarePixels,
+    width: mobileSquarePixels,
+    margin: defaultInputPadding.small,
   },
   margin: 10,
   display: 'inline-block',
-  height: 65,
-  width: 65,
-  borderRadius: 8,
+  height: desktopSquarePixels,
+  width: desktopSquarePixels,
+  borderRadius: standardBorderRadius,
 }));
 
 const itemVariants = {

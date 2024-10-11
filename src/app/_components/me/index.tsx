@@ -4,12 +4,12 @@ import Section from '../section';
 import { Box, styled, Typography } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
 import ImageList from './image-list';
-import { standardContainerPadding } from '@/app/_constants';
-import useIsMobile from '@/app/_hooks/use-is-mobile';
+import { defaultContainerPadding } from '@/common/constants';
+import useIsMobile from '@/common/hooks/use-is-mobile';
 
 const Container = styled(motion.div)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    marginTop: standardContainerPadding,
+    marginTop: defaultContainerPadding.large,
   },
   width: '100%',
   background: indigo[50],
@@ -50,7 +50,7 @@ const BackgroundB = styled(Box)(({ theme }) => ({
 
 const Title = styled(Typography)({
   color: grey[900],
-  marginTop: standardContainerPadding,
+  marginTop: defaultContainerPadding.large,
   zIndex: 1,
 });
 

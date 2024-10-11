@@ -1,21 +1,68 @@
 import { Box, Grid2, styled, Typography } from '@mui/material';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { mountainPurple, standardContainerPadding } from '../_constants';
+import {
+  containerSizes,
+  defaultContainerPadding,
+  mountainPurple,
+} from '../../common/constants';
 import { grey, indigo } from '@mui/material/colors';
 import Section from './section';
 import Project from './project';
-import { ProjectType } from '../_types';
-import useIsMobile from '../_hooks/use-is-mobile';
+import { ProjectType } from '../../common/types';
+import useIsMobile from '../../common/hooks/use-is-mobile';
+import { centeredFlexStyles } from '@/common/styles';
 
+const maxTriangleHeight = 600;
+const minTriangleHeight = 300;
+const BackgroundTriangleA = styled(Box)({
+  width: 0,
+  height: 0,
+  position: 'absolute',
+  top: 0,
+  left: `calc(50% - ${containerSizes.desktop}px)`,
+  transform: `translateX(-50% - ${containerSizes.desktop}px)`,
+  borderLeft: `${maxTriangleHeight}px solid ${mountainPurple}`,
+  borderRight: `${maxTriangleHeight} solid ${indigo[50]}`,
+  borderTop: `${minTriangleHeight} solid ${mountainPurple}`,
+});
+const BackgroundTriangleB = styled(Box)({
+  width: 0,
+  height: 0,
+  position: 'absolute',
+  top: 0,
+  right: `calc(50% - ${containerSizes.desktop}px)`,
+  transform: `translateX(-50% - ${containerSizes.desktop}px)`,
+  borderLeft: `${maxTriangleHeight} solid ${indigo[50]}`,
+  borderRight: `${maxTriangleHeight} solid ${mountainPurple}`,
+  borderTop: `${minTriangleHeight} solid ${mountainPurple}`,
+});
+const ContentWithBackground = styled(Box)({
+  backgroundColor: indigo[50],
+  width: '100%',
+  position: 'relative',
+  top: -200,
+  paddingBottom: defaultContainerPadding.xxlarge,
+  marginBottom: -200,
+  display: 'flex',
+  justifyContent: 'center',
+});
 const ProjectsTitle = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     fontSize: 35,
   },
   color: grey[900],
   fontSize: 100,
-  marginTop: standardContainerPadding,
+  marginTop: defaultContainerPadding.large,
 }));
+const PurpleContainer = styled(Box)({
+  ...centeredFlexStyles,
+  width: '100%',
+  flexDirection: 'column',
+  backgroundColor: mountainPurple,
+  overflow: 'hidden',
+});
+
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -75,18 +122,7 @@ const Projects = () => {
 
   const isMobile = useIsMobile();
   return (
-    <Box
-      ref={ref}
-      sx={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: mountainPurple,
-        overflow: 'hidden',
-      }}
-    >
+    <PurpleContainer ref={ref}>
       <motion.div
         animate={{
           y: isInView ? 0 : 500,
@@ -101,46 +137,11 @@ const Projects = () => {
         }}
       >
         <Box sx={{ height: 300, width: '100%', position: 'relative' }}>
-          <Box
-            sx={{
-              width: 0,
-              height: 0,
-              position: 'absolute',
-              top: 0,
-              left: 'calc(50% - 1200px)',
-              transform: 'translateX(-50% - 1200px)',
-              borderLeft: `600px solid ${mountainPurple}`,
-              borderRight: `600px solid ${indigo[50]}`,
-              borderTop: `300px solid ${mountainPurple}`,
-            }}
-          />
-          <Box
-            sx={{
-              width: 0,
-              height: 0,
-              position: 'absolute',
-              top: 0,
-              right: 'calc(50% - 1200px)',
-              transform: 'translateX(-50% - 1200px)',
-              borderLeft: `600px solid ${indigo[50]}`,
-              borderRight: `600px solid ${mountainPurple}`,
-              borderTop: `300px solid ${mountainPurple}`,
-            }}
-          />
+          <BackgroundTriangleA />
+          <BackgroundTriangleB />
         </Box>
       </motion.div>
-      <Box
-        sx={{
-          backgroundColor: indigo[50],
-          width: '100%',
-          position: 'relative',
-          top: -200,
-          paddingBottom: '48px',
-          marginBottom: '-200px',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
+      <ContentWithBackground>
         <Section height="auto" flexDirection="column">
           <Box>
             <ProjectsTitle variant="h3">PROJECTS</ProjectsTitle>
@@ -171,8 +172,8 @@ const Projects = () => {
             </Grid2>
           </Box>
         </Section>
-      </Box>
-    </Box>
+      </ContentWithBackground>
+    </PurpleContainer>
   );
 };
 

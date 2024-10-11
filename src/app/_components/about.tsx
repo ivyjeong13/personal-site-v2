@@ -17,38 +17,19 @@ import Image from 'next/image';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import Skillset from './skillset';
-import { SkillsetType } from '../_types';
+import { SkillsetType } from '../../common/types';
+import * as icons from '../assets/icons';
 import {
-  AngularJsIcon,
-  CircleCiIcon,
-  ConfluenceIcon,
-  Css3Icon,
-  DjangoIcon,
-  DockerIcon,
-  FastifyIcon,
-  GithubIcon,
-  Html5Icon,
-  JavascriptIcon,
-  JestIcon,
-  JiraIcon,
-  MaterialUiIcon,
-  MongoDbIcon,
-  NextJsIcon,
-  NodeJsIcon,
-  PostgresSQLIcon,
-  PythonIcon,
-  ReactIcon,
-  TypescriptIcon,
-  ViTestIcon,
-  VsCodeIcon,
-} from '../assets/icons';
-import { mountainPurple, standardContainerPadding } from '../_constants';
+  defaultContainerPadding,
+  mountainPurple,
+} from '../../common/constants';
 import { grey } from '@mui/material/colors';
-import useIsMobile from '../_hooks/use-is-mobile';
+import useIsMobile from '../../common/hooks/use-is-mobile';
+import { centeredFlexStyles } from '@/common/styles';
 
 const Title = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    top: 24,
+    top: defaultContainerPadding.large,
     right: 'calc(50% - 102px)',
     transform: 'translateX(-50% - 102px)',
     fontSize: 64,
@@ -67,7 +48,7 @@ const ListContainer = styled(Box)(({ theme }) => ({
     gap: 36,
   },
   position: 'relative',
-  top: -24,
+  top: -defaultContainerPadding.large,
   display: 'flex',
   gap: 24,
 }));
@@ -84,7 +65,7 @@ const Container = styled(motion.div)(({ theme }) => ({
   overflow: 'hidden',
   position: 'relative',
   width: '100%',
-  marginTop: standardContainerPadding,
+  marginTop: defaultContainerPadding.large,
 }));
 
 const BackgroundImage = styled(Image)(({ theme }) => ({
@@ -104,13 +85,10 @@ const SolidBackground = styled(Box)(({ theme }) => ({
     marginTop: 150,
     background: 'transparent',
   },
-  alignItems: 'center',
+  ...centeredFlexStyles,
   width: '100%',
   marginTop: 360,
   background: mountainPurple,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
 }));
 
 const variants = {
@@ -141,23 +119,23 @@ const About = () => {
       skills: [
         {
           title: 'Typescript',
-          Icon: TypescriptIcon,
+          Icon: icons.TypescriptIcon,
         },
         {
           title: 'Javascript',
-          Icon: JavascriptIcon,
+          Icon: icons.JavascriptIcon,
         },
         {
           title: 'CSS',
-          Icon: Css3Icon,
+          Icon: icons.Css3Icon,
         },
         {
           title: 'HTML',
-          Icon: Html5Icon,
+          Icon: icons.Html5Icon,
         },
         {
           title: 'Python',
-          Icon: PythonIcon,
+          Icon: icons.PythonIcon,
         },
       ],
     },
@@ -167,27 +145,27 @@ const About = () => {
       skills: [
         {
           title: 'React',
-          Icon: ReactIcon,
+          Icon: icons.ReactIcon,
         },
         {
           title: 'Next.js',
-          Icon: NextJsIcon,
+          Icon: icons.NextJsIcon,
         },
         {
           title: 'AngularJS',
-          Icon: AngularJsIcon,
+          Icon: icons.AngularJsIcon,
         },
         {
           title: 'Django',
-          Icon: DjangoIcon,
+          Icon: icons.DjangoIcon,
         },
         {
           title: 'MaterialUI',
-          Icon: MaterialUiIcon,
+          Icon: icons.MaterialUiIcon,
         },
         {
           title: 'Jest',
-          Icon: JestIcon,
+          Icon: icons.JestIcon,
           description: 'With React-Testing-Library',
         },
       ],
@@ -198,23 +176,23 @@ const About = () => {
       skills: [
         {
           title: 'Node.js',
-          Icon: NodeJsIcon,
+          Icon: icons.NodeJsIcon,
         },
         {
           title: 'Fastify',
-          Icon: FastifyIcon,
+          Icon: icons.FastifyIcon,
         },
         {
           title: 'PostgresSQL',
-          Icon: PostgresSQLIcon,
+          Icon: icons.PostgresSQLIcon,
         },
         {
           title: 'MongoDB',
-          Icon: MongoDbIcon,
+          Icon: icons.MongoDbIcon,
         },
         {
           title: 'ViTest',
-          Icon: ViTestIcon,
+          Icon: icons.ViTestIcon,
         },
       ],
     },
@@ -224,28 +202,28 @@ const About = () => {
       skills: [
         {
           title: 'Confluence',
-          Icon: ConfluenceIcon,
+          Icon: icons.ConfluenceIcon,
         },
         {
           title: 'Jira',
-          Icon: JiraIcon,
+          Icon: icons.JiraIcon,
         },
         {
           title: 'CircleCI',
-          Icon: CircleCiIcon,
+          Icon: icons.CircleCiIcon,
         },
         {
           title: 'Docker',
-          Icon: DockerIcon,
+          Icon: icons.DockerIcon,
         },
         {
           title: 'GitHub',
-          Icon: GithubIcon,
+          Icon: icons.GithubIcon,
           description: '(Also Copilot)',
         },
         {
           title: 'VSCode',
-          Icon: VsCodeIcon,
+          Icon: icons.VsCodeIcon,
         },
       ],
     },

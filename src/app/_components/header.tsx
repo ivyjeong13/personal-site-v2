@@ -2,7 +2,12 @@ import { Box, Button, Link, styled, Typography } from '@mui/material';
 import { indigo } from '@mui/material/colors';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { motion, useScroll } from 'framer-motion';
-import { black, standardGap, standardInputPadding } from '../_constants';
+import {
+  black,
+  standardGap,
+  defaultInputPadding,
+} from '../../common/constants';
+import { centeredFlexStyles } from '@/common/styles';
 
 const HeaderContainer = styled(Box)({
   color: indigo[50],
@@ -20,7 +25,7 @@ const HeaderContainer = styled(Box)({
 
 const HeaderContent = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    padding: standardInputPadding,
+    padding: defaultInputPadding.medium,
   },
   maxWidth: 1200,
   display: 'flex',
@@ -28,6 +33,23 @@ const HeaderContent = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   width: '100%',
 }));
+
+const HeaderSection = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: standardGap,
+});
+
+const NameIcon = styled(Typography)({
+  ...centeredFlexStyles,
+  borderRadius: '50%',
+  width: 45,
+  height: 45,
+  padding: 1,
+  backgroundColor: indigo[500],
+  cursor: 'pointer',
+});
 
 const ProgressBar = styled(motion.div)({
   position: 'fixed',
@@ -45,13 +67,6 @@ const ResumeButton = styled(Button)({
   borderColor: indigo[300],
 });
 
-const HeaderSection = styled(Box)({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: standardGap,
-});
-
 const Header = () => {
   const { scrollYProgress } = useScroll();
 
@@ -60,7 +75,7 @@ const Header = () => {
       <HeaderContainer>
         <HeaderContent>
           <HeaderSection>
-            <Typography
+            <NameIcon
               onClick={() =>
                 window.scrollTo({
                   top: 0,
@@ -68,20 +83,9 @@ const Header = () => {
                 })
               }
               variant="h6"
-              sx={{
-                borderRadius: '50%',
-                width: 45,
-                height: 45,
-                padding: 1,
-                backgroundColor: indigo[500],
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                cursor: 'pointer',
-              }}
             >
               <b>ihj</b>
-            </Typography>
+            </NameIcon>
           </HeaderSection>
           <HeaderSection>
             <Link
