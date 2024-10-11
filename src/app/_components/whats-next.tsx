@@ -27,8 +27,8 @@ const Container = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
 }));
 const Description = styled(Typography)({
-  marginTop: 3,
-  marginBottom: 1,
+  marginTop: defaultContainerPadding.large,
+  marginBottom: defaultContainerPadding.small,
   width: containerSizes.mobile,
 });
 
