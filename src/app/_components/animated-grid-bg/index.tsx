@@ -1,5 +1,6 @@
 import { Box, styled } from '@mui/material';
 import Grid from './grid';
+import useIsMobile from '@/common/hooks/use-is-mobile';
 
 const Container = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -12,10 +13,13 @@ const Container = styled(Box)(({ theme }) => ({
   zIndex: 2,
 }));
 
-const AnimatedGridBackground = () => (
-  <Container>
-    <Grid />
-  </Container>
-);
+const AnimatedGridBackground = () => {
+  const isMobile = useIsMobile();
+  return (
+    <Container>
+      {isMobile ? <Grid numItems={86} /> : <Grid numItems={42} />}
+    </Container>
+  );
+};
 
 export default AnimatedGridBackground;

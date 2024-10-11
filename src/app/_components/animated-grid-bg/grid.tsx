@@ -12,10 +12,14 @@ const Grid = ({ delayPerPixel = 0.0008, numItems = 80 }: Props) => {
   const originOffset = useRef({ top: 0, left: 0 });
   const controls = useAnimation();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref);
 
   useEffect(() => {
-    controls.start('visible');
+    if (isInView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden');
+    }
   }, [isInView]);
 
   const getBackgroundColor = (currentIndex: number) => {
