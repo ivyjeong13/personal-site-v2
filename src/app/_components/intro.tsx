@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
-import { Box, Button, Link, styled, Typography } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 import { indigo } from '@mui/material/colors';
-import ArticleIcon from '@mui/icons-material/Article';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import AnimatedGridBackground from './animated-grid-bg';
 import Image from 'next/image';
 import profilePic from '../assets/images/profile_pic.jpg';
@@ -57,10 +55,6 @@ const BackgroundB = styled(Box)({
   zIndex: -1,
 });
 
-const ResumeButton = styled(Button)({
-  backgroundColor: indigo[500],
-});
-
 const Intro = () => {
   const isMobile = useIsMobile();
   return (
@@ -112,23 +106,6 @@ const Intro = () => {
           >
             Located in Maryland, USA.
           </Typography>
-
-          <Box sx={{ display: 'flex', gap: '8px', alignSelf: 'flex-end' }}>
-            <Link
-              target="_blank"
-              href="https://docs.google.com/document/d/1tKNdHoq0m8O7U-5V_z4QE5V1N0BM4Z8llLPyebQRgv8/edit?usp=sharing"
-            >
-              <ResumeButton endIcon={<ArticleIcon />} variant="contained">
-                Resume
-              </ResumeButton>
-            </Link>
-            <Link
-              target="_blank"
-              href="https://www.linkedin.com/in/ivy-jeong-0582ba95/"
-            >
-              <LinkedInIcon sx={{ color: indigo[500] }} fontSize="large" />
-            </Link>
-          </Box>
         </motion.div>
       </Section>
     </>

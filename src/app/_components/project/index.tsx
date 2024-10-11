@@ -4,7 +4,7 @@ import { Box, Chip, styled, Typography } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
 import { ProjectType } from '@/app/_types';
 import { GithubIcon } from '@/app/assets/icons';
-import { standardBorderRadius } from '@/app/_constants';
+import { defaultBoxShadow, standardBorderRadius } from '@/app/_constants';
 import Image from 'next/image';
 import Link from 'next/link';
 import Placeholder from '../../assets/images/Code_k1IJv9gHDD.png';
@@ -73,6 +73,7 @@ const Project = ({ project }: Props) => {
             height: 150,
             overflow: 'hidden',
             borderRadius: `${standardBorderRadius}px`,
+            boxShadow: defaultBoxShadow,
           }}
         >
           <PlaceholderImage alt="placeholder.png" src={Placeholder} />

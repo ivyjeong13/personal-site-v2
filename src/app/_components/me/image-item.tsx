@@ -1,4 +1,4 @@
-import { smallContainerPadding } from '@/app/_constants';
+import { defaultBoxShadow, smallContainerPadding } from '@/app/_constants';
 import useIsMobile from '@/app/_hooks/use-is-mobile';
 import {
   Box,
@@ -27,13 +27,6 @@ type Props = {
 const ImageItem = ({ item }: Props) => {
   const [showBlurb, setShowBlurb] = useState(false);
   const isMobile = useIsMobile();
-  const boxShadow = `
-    1px 2px 2px hsl(220deg 60% 50% / 0.2),
-    2px 4px 4px hsl(220deg 60% 50% / 0.2),
-    4px 8px 8px hsl(220deg 60% 50% / 0.2),
-    8px 16px 16px hsl(220deg 60% 50% / 0.2),
-    16px 32px 32px hsl(220deg 60% 50% / 0.2)
-  `;
 
   const ImageContent = (
     <motion.div
@@ -47,7 +40,7 @@ const ImageItem = ({ item }: Props) => {
         onClick={() => setShowBlurb(!showBlurb)}
         style={{
           borderRadius: '4px',
-          boxShadow,
+          boxShadow: defaultBoxShadow,
           cursor: 'pointer',
         }}
         src={item.img ?? ''}

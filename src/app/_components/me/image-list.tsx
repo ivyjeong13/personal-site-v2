@@ -123,7 +123,7 @@ const ImageList = () => {
   const images = isMobile ? mobileImages : desktopImages;
   return (
     <MuiImageList
-      sx={{ width: isMobile ? 360 : '100%' }}
+      sx={{ width: isMobile ? 360 : '100%', paddingBottom: 3, paddingRight: 2 }}
       variant="quilted"
       cols={isMobile ? 4 : 8}
       rowHeight={121}
