@@ -71,7 +71,7 @@ const ImageItem = ({ item }: Props) => {
               justifyContent: 'center',
               alignItems: 'center',
               flexDirection: 'column',
-              zIndex: 2,
+              zIndex: 10,
             }}
           >
             <ClickAwayListener
