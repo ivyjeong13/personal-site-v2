@@ -1,17 +1,17 @@
 import { Box, Grid2, styled, Typography } from '@mui/material';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { grey, indigo } from '@mui/material/colors';
+import { centeredFlexStyles } from '@/common/styles';
+import Section from './section';
+import Project from './project';
 import {
   containerSizes,
   defaultContainerPadding,
   mountainPurple,
 } from '../../common/constants';
-import { grey, indigo } from '@mui/material/colors';
-import Section from './section';
-import Project from './project';
 import { ProjectType } from '../../common/types';
 import useIsMobile from '../../common/hooks/use-is-mobile';
-import { centeredFlexStyles } from '@/common/styles';
 
 const maxTriangleHeight = 600;
 const minTriangleHeight = 300;

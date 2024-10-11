@@ -1,11 +1,11 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
-import Section from '../section';
 import { Box, styled, Typography } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
-import ImageList from './image-list';
 import { defaultContainerPadding } from '@/common/constants';
 import useIsMobile from '@/common/hooks/use-is-mobile';
+import ImageList from './image-list';
+import Section from '../section';
 
 const Container = styled(motion.div)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {

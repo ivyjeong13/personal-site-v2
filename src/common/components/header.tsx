@@ -2,12 +2,9 @@ import { Box, Button, Link, styled, Typography } from '@mui/material';
 import { indigo } from '@mui/material/colors';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { motion, useScroll } from 'framer-motion';
-import {
-  black,
-  standardGap,
-  defaultInputPadding,
-} from '../../common/constants';
 import { centeredFlexStyles } from '@/common/styles';
+import { GithubIcon } from '@/app/assets/icons';
+import { black, standardGap, defaultInputPadding } from '../constants';
 
 const HeaderContainer = styled(Box)({
   color: indigo[50],
@@ -96,9 +93,15 @@ const Header = () => {
             </Link>
             <Link
               target="_blank"
+              href="https://github.com/ivyjeong13?tab=repositories"
+            >
+              <GithubIcon sx={{ color: indigo[300] }} fontSize="medium" />
+            </Link>
+            <Link
+              target="_blank"
               href="https://www.linkedin.com/in/ivy-jeong-0582ba95/"
             >
-              <LinkedInIcon sx={{ color: indigo[300] }} fontSize="large" />
+              <LinkedInIcon sx={{ color: indigo[300] }} fontSize="medium" />
             </Link>
           </HeaderSection>
         </HeaderContent>

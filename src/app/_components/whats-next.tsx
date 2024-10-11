@@ -1,5 +1,4 @@
 import { indigo } from '@mui/material/colors';
-import Section from './section';
 import {
   styled,
   Typography as MuiTypography,
@@ -7,10 +6,11 @@ import {
   Box,
 } from '@mui/material';
 import { Email } from '@mui/icons-material';
-import Link from 'next/link';
 import { motion, useAnimation, useInView } from 'framer-motion';
+import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { containerSizes, defaultContainerPadding } from '@/common/constants';
+import Section from './section';
 
 const Typography = styled(MuiTypography)({
   color: indigo[50],

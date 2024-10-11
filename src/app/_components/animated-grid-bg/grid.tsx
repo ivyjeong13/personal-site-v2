@@ -1,7 +1,7 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
-import GridItem from './grid-item';
 import { indigo } from '@mui/material/colors';
+import GridItem from './grid-item';
 
 type Props = {
   delayPerPixel?: number;

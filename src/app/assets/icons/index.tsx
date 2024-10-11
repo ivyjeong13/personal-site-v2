@@ -135,7 +135,7 @@ export const FastifyIcon = createSvgIcon(
 
 export const GithubIcon = createSvgIcon(
   <svg viewBox="0 0 128 128">
-    <g fill="#181616">
+    <g fill="currentColor">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"

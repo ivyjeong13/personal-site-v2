@@ -7,7 +7,7 @@ import About from './_components/about';
 import Projects from './_components/projects';
 import Me from './_components/me';
 import WhatsNext from './_components/whats-next';
-import Header from './_components/header';
+import Header from '../common/components/header';
 
 const Segment = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {

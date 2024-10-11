@@ -26,10 +26,6 @@ const Content = styled(Box)(({ theme }) => ({
   display: 'flex',
 }));
 
-const ProjectDescription = styled(Typography)({
-  color: grey[900],
-});
-
 const PlaceholderImage = styled(Image)({
   filter: 'blur(2px)',
   height: 150,
@@ -90,13 +86,11 @@ const Project = ({ project }: Props) => {
         >
           <PlaceholderImage alt="placeholder.png" src={Placeholder} />
         </Box>
-        <Box sx={{ width: '100%' }}>
-          <ProjectDescription variant="body1" sx={{ color: indigo[500] }}>
+        <Box sx={{ width: '100%', color: grey[900] }}>
+          <Typography variant="body1" sx={{ color: indigo[500] }}>
             <b>{project.title}</b>
-          </ProjectDescription>
-          <ProjectDescription variant="caption">
-            {project.description}
-          </ProjectDescription>
+          </Typography>
+          <Typography variant="caption">{project.description}</Typography>
           {project.githubUrl && (
             <Box>
               <Link href={project.githubUrl} target="_blank">

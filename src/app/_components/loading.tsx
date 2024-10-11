@@ -1,8 +1,8 @@
 import { Box, styled } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
 import { motion } from 'framer-motion';
-import { iconSizes, standardGap } from '../../common/constants';
 import { centeredFlexStyles } from '@/common/styles';
+import { iconSizes, standardGap } from '../../common/constants';
 
 const Loader = styled(motion.div)({
   background: '#FFF',

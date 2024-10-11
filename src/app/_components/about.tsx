@@ -9,23 +9,23 @@ import {
 } from '@mui/material';
 import ComputerIcon from '@mui/icons-material/Computer';
 import StorageIcon from '@mui/icons-material/Storage';
+import { grey } from '@mui/material/colors';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import FeedIcon from '@mui/icons-material/Feed';
-import Section from './section';
-import background from '../assets/images/pexels-eberhardgross-12486830.jpg';
-import Image from 'next/image';
 import { motion, useAnimation, useInView } from 'framer-motion';
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import { centeredFlexStyles } from '@/common/styles';
 import Skillset from './skillset';
 import { SkillsetType } from '../../common/types';
 import * as icons from '../assets/icons';
+import Section from './section';
+import background from '../assets/images/pexels-eberhardgross-12486830.jpg';
 import {
   defaultContainerPadding,
   mountainPurple,
 } from '../../common/constants';
-import { grey } from '@mui/material/colors';
 import useIsMobile from '../../common/hooks/use-is-mobile';
-import { centeredFlexStyles } from '@/common/styles';
 
 const Title = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
