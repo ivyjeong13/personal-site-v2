@@ -6,9 +6,19 @@ import Guitar from '../../assets/images/hobbies/guitar.jpg';
 import MuayThai from '../../assets/images/hobbies/muaythai.jpg';
 import Me2 from '../../assets/images/hobbies/me_2.jpg';
 import Me from '../../assets/images/hobbies/me.jpg';
-import { ImageList as MuiImageList } from '@mui/material';
+import { ImageList as MuiImageList, styled } from '@mui/material';
 import useIsMobile from '@/app/_hooks/use-is-mobile';
 import ImageItem from './image-item';
+
+const List = styled(MuiImageList)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    width: 360,
+    paddingLeft: 12,
+    paddingRight: 12,
+  },
+  width: '100%',
+  paddingBottom: 12,
+}));
 
 const ImageList = () => {
   const isMobile = useIsMobile();
@@ -122,17 +132,11 @@ const ImageList = () => {
 
   const images = isMobile ? mobileImages : desktopImages;
   return (
-    <MuiImageList
-      sx={{ width: isMobile ? 360 : '100%', paddingBottom: 3, paddingRight: 2 }}
-      variant="quilted"
-      cols={isMobile ? 4 : 8}
-      rowHeight={121}
-      gap={8}
-    >
+    <List variant="quilted" cols={isMobile ? 4 : 8} rowHeight={121} gap={8}>
       {images.map((image, i) => (
         <ImageItem key={i} item={image} />
       ))}
-    </MuiImageList>
+    </List>
   );
 };
 
