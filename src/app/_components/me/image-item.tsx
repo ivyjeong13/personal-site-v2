@@ -74,7 +74,12 @@ const ImageItem = ({ item }: Props) => {
               zIndex: 2,
             }}
           >
-            <ClickAwayListener onClickAway={() => setShowBlurb(false)}>
+            <ClickAwayListener
+              onClickAway={(event) => {
+                event.stopPropagation();
+                setShowBlurb(false);
+              }}
+            >
               <Image width={360} alt={item.description} src={item.img ?? ''} />
             </ClickAwayListener>
             <Typography sx={{ marginTop: 2, maxWidth: 300 }} variant="caption">
