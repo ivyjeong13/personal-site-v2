@@ -2,6 +2,7 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { indigo } from '@mui/material/colors';
 import GridItem from './grid-item';
+import { useTheme } from '@mui/material';
 
 type Props = {
   delayPerPixel?: number;
@@ -13,6 +14,7 @@ const Grid = ({ delayPerPixel = 0.0008, numItems = 80 }: Props) => {
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const theme = useTheme();
 
   useEffect(() => {
     if (isInView) {
@@ -32,7 +34,7 @@ const Grid = ({ delayPerPixel = 0.0008, numItems = 80 }: Props) => {
       return indigo[100];
     }
 
-    return indigo[300];
+    return theme.palette.secondary.main;
   };
 
   return (

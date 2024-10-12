@@ -2,9 +2,8 @@ import {
   defaultContainerPadding,
   defaultInputPadding,
 } from '@/common/constants';
-import { Box, Paper, styled, Typography } from '@mui/material';
+import { Box, Paper, styled, Typography, useTheme } from '@mui/material';
 import WebIcon from '@mui/icons-material/Web';
-import { grey, indigo } from '@mui/material/colors';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { centeredFlexStyles } from '@/common/styles';
@@ -50,6 +49,7 @@ const IconContainer = styled(Box)(({ theme }) => ({
 
 const Skillset = ({ title, Icon = <WebIcon />, children }: Props) => {
   const [isHovering, setHovering] = useState(false);
+  const theme = useTheme();
 
   return (
     <SkillsetPaper
@@ -69,7 +69,9 @@ const Skillset = ({ title, Icon = <WebIcon />, children }: Props) => {
       </IconContainer>
       <Title
         animate={{
-          backgroundColor: isHovering ? indigo[500] : grey[900],
+          backgroundColor: isHovering
+            ? theme.palette.primary.main
+            : theme.palette.tertiary.main,
         }}
         initial={false}
       >

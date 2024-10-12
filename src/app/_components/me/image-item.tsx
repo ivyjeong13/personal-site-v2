@@ -9,8 +9,8 @@ import {
   styled,
   Tooltip,
   Typography,
+  useTheme,
 } from '@mui/material';
-import { grey, indigo } from '@mui/material/colors';
 import { motion } from 'framer-motion';
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
@@ -42,6 +42,7 @@ const Overlay = styled(Box)({
 const ImageItem = ({ item }: Props) => {
   const [showBlurb, setShowBlurb] = useState(false);
   const isMobile = useIsMobile();
+  const theme = useTheme();
 
   const ImageContent = (
     <motion.div
@@ -96,17 +97,17 @@ const ImageItem = ({ item }: Props) => {
       slotProps={{
         arrow: {
           sx: {
-            color: indigo[50],
+            color: theme.palette.primary.contrastText,
           },
         },
         tooltip: {
           sx: {
-            backgroundColor: indigo[50],
-            color: grey[900],
+            backgroundColor: theme.palette.primary.contrastText,
+            color: theme.palette.tertiary.main,
             fontSize: 14,
             padding: `${defaultContainerPadding.medium}px`,
             borderRadius: 4,
-            border: `2px solid ${grey[900]}`,
+            border: `2px solid ${theme.palette.tertiary.main}`,
           },
         },
       }}
