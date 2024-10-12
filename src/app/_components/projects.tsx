@@ -1,7 +1,6 @@
 import { Box, Grid2, styled, Typography } from '@mui/material';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { grey } from '@mui/material/colors';
 import { centeredFlexStyles } from '@/common/styles';
 import Section from './section';
 import Project from './project';
