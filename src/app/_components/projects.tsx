@@ -1,7 +1,7 @@
 import { Box, Grid2, styled, Typography } from '@mui/material';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { grey, indigo } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 import { centeredFlexStyles } from '@/common/styles';
 import Section from './section';
 import Project from './project';
@@ -15,7 +15,7 @@ import useIsMobile from '../../common/hooks/use-is-mobile';
 
 const maxTriangleHeight = 600;
 const minTriangleHeight = 300;
-const BackgroundTriangleA = styled(Box)({
+const BackgroundTriangleA = styled(Box)(({ theme }) => ({
   width: 0,
   height: 0,
   position: 'absolute',
@@ -23,22 +23,22 @@ const BackgroundTriangleA = styled(Box)({
   left: `calc(50% - ${containerSizes.desktop}px)`,
   transform: `translateX(-50% - ${containerSizes.desktop}px)`,
   borderLeft: `${maxTriangleHeight}px solid ${mountainPurple}`,
-  borderRight: `${maxTriangleHeight} solid ${indigo[50]}`,
+  borderRight: `${maxTriangleHeight} solid ${theme.palette.primary.contrastText}`,
   borderTop: `${minTriangleHeight} solid ${mountainPurple}`,
-});
-const BackgroundTriangleB = styled(Box)({
+}));
+const BackgroundTriangleB = styled(Box)(({ theme }) => ({
   width: 0,
   height: 0,
   position: 'absolute',
   top: 0,
   right: `calc(50% - ${containerSizes.desktop}px)`,
   transform: `translateX(-50% - ${containerSizes.desktop}px)`,
-  borderLeft: `${maxTriangleHeight} solid ${indigo[50]}`,
+  borderLeft: `${maxTriangleHeight} solid ${theme.palette.primary.contrastText}`,
   borderRight: `${maxTriangleHeight} solid ${mountainPurple}`,
   borderTop: `${minTriangleHeight} solid ${mountainPurple}`,
-});
-const ContentWithBackground = styled(Box)({
-  backgroundColor: indigo[50],
+}));
+const ContentWithBackground = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.contrastText,
   width: '100%',
   position: 'relative',
   top: -200,
@@ -46,12 +46,12 @@ const ContentWithBackground = styled(Box)({
   marginBottom: -200,
   display: 'flex',
   justifyContent: 'center',
-});
+}));
 const ProjectsTitle = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     fontSize: 35,
   },
-  color: grey[900],
+  color: theme.palette.secondary.contrastText,
   fontSize: 100,
   marginTop: defaultContainerPadding.large,
 }));
@@ -146,8 +146,8 @@ const Projects = () => {
           <Box>
             <ProjectsTitle variant="h3">PROJECTS</ProjectsTitle>
             <Typography
+              color="tertiary"
               sx={{
-                color: grey[900],
                 textAlign: 'center',
               }}
               variant={isMobile ? 'caption' : 'body1'}
@@ -155,8 +155,8 @@ const Projects = () => {
               Examples of small solo projects I&apos;ve done on my own time.
             </Typography>
             <Typography
+              color="tertiary"
               sx={{
-                color: grey[900],
                 textAlign: 'center',
                 paddingBottom: '24px',
               }}

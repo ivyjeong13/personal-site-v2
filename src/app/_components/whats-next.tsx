@@ -1,9 +1,9 @@
 import { indigo } from '@mui/material/colors';
 import {
   styled,
-  Typography as MuiTypography,
-  IconButton,
+  IconButton as MuiIconButton,
   Box,
+  Typography,
 } from '@mui/material';
 import { Email } from '@mui/icons-material';
 import { motion, useAnimation, useInView } from 'framer-motion';
@@ -11,10 +11,6 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { containerSizes, defaultContainerPadding } from '@/common/constants';
 import Section from './section';
-
-const Typography = styled(MuiTypography)({
-  color: indigo[50],
-});
 
 const Container = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -31,6 +27,9 @@ const Description = styled(Typography)({
   marginBottom: defaultContainerPadding.small,
   width: containerSizes.mobile,
 });
+const IconButton = styled(MuiIconButton)(({ theme }) => ({
+  color: theme.palette.primary.contrastText,
+}));
 
 export const WhatsNext = () => {
   const ref = useRef(null);
@@ -69,7 +68,7 @@ export const WhatsNext = () => {
             hello, I&apos;ll do my best to get back to you.
           </Description>
           <Link href="mailto:ivy.jeong@gmail.com">
-            <IconButton sx={{ color: indigo[50] }}>
+            <IconButton>
               <Email fontSize="large" />
             </IconButton>
           </Link>

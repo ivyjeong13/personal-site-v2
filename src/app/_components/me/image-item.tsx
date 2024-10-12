@@ -35,7 +35,6 @@ const Overlay = styled(Box)({
   width: '100%',
   backgroundColor: 'rgba(0, 0, 0, 0.90)',
   padding: defaultContainerPadding.large,
-  color: indigo[50],
   flexDirection: 'column',
   zIndex: 10,
 });

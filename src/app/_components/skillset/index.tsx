@@ -20,14 +20,13 @@ const SkillsetPaper = styled(Paper)(({ theme }) => ({
     height: 'auto',
     marginBottom: defaultContainerPadding.large,
   },
-  background: indigo[50],
+  background: theme.palette.primary.contrastText,
   width: 275,
   position: 'relative',
   height: 465,
 }));
 
 const Title = styled(motion.div)({
-  color: indigo[50],
   paddingTop: defaultInputPadding.medium + 35,
   paddingBottom: defaultInputPadding.medium,
   textAlign: 'center',
@@ -37,7 +36,7 @@ const Content = styled(Box)({
   padding: defaultContainerPadding.medium,
 });
 
-const IconContainer = styled(Box)({
+const IconContainer = styled(Box)(({ theme }) => ({
   ...centeredFlexStyles,
   position: 'absolute',
   top: -35,
@@ -45,9 +44,9 @@ const IconContainer = styled(Box)({
   transform: 'translateX(-50%)',
   width: 70,
   height: 70,
-  background: indigo[50],
+  background: theme.palette.primary.contrastText,
   borderRadius: '50%',
-});
+}));
 
 const Skillset = ({ title, Icon = <WebIcon />, children }: Props) => {
   const [isHovering, setHovering] = useState(false);

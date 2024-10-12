@@ -9,7 +9,6 @@ import {
 } from '@mui/material';
 import ComputerIcon from '@mui/icons-material/Computer';
 import StorageIcon from '@mui/icons-material/Storage';
-import { grey } from '@mui/material/colors';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import FeedIcon from '@mui/icons-material/Feed';
 import { motion, useAnimation, useInView } from 'framer-motion';
@@ -26,32 +25,6 @@ import {
   mountainPurple,
 } from '../../common/constants';
 import useIsMobile from '../../common/hooks/use-is-mobile';
-
-const Title = styled(Typography)(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    top: defaultContainerPadding.large,
-    right: 'calc(50% - 102px)',
-    transform: 'translateX(-50% - 102px)',
-    fontSize: 64,
-  },
-  position: 'absolute',
-  top: 132,
-  right: 'calc(50% - 100px)',
-  transform: 'translateX(-50% - 100px)',
-  color: grey[900],
-  fontSize: 220,
-}));
-
-const ListContainer = styled(Box)(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    flexDirection: 'column',
-    gap: 36,
-  },
-  position: 'relative',
-  top: -defaultContainerPadding.large,
-  display: 'flex',
-  gap: 24,
-}));
 
 const Container = styled(motion.div)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -80,6 +53,17 @@ const BackgroundImage = styled(Image)(({ theme }) => ({
   zIndex: -1,
 }));
 
+const ListContainer = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    flexDirection: 'column',
+    gap: 36,
+  },
+  position: 'relative',
+  top: -defaultContainerPadding.large,
+  display: 'flex',
+  gap: 24,
+}));
+
 const SolidBackground = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     marginTop: 150,
@@ -89,6 +73,20 @@ const SolidBackground = styled(Box)(({ theme }) => ({
   width: '100%',
   marginTop: 360,
   background: mountainPurple,
+}));
+
+const Title = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    top: defaultContainerPadding.large,
+    right: 'calc(50% - 102px)',
+    transform: 'translateX(-50% - 102px)',
+    fontSize: 64,
+  },
+  position: 'absolute',
+  top: 132,
+  right: 'calc(50% - 100px)',
+  transform: 'translateX(-50% - 100px)',
+  fontSize: 220,
 }));
 
 const variants = {
@@ -236,7 +234,9 @@ const About = () => {
       animate={controls}
       variants={variants}
     >
-      <Title variant="h3">SKILLS</Title>
+      <Title color="tertiary" variant="h3">
+        SKILLS
+      </Title>
       <BackgroundImage
         alt="pexels-eberhardgross-12486830.jpg"
         src={background}
@@ -256,7 +256,11 @@ const About = () => {
                       <ListItemAvatar>
                         <SkillIcon />
                       </ListItemAvatar>
-                      <ListItemText primary={title} secondary={description} />
+                      <ListItemText
+                        primary={title}
+                        primaryTypographyProps={{ color: 'tertiary' }}
+                        secondary={description}
+                      />
                     </ListItem>
                   ))}
                 </List>

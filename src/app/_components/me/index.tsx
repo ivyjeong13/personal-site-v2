@@ -1,7 +1,6 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { Box, styled, Typography } from '@mui/material';
-import { grey, indigo } from '@mui/material/colors';
 import { defaultContainerPadding } from '@/common/constants';
 import useIsMobile from '@/common/hooks/use-is-mobile';
 import ImageList from './image-list';
@@ -12,7 +11,7 @@ const Container = styled(motion.div)(({ theme }) => ({
     marginTop: defaultContainerPadding.large,
   },
   width: '100%',
-  background: indigo[50],
+  background: theme.palette.primary.contrastText,
   display: 'flex',
   justifyContent: 'center',
   paddingBottom: 48,
@@ -27,7 +26,7 @@ const BackgroundA = styled(Box)(({ theme }) => ({
   },
   width: 600,
   height: 600,
-  backgroundColor: indigo[300],
+  backgroundColor: theme.palette.secondary.main,
   position: 'absolute',
   top: 300,
   transform: 'translateY(-50%) rotate(45deg)',
@@ -41,18 +40,18 @@ const BackgroundB = styled(Box)(({ theme }) => ({
   },
   width: 350,
   height: 350,
-  backgroundColor: indigo[300],
+  backgroundColor: theme.palette.secondary.main,
   position: 'absolute',
   top: 270,
   transform: 'translateY(-50%) rotate(75deg)',
   left: 0,
 }));
 
-const Title = styled(Typography)({
-  color: grey[900],
+const Title = styled(Typography)(({ theme }) => ({
+  color: theme.palette.secondary.contrastText,
   marginTop: defaultContainerPadding.large,
   zIndex: 1,
-});
+}));
 
 export const Me = () => {
   const ref = useRef(null);
@@ -90,7 +89,7 @@ export const Me = () => {
           a{' '}
           <Typography
             component="span"
-            sx={{ color: indigo[500] }}
+            color="primary"
             variant={isMobile ? 'h5' : 'h1'}
           >
             <b>tidbit</b>

@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { Box, styled, Typography } from '@mui/material';
-import { indigo } from '@mui/material/colors';
 import Image from 'next/image';
 import AnimatedGridBackground from './animated-grid-bg';
 import profilePic from '../assets/images/profile_pic.jpg';
@@ -19,7 +18,7 @@ const ProfilePic = styled(Box)(({ theme }) => ({
   },
   alignSelf: 'flex-end',
   borderRadius: '50%',
-  border: `3px solid ${indigo[300]}`,
+  border: `3px solid ${theme.palette.secondary.main}`,
   height: 150,
   overflow: 'hidden',
   width: 150,
@@ -28,6 +27,10 @@ const ProfilePic = styled(Box)(({ theme }) => ({
     height: '100%',
     width: '100%',
   },
+}));
+
+const Name = styled('b')(({ theme }) => ({
+  color: theme.palette.secondary.main,
 }));
 
 const bgRadius = '40%';
@@ -87,7 +90,7 @@ const Intro = () => {
           </ProfilePic>
           <Typography variant={isMobile ? 'h5' : 'h3'}>hello there,</Typography>
           <Typography variant={isMobile ? 'h3' : 'h1'}>
-            i&apos;m <b style={{ color: indigo[300] }}>Ivy Jeong</b>
+            i&apos;m <Name>Ivy Jeong</Name>
           </Typography>
           <Typography
             sx={{ textAlign: 'right' }}

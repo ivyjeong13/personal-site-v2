@@ -1,7 +1,6 @@
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { Box, Chip, styled, Typography } from '@mui/material';
-import { grey, indigo } from '@mui/material/colors';
 import { ProjectType } from '@/common/types';
 import { GithubIcon } from '@/app/assets/icons';
 import {
@@ -38,12 +37,12 @@ const Technologies = styled(Box)({
   marginTop: defaultInputPadding.medium,
 });
 
-const TechnologyChip = styled(Chip)({
-  color: indigo[800],
-  borderColor: indigo[300],
+const TechnologyChip = styled(Chip)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  borderColor: theme.palette.primary.main,
   borderRadius: standardBorderRadius,
   fontSize: '11px',
-});
+}));
 
 const Project = ({ project }: Props) => {
   const ref = useRef(null);
@@ -86,11 +85,13 @@ const Project = ({ project }: Props) => {
         >
           <PlaceholderImage alt="placeholder.png" src={Placeholder} />
         </Box>
-        <Box sx={{ width: '100%', color: grey[900] }}>
-          <Typography variant="body1" sx={{ color: indigo[500] }}>
+        <Box sx={{ width: '100%' }}>
+          <Typography color="primary" variant="body1">
             <b>{project.title}</b>
           </Typography>
-          <Typography variant="caption">{project.description}</Typography>
+          <Typography color="tertiary" variant="caption">
+            {project.description}
+          </Typography>
           {project.githubUrl && (
             <Box>
               <Link href={project.githubUrl} target="_blank">
