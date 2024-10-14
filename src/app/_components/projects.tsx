@@ -161,7 +161,7 @@ const Projects = () => {
               }}
             ></Typography>
           </Box>
-          <Box sx={{ width: '100%', flexGrow: 1 }}>
+          <Box sx={{ width: '100%', flexGrow: 1, padding: '0 16px' }}>
             <Grid2 container spacing={4}>
               {projects.map((project) => (
                 <Grid2 key={project.title} size={{ sm: 12, md: 6 }}>
