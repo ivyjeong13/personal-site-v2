@@ -55,7 +55,7 @@ const BackgroundA = styled(Box)(({ theme }) => ({
 const BackgroundB = styled(Box)({
   position: 'absolute',
   width: '100%',
-  height: '100%',
+  height: 1000,
   background: mountainPurple,
   top: 0,
   left: 0,

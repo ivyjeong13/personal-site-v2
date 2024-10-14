@@ -24,7 +24,6 @@ import {
   defaultContainerPadding,
   mountainPurple,
 } from '../../common/constants';
-import useIsMobile from '../../common/hooks/use-is-mobile';
 
 const Container = styled(motion.div)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -58,10 +57,13 @@ const ListContainer = styled(Box)(({ theme }) => ({
     flexDirection: 'column',
     gap: 36,
   },
+  justifyContent: 'center',
   position: 'relative',
   top: -defaultContainerPadding.large,
   display: 'flex',
-  gap: 24,
+  flexWrap: 'wrap',
+  rowGap: 48,
+  columnGap: 24,
 }));
 
 const SolidBackground = styled(Box)(({ theme }) => ({
@@ -76,14 +78,18 @@ const SolidBackground = styled(Box)(({ theme }) => ({
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down(1200)]: {
+    fontSize: 190,
+    right: 'calc(50%)',
+    transform: 'translateX(50%)',
+    top: 140,
+  },
   [theme.breakpoints.down('md')]: {
     top: defaultContainerPadding.large,
-    right: 'calc(50% - 102px)',
-    transform: 'translateX(-50% - 102px)',
     fontSize: 64,
   },
   position: 'absolute',
-  top: 132,
+  top: 120,
   right: 'calc(50% - 100px)',
   transform: 'translateX(-50% - 100px)',
   fontSize: 220,
@@ -104,7 +110,6 @@ const About = () => {
   const ref = useRef(null);
   const controls = useAnimation();
   const isInView = useInView(ref, { once: true });
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     controls.start('visible');
@@ -242,7 +247,7 @@ const About = () => {
         src={background}
       />
       <SolidBackground>
-        <Section height={isMobile ? 'auto' : 500}>
+        <Section height="auto">
           <ListContainer>
             {skillsets.map(({ Icon, title, skills }) => (
               <Skillset

@@ -15,9 +15,13 @@ type Props = {
 };
 
 const SkillsetPaper = styled(Paper)(({ theme }) => ({
+  [theme.breakpoints.down(1200)]: {
+    width: 400,
+  },
   [theme.breakpoints.down('md')]: {
     height: 'auto',
     marginBottom: defaultContainerPadding.large,
+    width: 260,
   },
   background: theme.palette.primary.contrastText,
   width: 275,
