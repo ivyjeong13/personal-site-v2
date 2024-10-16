@@ -41,7 +41,11 @@ const MobileCounterDisplay = styled(Box)(({ theme }) => ({
   margin: `${theme.spacing(4)} 0`,
 }));
 
-const SplashContainer = styled(Box)({
+const SplashContainer = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    height: '75vh',
+    minHeight: 'auto',
+  },
   ...centeredFlexStyles,
   height: '100vh',
   minHeight: 845,
@@ -50,7 +54,7 @@ const SplashContainer = styled(Box)({
   '& > img': {
     height: '100%',
   },
-});
+}));
 
 const SplashBottomContent = styled(Box)(({ theme }) => ({
   bottom: 0,
