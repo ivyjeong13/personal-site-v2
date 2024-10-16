@@ -12,7 +12,7 @@ import {
 import { ProjectType } from '../../common/types';
 import useIsMobile from '../../common/hooks/use-is-mobile';
 import FeaturedProject from './project/featured';
-import * as projectsData from '../_assets/data/projects.json';
+import projectsData from '../_assets/data/projects.json';
 
 const maxTriangleHeight = 600;
 const minTriangleHeight = 300;
