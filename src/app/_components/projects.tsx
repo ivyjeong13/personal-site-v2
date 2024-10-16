@@ -11,6 +11,8 @@ import {
 } from '../../common/constants';
 import { ProjectType } from '../../common/types';
 import useIsMobile from '../../common/hooks/use-is-mobile';
+import FeaturedProject from './project/featured';
+import * as projectsData from '../_assets/data/projects.json';
 
 const maxTriangleHeight = 600;
 const minTriangleHeight = 300;
@@ -46,6 +48,12 @@ const ContentWithBackground = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
 }));
+const FeaturedProjects = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  marginBottom: 36,
+});
 const ProjectsTitle = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     fontSize: 35,
@@ -66,59 +74,9 @@ const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const projects: ProjectType[] = [
-    {
-      title: '[Coming Soon]',
-      githubUrl: null,
-      url: null,
-      description: 'A silly idea; an interactive Tamagotchi powered by OpenAI.',
-      image: null,
-      technologies: ['OpenAI API', 'React', 'Emotion (CSS-in-JS)', 'Express'],
-    },
-    {
-      title: '[Coming Soon]',
-      githubUrl: null,
-      url: null,
-      description:
-        'A completionist tracker for my character in Final Fantasy XIV.',
-      image: null,
-      technologies: [
-        'React',
-        'SASS',
-        'Universalis API',
-        'FFXIV Collect API',
-        'XIVAPI',
-      ],
-    },
-    {
-      title: 'Trending Twitter By Country',
-      githubUrl: 'https://github.com/ivyjeong13/twitter-google-trending-react',
-      url: null,
-      description:
-        '(2018) A web app where you could navigate by country and get the top trending tweets happening in the area. Utilized Simple Maps and Twitter API. Created in React.',
-      image: null,
-      technologies: ['React', 'React Simple Maps', 'Twitter API'],
-    },
-    {
-      title: 'Pro Gamer',
-      githubUrl: 'https://github.com/ivyjeong13/progamer-web',
-      url: null,
-      description:
-        '(2018) Another small web application that listed video games like a library and displayed upcoming progamer tournaments for the game the user had selected. Utilized Giant Bomb and PandaScore API. Created in AngularJS.',
-      image: null,
-      technologies: ['AngularJS', 'SCSS'],
-    },
-    {
-      title: 'Shale D&D Calculator',
-      githubUrl: 'https://github.com/ivyjeong13/heroku-dnd-test',
-      url: null,
-      description:
-        '(2020) A calculator app to determine damage given and received based on own stats, own skills used, and buffs from fellow party members that were active during a fight. It made trying to figure out the numbers on the spot a lot quicker!',
-      image: null,
-      technologies: ['React'],
-    },
-  ];
-
+  const projects: ProjectType[] = projectsData.projects;
+  const featuredProjects = projects.filter((project) => project.featured);
+  const nonFeaturedProjects = projects.filter((project) => !project.featured);
   const isMobile = useIsMobile();
   return (
     <PurpleContainer ref={ref}>
@@ -151,7 +109,8 @@ const Projects = () => {
               }}
               variant={isMobile ? 'caption' : 'body1'}
             >
-              Examples of small solo projects I&apos;ve done on my own time.
+              Examples of small side projects I&apos;ve done on my own time for
+              fun or to learn.
             </Typography>
             <Typography
               color="tertiary"
@@ -161,9 +120,17 @@ const Projects = () => {
               }}
             ></Typography>
           </Box>
+          <FeaturedProjects>
+            {featuredProjects.map((featuredProject) => (
+              <FeaturedProject
+                key={featuredProject.title}
+                project={featuredProject}
+              />
+            ))}
+          </FeaturedProjects>
           <Box sx={{ width: '100%', flexGrow: 1, padding: '0 16px' }}>
             <Grid2 container spacing={4}>
-              {projects.map((project) => (
+              {nonFeaturedProjects.map((project) => (
                 <Grid2 key={project.title} size={{ sm: 12, md: 6 }}>
                   <Project key={project.title} project={project} />
                 </Grid2>

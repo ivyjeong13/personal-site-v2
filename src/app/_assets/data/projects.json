@@ -1,0 +1,60 @@
+{
+  "projects": [
+    {
+      "description": "A silly idea; an interactive Tamagotchi powered by OpenAI.",
+      "featured": false,
+      "githubUrl": null,
+      "image": null,
+      "title": "[Coming Soon]",
+      "technologies": ["OpenAI API", "React", "Emotion (CSS-in-JS)", "Express"],
+      "url": null
+    },
+    {
+      "featured": true,
+      "description":
+        "A completionist tracker for my character in Final Fantasy XIV.",
+      "githubUrl": null,
+      "image":
+        "https://res.cloudinary.com/dwnebujkh/image/upload/v1729102286/svgaq6e0lz2pwgwtnm7c.jpg",
+      "technologies": [
+        "React",
+        "SASS",
+        "Universalis API",
+        "FFXIV Collect API",
+        "XIVAPI"
+      ],
+      "title": "XIV Completionist Tracker",
+      "url": "/ffxiv-collect-tracker"
+    },
+    {
+      "featured": false,
+      "description":
+        "(2018) A web app where you could navigate by country and get the top trending tweets happening in the area. Utilized Simple Maps and Twitter API. Created in React.",
+      "githubUrl": "https://github.com/ivyjeong13/twitter-google-trending-react",
+      "image": null,
+      "title": "Trending Twitter By Country",
+      "technologies": ["React", "React Simple Maps", "Twitter API"],
+      "url": null
+    },
+    {
+      "featured": false,
+      "description":
+        "(2018) Another small web application that listed video games like a library and displayed upcoming progamer tournaments for the game the user had selected. Utilized Giant Bomb and PandaScore API. Created in AngularJS.",
+      "githubUrl": "https://github.com/ivyjeong13/progamer-web",
+      "image": null,
+      "technologies": ["AngularJS", "SCSS"],
+      "title": "Pro Gamer",
+      "url": null
+    },
+    {
+      "featured": false,
+      "description":
+        "(2020) A calculator app to determine damage given and received based on own stats, own skills used, and buffs from fellow party members that were active during a fight. It made trying to figure out the numbers on the spot a lot quicker!",
+      "githubUrl": "https://github.com/ivyjeong13/heroku-dnd-test",
+      "image": null,
+      "technologies": ["React"],
+      "title": "Shale D&D Calculator",
+      "url": null
+    }
+  ]
+}

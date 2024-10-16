@@ -4,7 +4,6 @@ import { Box, Chip, styled, Typography } from '@mui/material';
 import { ProjectType } from '@/common/types';
 import { GithubIcon } from '@/app/_assets/icons';
 import {
-  defaultBoxShadow,
   defaultInputPadding,
   standardBorderRadius,
   standardGap,
@@ -20,6 +19,7 @@ type Props = {
 const Content = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
+    gap: standardGap,
   },
   gap: 16,
   display: 'flex',
@@ -30,7 +30,7 @@ const PlaceholderImage = styled(Image)({
   height: 150,
 });
 
-const Technologies = styled(Box)({
+export const Technologies = styled(Box)({
   display: 'flex',
   flexWrap: 'wrap',
   gap: standardGap,
@@ -80,25 +80,22 @@ const Project = ({ project }: Props) => {
             height: 150,
             overflow: 'hidden',
             borderRadius: `${standardBorderRadius}px`,
-            boxShadow: defaultBoxShadow,
           }}
         >
           <PlaceholderImage alt="placeholder.png" src={Placeholder} />
         </Box>
         <Box sx={{ width: '100%' }}>
           <Typography color="primary" variant="body1">
-            <b>{project.title}</b>
+            <b>{project.title}</b>{' '}
+            {project.githubUrl && (
+              <Link href={project.githubUrl} target="_blank">
+                <GithubIcon color="primary" fontSize="small" />
+              </Link>
+            )}
           </Typography>
           <Typography color="tertiary" variant="caption">
             {project.description}
           </Typography>
-          {project.githubUrl && (
-            <Box>
-              <Link href={project.githubUrl} target="_blank">
-                <GithubIcon fontSize="small" />
-              </Link>
-            </Box>
-          )}
         </Box>
       </Content>
       <Technologies>

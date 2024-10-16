@@ -1,20 +1,21 @@
 export type SkillType = {
-  title: string;
   description?: string;
   Icon: React.ElementType;
+  title: string;
 };
 
 export type SkillsetType = {
-  title: string;
   Icon: React.ElementType;
   skills: SkillType[];
+  title: string;
 };
 
 export type ProjectType = {
-  title: string;
+  featured: boolean;
   description?: string;
   githubUrl: string | null;
-  url: string | null;
   image: string | null;
   technologies: string[];
+  title: string;
+  url: string | null;
 };

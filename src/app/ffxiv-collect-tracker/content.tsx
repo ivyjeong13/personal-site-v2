@@ -64,9 +64,10 @@ const Title = styled(MuiTypography)({
   fontSize: 125,
 });
 
-const Typography = styled(MuiTypography)({
+const Typography = styled('span')({
   fontFamily: thasadith.style.fontFamily,
   fontWeight: 400,
+  lineHeight: 1.5,
 });
 
 type Props = {
