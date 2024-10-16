@@ -8,6 +8,7 @@ import bannerImage from './_assets/dVxANNz.jpeg';
 import MountCounter from './_components/mount-counter';
 import MinionCounter from './_components/minion-counter';
 import { XivCharacter } from './_types';
+import useIsMobile from '@/common/hooks/use-is-mobile';
 
 const uncialAntiqua = Uncial_Antiqua({
   weight: '400',
@@ -24,12 +25,21 @@ const thasadith = Thasadith({
   subsets: ['latin'],
 });
 
-const Container = styled(Box)({
+const Container = styled(Box)(({ theme }) => ({
   ...centeredFlexStyles,
+  flexDirection: 'column',
   backgroundColor: '#110f0f',
   minHeight: 300,
   width: '100%',
-});
+  paddingBottom: theme.spacing(8),
+}));
+
+const MobileCounterDisplay = styled(Box)(({ theme }) => ({
+  ...centeredFlexStyles,
+  justifyContent: 'space-evenly',
+  width: '100%',
+  margin: `${theme.spacing(4)} 0`,
+}));
 
 const SplashContainer = styled(Box)({
   ...centeredFlexStyles,
@@ -50,19 +60,28 @@ const SplashBottomContent = styled(Box)(({ theme }) => ({
   width: '100%',
 }));
 
-const Subheader = styled(MuiTypography)({
+const Subheader = styled(MuiTypography)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    bottom: 0,
+    left: 0,
+    fontSize: 12,
+  },
   bottom: -64,
   fontFamily: cinzel.style.fontFamily,
   fontSize: 18,
   fontWeight: 600,
   left: 100,
   position: 'relative',
-});
+}));
 
-const Title = styled(MuiTypography)({
+const Title = styled(MuiTypography)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    fontSize: 64,
+    lineHeight: 0.9,
+  },
   fontFamily: uncialAntiqua.style.fontFamily,
   fontSize: 125,
-});
+}));
 
 const Typography = styled('span')({
   fontFamily: thasadith.style.fontFamily,
@@ -75,6 +94,7 @@ type Props = {
 };
 
 const Content = ({ character }: Props) => {
+  const isMobile = useIsMobile();
   return (
     <>
       <SplashContainer>
@@ -83,10 +103,16 @@ const Content = ({ character }: Props) => {
           <Subheader>Final Fantasy XIV Completionist Tracker</Subheader>
           <Title>{character?.name ?? ''}</Title>
         </SplashBottomContent>
-        <MountCounter count={character?.total_mounts} />
-        <MinionCounter count={character?.total_minions} />
+        {!isMobile && <MountCounter count={character?.total_mounts} />}
+        {!isMobile && <MinionCounter count={character?.total_minions} />}
       </SplashContainer>
       <Container>
+        {isMobile && (
+          <MobileCounterDisplay>
+            <MountCounter count={character?.total_mounts} />
+            <MinionCounter count={character?.total_minions} />
+          </MobileCounterDisplay>
+        )}
         <Typography>
           More Info Coming Soon! <br /> <br />
           <ul>

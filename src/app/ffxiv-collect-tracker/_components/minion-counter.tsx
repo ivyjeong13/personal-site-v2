@@ -5,6 +5,20 @@ import { grey, indigo } from '@mui/material/colors';
 import useCounter from '../_hooks/use-counter';
 
 const SplashMinionCount = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    position: 'relative',
+    bottom: 'unset',
+    right: 'unset',
+    height: 150,
+    width: 150,
+    padding: 0,
+    '&::before': {
+      height: '150px !important',
+    },
+    '&::after': {
+      left: '75px !important',
+    },
+  },
   ...centeredFlexStyles,
   height: 300,
   paddingRight: theme.spacing(3),
