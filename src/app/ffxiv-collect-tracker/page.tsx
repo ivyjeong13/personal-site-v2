@@ -6,7 +6,7 @@ import Loading from '@/common/components/loading';
 const XivCollect = async () => {
   const characterId = 36534441;
   const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/ffxiv/character/${characterId}`;
-  const res = await fetch(url, { cache: 'no-store' });
+  const res = await fetch(url);
   const data: XivCharacter = await res.json();
   return (
     <Suspense fallback={<Loading />}>
