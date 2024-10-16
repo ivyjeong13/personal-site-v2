@@ -2,7 +2,7 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { Box, Chip, styled, Typography } from '@mui/material';
 import { ProjectType } from '@/common/types';
-import { GithubIcon } from '@/app/assets/icons';
+import { GithubIcon } from '@/app/_assets/icons';
 import {
   defaultBoxShadow,
   defaultInputPadding,
@@ -11,7 +11,7 @@ import {
 } from '@/common/constants';
 import Image from 'next/image';
 import Link from 'next/link';
-import Placeholder from '../../assets/images/Code_k1IJv9gHDD.png';
+import Placeholder from '../../_assets/images/Code_k1IJv9gHDD.png';
 
 type Props = {
   project: ProjectType;

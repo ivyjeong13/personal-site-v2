@@ -2,14 +2,14 @@ import { ImageList as MuiImageList, styled } from '@mui/material';
 import { containerSizes, defaultInputPadding } from '@/common/constants';
 import useIsMobile from '@/common/hooks/use-is-mobile';
 import ImageItem from './image-item';
-import BikeHelmet from '../../assets/images/hobbies/bike_helmet.jpg';
-import Car from '../../assets/images/hobbies/car.jpg';
-import Dogs from '../../assets/images/hobbies/dogs.jpg';
-import Gamer from '../../assets/images/hobbies/gamer.jpg';
-import Guitar from '../../assets/images/hobbies/guitar.jpg';
-import MuayThai from '../../assets/images/hobbies/muaythai.jpg';
-import Me2 from '../../assets/images/hobbies/me_2.jpg';
-import Me from '../../assets/images/hobbies/me.jpg';
+import BikeHelmet from '../../_assets/images/hobbies/bike_helmet.jpg';
+import Car from '../../_assets/images/hobbies/car.jpg';
+import Dogs from '../../_assets/images/hobbies/dogs.jpg';
+import Gamer from '../../_assets/images/hobbies/gamer.jpg';
+import Guitar from '../../_assets/images/hobbies/guitar.jpg';
+import MuayThai from '../../_assets/images/hobbies/muaythai.jpg';
+import Me2 from '../../_assets/images/hobbies/me_2.jpg';
+import Me from '../../_assets/images/hobbies/me.jpg';
 
 const List = styled(MuiImageList)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {

@@ -17,9 +17,9 @@ import { useEffect, useRef } from 'react';
 import { centeredFlexStyles } from '@/common/styles';
 import Skillset from './skillset';
 import { SkillsetType } from '../../common/types';
-import * as icons from '../assets/icons';
+import * as icons from '../_assets/icons';
 import Section from './section';
-import background from '../assets/images/pexels-eberhardgross-12486830.jpg';
+import background from '../_assets/images/pexels-eberhardgross-12486830.jpg';
 import {
   defaultContainerPadding,
   mountainPurple,

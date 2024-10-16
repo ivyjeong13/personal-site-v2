@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Box, styled, Typography } from '@mui/material';
 import Image from 'next/image';
 import AnimatedGridBackground from './animated-grid-bg';
-import profilePic from '../assets/images/profile_pic.jpg';
+import profilePic from '../_assets/images/profile_pic.jpg';
 import Section from './section';
 import {
   black,
