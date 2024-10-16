@@ -83,7 +83,7 @@ const Projects = () => {
         'A completionist tracker for my character in Final Fantasy XIV.',
       image: null,
       technologies: [
-        'Vue',
+        'React',
         'SASS',
         'Universalis API',
         'FFXIV Collect API',
