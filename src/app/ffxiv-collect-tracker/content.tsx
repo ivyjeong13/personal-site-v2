@@ -27,7 +27,7 @@ const thasadith = Thasadith({
 const Container = styled(Box)({
   ...centeredFlexStyles,
   backgroundColor: '#110f0f',
-  height: 300,
+  minHeight: 300,
   width: '100%',
 });
 
@@ -86,7 +86,15 @@ const Content = ({ character }: Props) => {
         <MinionCounter count={character?.total_minions} />
       </SplashContainer>
       <Container>
-        <Typography>More Info Coming Soon!</Typography>
+        <Typography>
+          More Info Coming Soon! <br /> <br />
+          <ul>
+            <li>What Mounts/Minions have been collected</li>
+            <li>Where to get Mount/Minions remaining</li>
+            <li>Add Achievements</li>
+            <li>Select a different Character to track from XIV</li>
+          </ul>
+        </Typography>
       </Container>
     </>
   );
