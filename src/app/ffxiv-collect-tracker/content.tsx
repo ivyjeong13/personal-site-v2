@@ -111,8 +111,6 @@ type Props = {
 
 const Content = ({ character, minions, mounts }: Props) => {
   const isMobile = useIsMobile();
-  const totalMinions = minions.total;
-  const totalMounts = mounts.total;
   return (
     <CollectablesContext.Provider
       value={{
