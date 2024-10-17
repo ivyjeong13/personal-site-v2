@@ -1,8 +1,10 @@
 import { Box, styled } from '@mui/material';
-import { DynamicCounter, TotalCounter } from '.';
+import { DynamicCounter, TotalCounter } from '..';
 import { centeredFlexStyles, centeredPositionStyles } from '@/common/styles';
 import { grey, indigo } from '@mui/material/colors';
-import useCounter from '../_hooks/use-counter';
+import useCounter from '../../_hooks/use-counter';
+import { useContext } from 'react';
+import CollectablesContext from '../../_context/collectables';
 
 const SplashMinionCount = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -49,13 +51,11 @@ const SplashMinionCount = styled(Box)(({ theme }) => ({
   },
 }));
 
-type Props = {
-  count?: number;
-  total: number;
-};
-
-const MinionCounter = ({ count, total }: Props) => {
-  const { count: numberToDisplay } = useCounter(count);
+const MinionCounter = () => {
+  const { character, totalMinions } = useContext(CollectablesContext);
+  const total = totalMinions ?? '??';
+  const currentCollected = character?.total_minions ?? 0;
+  const { count: numberToDisplay } = useCounter(currentCollected);
   return (
     <SplashMinionCount>
       <DynamicCounter>{numberToDisplay}</DynamicCounter>

@@ -1,8 +1,10 @@
 import { centeredFlexStyles, centeredPositionStyles } from '@/common/styles';
 import { Box, styled } from '@mui/material';
 import { grey, indigo } from '@mui/material/colors';
-import { DynamicCounter, TotalCounter } from '.';
-import useCounter from '../_hooks/use-counter';
+import { useContext } from 'react';
+import CollectablesContext from '../../_context/collectables';
+import { DynamicCounter, TotalCounter } from '..';
+import useCounter from '../../_hooks/use-counter';
 
 const SplashMountCount = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -49,13 +51,11 @@ const SplashMountCount = styled(Box)(({ theme }) => ({
   },
 }));
 
-type Props = {
-  count?: number;
-  total: number;
-};
-
-const MountCounter = ({ count, total }: Props) => {
-  const { count: numberToDisplay } = useCounter(count);
+const MountCounter = () => {
+  const { character, totalMounts } = useContext(CollectablesContext);
+  const total = totalMounts ?? '??';
+  const currentCollected = character?.total_mounts ?? 0;
+  const { count: numberToDisplay } = useCounter(currentCollected);
   return (
     <SplashMountCount>
       <DynamicCounter>{numberToDisplay}</DynamicCounter>

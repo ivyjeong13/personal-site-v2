@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { Cinzel, Thasadith, Uncial_Antiqua } from 'next/font/google';
 import useIsMobile from '@/common/hooks/use-is-mobile';
 import bannerImage from './_assets/dVxANNz.jpeg';
-import MountCounter from './_components/mount-counter';
-import MinionCounter from './_components/minion-counter';
+import MountCounter from './_components/mounts/mount-counter';
+import MinionCounter from './_components/minions/minion-counter';
 import { Minion, Mount, XivCharacter } from './_types';
 import CollectablesContext from './_context/collectables';
 import CollectedMounts from './_components/mounts/collected-mounts';
@@ -127,27 +127,14 @@ const Content = ({ character, minions, mounts }: Props) => {
           <Subheader>Final Fantasy XIV Completionist Tracker</Subheader>
           <Title>{character?.name ?? ''}</Title>
         </SplashBottomContent>
-        {!isMobile && (
-          <MountCounter count={character?.total_mounts} total={mounts.total} />
-        )}
-        {!isMobile && (
-          <MinionCounter
-            count={character?.total_minions}
-            total={minions.total}
-          />
-        )}
+        {!isMobile && <MountCounter />}
+        {!isMobile && <MinionCounter />}
       </SplashContainer>
       <Container>
         {isMobile && (
           <MobileCounterDisplay>
-            <MountCounter
-              count={character?.total_mounts}
-              total={mounts.total}
-            />
-            <MinionCounter
-              count={character?.total_minions}
-              total={minions.total}
-            />
+            <MountCounter />
+            <MinionCounter />
           </MobileCounterDisplay>
         )}
         <CollectedMounts />
