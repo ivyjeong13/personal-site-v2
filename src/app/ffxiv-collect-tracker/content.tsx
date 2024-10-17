@@ -155,7 +155,7 @@ const Content = ({ character, minions, mounts }: Props) => {
         <Typography>
           More Info Coming Soon! <br /> <br />
           <ul>
-            <li>Where to get Mount/Minions remaining</li>
+            <li>Mount/Minions remaining and where to get them</li>
             <li>Add Achievements</li>
             <li>Select a different Character to track from XIV</li>
           </ul>

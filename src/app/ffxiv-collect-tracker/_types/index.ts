@@ -68,7 +68,7 @@ export type Mount = {
 
 export type Minion = {
   id: number;
-  name: number;
+  name: string;
   behavior: {
     id: number;
     name: string;

@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import CollectablesContext from '../../_context/collectables';
-import { BodyText, HeaderBodyText } from '..';
 import Section from '@/app/_components/section';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import { centeredFlexStyles } from '@/common/styles';
+import CollectablesContext from '../../_context/collectables';
+import { BodyText, HeaderBodyText } from '..';
 
 const CollectedMounts = () => {
   const { character, mounts } = useContext(CollectablesContext);
