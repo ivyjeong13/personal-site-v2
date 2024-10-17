@@ -1,14 +1,15 @@
 import { useContext } from 'react';
 import Section from '@/app/_components/section';
 import { Box } from '@mui/material';
-import Image from 'next/image';
 import { centeredFlexStyles } from '@/common/styles';
 import CollectablesContext from '../../_context/collectables';
 import { BodyText, HeaderBodyText } from '..';
+import CollectedItem from '../collected-item';
 
 const CollectedMounts = () => {
   const { character, mounts } = useContext(CollectablesContext);
   const collectedMounts = character?.mounts ?? [];
+  const mountMapSet = new Map(mounts.map((mount) => [mount.name, mount]));
   return (
     <Section flexDirection="column" height="auto">
       <HeaderBodyText>Mounts</HeaderBodyText>
@@ -26,19 +27,14 @@ const CollectedMounts = () => {
         }}
       >
         {collectedMounts.map((collectedMount) => {
-          const matchingMountData = mounts.find(
-            (mount) => mount.name === collectedMount.name,
-          );
+          const matchingMountData = mountMapSet.get(collectedMount.name);
           if (!matchingMountData) {
             return null;
           }
           return (
-            <Image
-              alt={matchingMountData.name}
+            <CollectedItem
               key={matchingMountData.id}
-              src={matchingMountData.icon}
-              height={40}
-              width={40}
+              item={matchingMountData}
             />
           );
         })}
