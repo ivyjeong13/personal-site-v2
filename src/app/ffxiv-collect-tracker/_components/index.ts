@@ -26,6 +26,7 @@ export const DynamicCounter = styled(Typography)(({ theme }) => ({
 export const TotalCounter = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     fontSize: 16,
+    right: -12,
   },
   fontFamily: cinzel.style.fontFamily,
   fontWeight: 400,
@@ -33,5 +34,5 @@ export const TotalCounter = styled(Typography)(({ theme }) => ({
   position: 'absolute',
   top: '50%',
   transform: 'translateY(-50%)',
-  right: -12,
+  right: 24,
 }));
