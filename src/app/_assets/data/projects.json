@@ -6,7 +6,7 @@
       "githubUrl": null,
       "image": null,
       "title": "[Coming Soon]",
-      "technologies": ["OpenAI API", "React", "Emotion (CSS-in-JS)", "Express"],
+      "technologies": ["React", "CSS-in-JS", "Node.js", "Fastify", "OpenAI API"],
       "url": null
     },
     {
@@ -17,9 +17,10 @@
       "image":
         "https://res.cloudinary.com/dwnebujkh/image/upload/v1729102286/svgaq6e0lz2pwgwtnm7c.jpg",
       "technologies": [
-        "React",
-        "SASS",
-        "Universalis API",
+        "Next.js / React",
+        "CSS-in-JS",
+        "Node.js",
+        "Fastify",
         "FFXIV Collect API",
         "XIVAPI"
       ],
