@@ -44,3 +44,47 @@ export type XivCharacter = {
   total_minions: number;
   total_mounts: number;
 };
+
+export type CollectableSource = {
+  type: string;
+  text: string;
+  related_type: string | null;
+  related_id: number | null;
+};
+
+export type Mount = {
+  id: number;
+  name: string;
+  description: string;
+  enhanced_description: string;
+  tooltip: string;
+  movement: string;
+  seats: number;
+  patch: string;
+  image: string;
+  icon: string;
+  sources: CollectableSource[];
+};
+
+export type Minion = {
+  id: number;
+  name: number;
+  behavior: {
+    id: number;
+    name: string;
+  };
+  description: string;
+  enhanced_description: string;
+  path: string;
+  image: string;
+  icon: string;
+  sources: CollectableSource[];
+};
+
+export type CollectableContextType = {
+  character: XivCharacter | null;
+  minions: Minion[];
+  mounts: Mount[];
+  totalMinions: number;
+  totalMounts: number;
+};

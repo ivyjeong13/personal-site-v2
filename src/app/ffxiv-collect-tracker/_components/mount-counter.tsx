@@ -51,15 +51,16 @@ const SplashMountCount = styled(Box)(({ theme }) => ({
 
 type Props = {
   count?: number;
+  total: number;
 };
 
-const MountCounter = ({ count }: Props) => {
+const MountCounter = ({ count, total }: Props) => {
   const { count: numberToDisplay } = useCounter(count);
   return (
     <SplashMountCount>
       <DynamicCounter>{numberToDisplay}</DynamicCounter>
       <TotalCounter>
-        200 <br /> mounts
+        {total} <br /> mounts
       </TotalCounter>
     </SplashMountCount>
   );

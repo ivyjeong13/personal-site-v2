@@ -51,15 +51,16 @@ const SplashMinionCount = styled(Box)(({ theme }) => ({
 
 type Props = {
   count?: number;
+  total: number;
 };
 
-const MinionCounter = ({ count }: Props) => {
+const MinionCounter = ({ count, total }: Props) => {
   const { count: numberToDisplay } = useCounter(count);
   return (
     <SplashMinionCount>
       <DynamicCounter>{numberToDisplay}</DynamicCounter>
       <TotalCounter>
-        300 <br /> minions
+        {total} <br /> minions
       </TotalCounter>
     </SplashMinionCount>
   );

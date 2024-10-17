@@ -4,11 +4,14 @@ import { centeredFlexStyles } from '@/common/styles';
 import { Box, styled, Typography as MuiTypography } from '@mui/material';
 import Image from 'next/image';
 import { Cinzel, Thasadith, Uncial_Antiqua } from 'next/font/google';
+import useIsMobile from '@/common/hooks/use-is-mobile';
 import bannerImage from './_assets/dVxANNz.jpeg';
 import MountCounter from './_components/mount-counter';
 import MinionCounter from './_components/minion-counter';
-import { XivCharacter } from './_types';
-import useIsMobile from '@/common/hooks/use-is-mobile';
+import { Minion, Mount, XivCharacter } from './_types';
+import CollectablesContext from './_context/collectables';
+import CollectedMounts from './_components/mounts/collected-mounts';
+import CollectedMinions from './_components/minions/collected-minions';
 
 const uncialAntiqua = Uncial_Antiqua({
   weight: '400',
@@ -28,10 +31,11 @@ const thasadith = Thasadith({
 const Container = styled(Box)(({ theme }) => ({
   ...centeredFlexStyles,
   flexDirection: 'column',
-  backgroundColor: '#110f0f',
+  backgroundColor: '#121010',
   minHeight: 300,
   width: '100%',
   paddingBottom: theme.spacing(8),
+  rowGap: theme.spacing(4),
 }));
 
 const MobileCounterDisplay = styled(Box)(({ theme }) => ({
@@ -95,39 +99,69 @@ const Typography = styled('span')({
 
 type Props = {
   character: XivCharacter | null;
+  minions: {
+    results: Minion[];
+    total: number;
+  };
+  mounts: {
+    results: Mount[];
+    total: number;
+  };
 };
 
-const Content = ({ character }: Props) => {
+const Content = ({ character, minions, mounts }: Props) => {
   const isMobile = useIsMobile();
   return (
-    <>
+    <CollectablesContext.Provider
+      value={{
+        character,
+        minions: minions.results,
+        mounts: mounts.results,
+        totalMinions: minions.total,
+        totalMounts: mounts.total,
+      }}
+    >
       <SplashContainer>
         <Image alt="banner_image.jpeg" src={bannerImage} />
         <SplashBottomContent>
           <Subheader>Final Fantasy XIV Completionist Tracker</Subheader>
           <Title>{character?.name ?? ''}</Title>
         </SplashBottomContent>
-        {!isMobile && <MountCounter count={character?.total_mounts} />}
-        {!isMobile && <MinionCounter count={character?.total_minions} />}
+        {!isMobile && (
+          <MountCounter count={character?.total_mounts} total={mounts.total} />
+        )}
+        {!isMobile && (
+          <MinionCounter
+            count={character?.total_minions}
+            total={minions.total}
+          />
+        )}
       </SplashContainer>
       <Container>
         {isMobile && (
           <MobileCounterDisplay>
-            <MountCounter count={character?.total_mounts} />
-            <MinionCounter count={character?.total_minions} />
+            <MountCounter
+              count={character?.total_mounts}
+              total={mounts.total}
+            />
+            <MinionCounter
+              count={character?.total_minions}
+              total={minions.total}
+            />
           </MobileCounterDisplay>
         )}
+        <CollectedMounts />
+        <CollectedMinions />
         <Typography>
           More Info Coming Soon! <br /> <br />
           <ul>
-            <li>What Mounts/Minions have been collected</li>
             <li>Where to get Mount/Minions remaining</li>
             <li>Add Achievements</li>
             <li>Select a different Character to track from XIV</li>
           </ul>
         </Typography>
       </Container>
-    </>
+    </CollectablesContext.Provider>
   );
 };
 
