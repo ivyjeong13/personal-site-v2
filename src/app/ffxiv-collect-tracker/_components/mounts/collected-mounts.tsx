@@ -8,7 +8,6 @@ import { BodyText, HeaderBodyText } from '..';
 
 const CollectedMounts = () => {
   const { character, mounts } = useContext(CollectablesContext);
-  console.log(character?.mounts, mounts);
   const collectedMounts = character?.mounts ?? [];
   return (
     <Section flexDirection="column" height="auto">
