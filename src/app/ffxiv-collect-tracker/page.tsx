@@ -12,7 +12,7 @@ const fetchCharacterInfo = async (id: number) => {
 
 const fetchCollectionInfo = async () => {
   const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/ffxiv/collectable`;
-  const res = await fetch(url);
+  const res = await fetch(url, { cache: 'no-cache' });
   const data = await res.json();
   const minions: { total: number; results: Minion[] } = data?.minions ?? {
     total: 0,
