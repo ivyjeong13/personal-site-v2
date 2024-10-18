@@ -1,15 +1,50 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Section from '@/app/_components/section';
-import { Box } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import { centeredFlexStyles } from '@/common/styles';
 import CollectablesContext from '../../_context/collectables';
 import { BodyText, HeaderBodyText } from '..';
 import CollectedItem from '../collected-item';
+import { Minion } from '../../_types';
 
+const LoadMoreButton = styled(Box)(({ theme }) => ({
+  cursor: 'pointer',
+  marginTop: theme.spacing(1),
+}));
+
+const initialRows = 5;
+const numberOfItemsPerRow = 16;
 const CollectedMinions = () => {
+  const [visible, setVisible] = useState<Minion[]>([]);
+  const [collectedMinions, setCollectedMinions] = useState<Minion[]>([]);
   const { character, minions } = useContext(CollectablesContext);
-  const collectedMinions = character?.minions ?? [];
-  const minionMapSet = new Map(minions.map((minion) => [minion.name, minion]));
+
+  useEffect(() => {
+    const minionMapSet = new Map(
+      minions.map((minion) => [minion.name, minion]),
+    );
+    const dataToUse = (character?.minions ?? [])
+      .map((minion) => minionMapSet.get(minion.name))
+      .filter((minion) => !!minion)
+      .sort((minionA, minionB) => minionA.id - minionB.id);
+
+    setCollectedMinions(dataToUse);
+    setVisible(dataToUse.slice(0, initialRows * numberOfItemsPerRow));
+  }, [minions, character]);
+
+  const canLoadMore = visible.length < collectedMinions.length;
+  const handleLoadMore = () => {
+    if (canLoadMore) {
+      const start = visible.length;
+      const nextEnd = start + initialRows * numberOfItemsPerRow;
+      const end =
+        nextEnd > collectedMinions.length ? collectedMinions.length : nextEnd;
+      console.log(start, end);
+      const nextItems = collectedMinions.slice(start, end);
+      setVisible([...visible, ...nextItems]);
+    }
+  };
+
   return (
     <Section flexDirection="column" height="auto">
       <HeaderBodyText>Minions</HeaderBodyText>
@@ -25,19 +60,15 @@ const CollectedMinions = () => {
           marginTop: 2,
         }}
       >
-        {collectedMinions.map((collectedMinion) => {
-          const matchingMinionData = minionMapSet.get(collectedMinion.name);
-          if (!matchingMinionData) {
-            return null;
-          }
-          return (
-            <CollectedItem
-              key={matchingMinionData.id}
-              item={matchingMinionData}
-            />
-          );
-        })}
+        {visible.map((collectedMinion) => (
+          <CollectedItem key={collectedMinion.id} item={collectedMinion} />
+        ))}
       </Box>
+      {canLoadMore && (
+        <LoadMoreButton onClick={handleLoadMore}>
+          <BodyText>See More...</BodyText>
+        </LoadMoreButton>
+      )}
     </Section>
   );
 };

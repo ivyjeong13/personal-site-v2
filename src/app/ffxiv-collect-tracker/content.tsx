@@ -122,7 +122,7 @@ const Content = ({ character, minions, mounts }: Props) => {
       }}
     >
       <SplashContainer>
-        <Image alt="banner_image.jpeg" src={bannerImage} />
+        <Image alt="banner_image.jpeg" priority src={bannerImage} />
         <SplashBottomContent>
           <Subheader>Final Fantasy XIV Completionist Tracker</Subheader>
           <Title>{character?.name ?? ''}</Title>

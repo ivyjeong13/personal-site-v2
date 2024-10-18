@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import { Minion, Mount } from '../../_types';
-import { grey, indigo } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 import { BodyText, BoldBodyText } from '..';
 import { centeredPositionStyles } from '@/common/styles';
 import { cinzel } from '../../_fonts';
