@@ -1,15 +1,5 @@
 import { styled, Typography } from '@mui/material';
-import { Cinzel, Thasadith } from 'next/font/google';
-
-const cinzel = Cinzel({
-  weight: ['400', '600'],
-  subsets: ['latin'],
-});
-
-const thasadith = Thasadith({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-});
+import { cinzel, thasadith } from '../_fonts';
 
 export const HeaderBodyText = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
