@@ -24,6 +24,7 @@ import {
   defaultContainerPadding,
   mountainPurple,
 } from '../../common/constants';
+import useIsMobile from '@/common/hooks/use-is-mobile';
 
 const Container = styled(motion.div)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -56,6 +57,7 @@ const ListContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     gap: 36,
+    width: '100%',
   },
   justifyContent: 'center',
   position: 'relative',
@@ -68,7 +70,7 @@ const ListContainer = styled(Box)(({ theme }) => ({
 
 const SolidBackground = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    marginTop: 150,
+    marginTop: 120,
     background: 'transparent',
   },
   ...centeredFlexStyles,
@@ -86,12 +88,12 @@ const Title = styled(Typography)(({ theme }) => ({
   },
   [theme.breakpoints.down('md')]: {
     top: defaultContainerPadding.large,
-    fontSize: 64,
+    fontSize: 35,
   },
   position: 'absolute',
   top: 120,
-  right: 'calc(50% - 100px)',
-  transform: 'translateX(-50% - 100px)',
+  right: 'calc(50%)',
+  transform: 'translateX(50%)',
   fontSize: 220,
 }));
 
@@ -110,6 +112,7 @@ const About = () => {
   const ref = useRef(null);
   const controls = useAnimation();
   const isInView = useInView(ref, { once: true });
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     controls.start('visible');
@@ -240,7 +243,7 @@ const About = () => {
       variants={variants}
     >
       <Title color="tertiary" variant="h3">
-        SKILLS
+        SKILLSET
       </Title>
       <BackgroundImage
         alt="pexels-eberhardgross-12486830.jpg"
@@ -252,12 +255,16 @@ const About = () => {
             {skillsets.map(({ Icon, title, skills }) => (
               <Skillset
                 key={title}
-                Icon={<Icon fontSize="large" />}
+                Icon={<Icon fontSize={isMobile ? 'medium' : 'large'} />}
                 title={title}
               >
-                <List>
+                <List disablePadding>
                   {skills.map(({ title, description, Icon: SkillIcon }) => (
-                    <ListItem key={title}>
+                    <ListItem
+                      key={title}
+                      dense={isMobile}
+                      disableGutters={isMobile}
+                    >
                       <ListItemAvatar>
                         <SkillIcon />
                       </ListItemAvatar>

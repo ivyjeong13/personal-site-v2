@@ -24,8 +24,8 @@ const BackgroundTriangleA = styled(Box)(({ theme }) => ({
   left: `calc(50% - ${containerSizes.desktop}px)`,
   transform: `translateX(-50% - ${containerSizes.desktop}px)`,
   borderLeft: `${maxTriangleHeight}px solid ${mountainPurple}`,
-  borderRight: `${maxTriangleHeight} solid ${theme.palette.primary.contrastText}`,
-  borderTop: `${minTriangleHeight} solid ${mountainPurple}`,
+  borderRight: `${maxTriangleHeight}px solid ${theme.palette.primary.contrastText}`,
+  borderTop: `${minTriangleHeight}px solid ${mountainPurple}`,
 }));
 const BackgroundTriangleB = styled(Box)(({ theme }) => ({
   width: 0,
@@ -34,9 +34,9 @@ const BackgroundTriangleB = styled(Box)(({ theme }) => ({
   top: 0,
   right: `calc(50% - ${containerSizes.desktop}px)`,
   transform: `translateX(-50% - ${containerSizes.desktop}px)`,
-  borderLeft: `${maxTriangleHeight} solid ${theme.palette.primary.contrastText}`,
-  borderRight: `${maxTriangleHeight} solid ${mountainPurple}`,
-  borderTop: `${minTriangleHeight} solid ${mountainPurple}`,
+  borderLeft: `${maxTriangleHeight}px solid ${theme.palette.primary.contrastText}`,
+  borderRight: `${maxTriangleHeight}px solid ${mountainPurple}`,
+  borderTop: `${minTriangleHeight}px solid ${mountainPurple}`,
 }));
 const ContentWithBackground = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.contrastText,
@@ -54,6 +54,14 @@ const FeaturedProjects = styled(Box)({
   width: '100%',
   marginBottom: 36,
 });
+const NonFeaturedProjects = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    padding: 0,
+  },
+  width: '100%',
+  flexGrow: 1,
+  padding: '0 16px',
+}));
 const ProjectsTitle = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     fontSize: 35,
@@ -128,7 +136,7 @@ const Projects = () => {
               />
             ))}
           </FeaturedProjects>
-          <Box sx={{ width: '100%', flexGrow: 1, padding: '0 16px' }}>
+          <NonFeaturedProjects>
             <Grid2 container spacing={4}>
               {nonFeaturedProjects.map((project) => (
                 <Grid2 key={project.title} size={{ sm: 12, md: 6 }}>
@@ -136,7 +144,7 @@ const Projects = () => {
                 </Grid2>
               ))}
             </Grid2>
-          </Box>
+          </NonFeaturedProjects>
         </Section>
       </ContentWithBackground>
     </PurpleContainer>

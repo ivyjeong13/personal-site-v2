@@ -7,6 +7,7 @@ import WebIcon from '@mui/icons-material/Web';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { centeredFlexStyles } from '@/common/styles';
+import useIsMobile from '@/common/hooks/use-is-mobile';
 
 type Props = {
   title: string;
@@ -20,8 +21,8 @@ const SkillsetPaper = styled(Paper)(({ theme }) => ({
   },
   [theme.breakpoints.down('md')]: {
     height: 'auto',
-    marginBottom: defaultContainerPadding.large,
-    width: 260,
+    marginBottom: 0,
+    width: '100%',
   },
   background: theme.palette.primary.contrastText,
   width: 275,
@@ -29,17 +30,25 @@ const SkillsetPaper = styled(Paper)(({ theme }) => ({
   height: 465,
 }));
 
-const Title = styled(motion.div)({
+const Title = styled(motion.div)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    paddingTop: defaultInputPadding.medium + 24,
+  },
   paddingTop: defaultInputPadding.medium + 35,
   paddingBottom: defaultInputPadding.medium,
   textAlign: 'center',
-});
+}));
 
 const Content = styled(Box)({
   padding: defaultContainerPadding.medium,
 });
 
 const IconContainer = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    width: 50,
+    height: 50,
+    top: -25,
+  },
   ...centeredFlexStyles,
   position: 'absolute',
   top: -35,
@@ -54,6 +63,7 @@ const IconContainer = styled(Box)(({ theme }) => ({
 const Skillset = ({ title, Icon = <WebIcon />, children }: Props) => {
   const [isHovering, setHovering] = useState(false);
   const theme = useTheme();
+  const isMobile = useIsMobile();
 
   return (
     <SkillsetPaper
@@ -79,7 +89,7 @@ const Skillset = ({ title, Icon = <WebIcon />, children }: Props) => {
         }}
         initial={false}
       >
-        <Typography variant="h6">{title}</Typography>
+        <Typography variant={isMobile ? 'body1' : 'h6'}>{title}</Typography>
       </Title>
       <Content>{children}</Content>
     </SkillsetPaper>

@@ -19,7 +19,7 @@ const Container = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     minHeight: 200,
     height: 'auto',
-    padding: `0px ${defaultContainerPadding.medium}px`,
+    padding: 0,
   },
   width: '100%',
   height: 300,
