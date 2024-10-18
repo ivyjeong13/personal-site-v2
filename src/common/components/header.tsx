@@ -88,7 +88,8 @@ const Header = () => {
           <HeaderSection>
             <Link
               target="_blank"
-              href="https://docs.google.com/document/d/1tKNdHoq0m8O7U-5V_z4QE5V1N0BM4Z8llLPyebQRgv8/edit?usp=sharing"
+              href="https://res.cloudinary.com/dwnebujkh/image/upload/v1729275473/Ivy_Jeong_--_Resume_aqqgjx.pdf"
+              download
             >
               <Button color="secondary" variant="outlined">
                 Resume
