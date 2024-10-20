@@ -2,7 +2,7 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { Box, Chip, styled, Typography } from '@mui/material';
 import { ProjectType } from '@/common/types';
-import { GithubIcon } from '@/app/_assets/icons';
+import { GithubIcon } from '@/common/assets/icons';
 import {
   defaultInputPadding,
   standardBorderRadius,

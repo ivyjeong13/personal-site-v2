@@ -8,7 +8,7 @@ import {
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { motion, useScroll } from 'framer-motion';
 import { centeredFlexStyles } from '@/common/styles';
-import { GithubIcon } from '@/app/_assets/icons';
+import { GithubIcon } from '@/common/assets/icons';
 import { black, standardGap, defaultInputPadding } from '../constants';
 
 const HeaderContainer = styled(Box)({
