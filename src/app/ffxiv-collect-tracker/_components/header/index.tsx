@@ -14,7 +14,6 @@ import {
 import { useContext, useState } from 'react';
 import CollectablesContext from '../../_context/collectables';
 import { cinzel, thasadith } from '../../_fonts';
-import Link from 'next/link';
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
