@@ -1,4 +1,4 @@
-import { styled, Typography } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 import { cinzel, thasadith } from '../_fonts';
 
 export const HeaderBodyText = styled(Typography)(({ theme }) => ({
@@ -56,3 +56,13 @@ export const TotalCounter = styled(Typography)(({ theme }) => ({
   transform: 'translateY(-50%)',
   right: 24,
 }));
+
+export const OverlayBackground = styled(Box)({
+  backgroundColor: 'rgba(0, 0, 0, 0.90)',
+  height: '100vh',
+  left: 0,
+  position: 'fixed',
+  top: 0,
+  width: '100%',
+  zIndex: 3,
+});

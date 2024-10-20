@@ -8,7 +8,7 @@ import {
 import Image from 'next/image';
 import { Minion, Mount } from '../../_types';
 import { grey } from '@mui/material/colors';
-import { BodyText, BoldBodyText } from '..';
+import { BodyText, BoldBodyText, OverlayBackground } from '..';
 import { centeredPositionStyles } from '@/common/styles';
 import { cinzel } from '../../_fonts';
 
@@ -16,15 +16,6 @@ type Props = {
   item: Minion | Mount;
   onClose: () => void;
 };
-
-const OverlayBackground = styled(Box)({
-  backgroundColor: 'rgba(0, 0, 0, 0.90)',
-  height: '100vh',
-  left: 0,
-  position: 'fixed',
-  top: 0,
-  width: '100%',
-});
 
 const Content = styled(Box)(({ theme }) => ({
   ...centeredPositionStyles,

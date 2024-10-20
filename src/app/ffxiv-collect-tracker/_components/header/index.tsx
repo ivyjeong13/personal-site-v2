@@ -3,17 +3,10 @@
 import { XivIcon } from '@/common/assets/icons';
 import useIsMobile from '@/common/hooks/use-is-mobile';
 import { centeredFlexStyles } from '@/common/styles';
-import {
-  Alert,
-  Box,
-  Button,
-  Snackbar,
-  styled,
-  Typography,
-} from '@mui/material';
-import { useContext, useState } from 'react';
-import CollectablesContext from '../../_context/collectables';
+import { Alert, Box, Snackbar, styled, Typography } from '@mui/material';
 import { cinzel, thasadith } from '../../_fonts';
+import CharacterSearch from './character-search';
+import { useState } from 'react';
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -38,13 +31,6 @@ const HeaderContainer = styled(Box)(({ theme }) => ({
     backgroundImage: 'linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,1))',
     height: theme.spacing(1),
   },
-}));
-
-const ChangeButton = styled(Button)(({ theme }) => ({
-  fontFamily: cinzel.style.fontFamily,
-  fontWeight: 400,
-  borderColor: theme.palette.primary.contrastText,
-  color: theme.palette.primary.contrastText,
 }));
 
 const DesktopContent = styled(Box)(({ theme }) => ({
@@ -104,7 +90,6 @@ const MobileContent = styled(Box)(({ theme }) => ({
 const Header = () => {
   const [showNotifyUnderConstruction, setNotifyUnderConstruction] =
     useState(false);
-  const { character } = useContext(CollectablesContext);
   const isMobile = useIsMobile();
   const headerTitle = 'XIV Completionist';
 
@@ -129,13 +114,7 @@ const Header = () => {
             <HeaderItem onClick={handleClickLink}>Achievements</HeaderItem>
           </DesktopHeaderLeft>
           <DesktopHeaderRight>
-            <ChangeButton
-              onClick={handleClickLink}
-              startIcon={<XivIcon />}
-              variant="outlined"
-            >
-              {character?.name ?? 'Select Character'}
-            </ChangeButton>
+            <CharacterSearch />
           </DesktopHeaderRight>
         </DesktopContent>
       )}
