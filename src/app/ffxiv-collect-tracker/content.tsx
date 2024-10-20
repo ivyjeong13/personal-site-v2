@@ -12,6 +12,8 @@ import { Minion, Mount, XivCharacter } from './_types';
 import CollectablesContext from './_context/collectables';
 import CollectedMounts from './_components/mounts/collected-mounts';
 import CollectedMinions from './_components/minions/collected-minions';
+import Header from './_components/header';
+import Footer from './_components/footer';
 
 const uncialAntiqua = Uncial_Antiqua({
   weight: '400',
@@ -121,6 +123,7 @@ const Content = ({ character, minions, mounts }: Props) => {
         totalMounts: mounts.total,
       }}
     >
+      <Header />
       <SplashContainer>
         <Image alt="banner_image.jpeg" priority src={bannerImage} />
         <SplashBottomContent>
@@ -148,6 +151,7 @@ const Content = ({ character, minions, mounts }: Props) => {
           </ul>
         </Typography>
       </Container>
+      <Footer />
     </CollectablesContext.Provider>
   );
 };

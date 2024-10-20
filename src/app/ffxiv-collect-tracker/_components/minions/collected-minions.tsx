@@ -12,7 +12,7 @@ const LoadMoreButton = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(1),
 }));
 
-const initialRows = 5;
+const initialRows = 3;
 const numberOfItemsPerRow = 16;
 const CollectedMinions = () => {
   const [visible, setVisible] = useState<Minion[]>([]);
