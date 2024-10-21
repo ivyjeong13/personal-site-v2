@@ -88,7 +88,7 @@ const Header = () => {
           <HeaderSection>
             <Link
               target="_blank"
-              href="https://res.cloudinary.com/dwnebujkh/image/upload/v1729275473/Ivy_Jeong_--_Resume_aqqgjx.pdf"
+              href="https://res.cloudinary.com/dwnebujkh/image/upload/v1729530449/Ivy_Jeong-Resume.pdf"
               download
             >
               <Button color="secondary" variant="outlined">
