@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  ClickAwayListener,
   Portal,
   styled,
   TextField,
@@ -15,12 +16,17 @@ import { centeredPositionStyles } from '@/common/styles';
 import debounce from 'lodash/debounce';
 import { useRouter } from 'next/navigation';
 import { useCallback, useContext, useState } from 'react';
+import useIsMobile from '@/common/hooks/use-is-mobile';
 import { OverlayBackground } from '../..';
 import useCharacterSearch, {
   CharacterSearchResult,
 } from './use-character-search';
 
 const ChangeButton = styled(Button)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    justifyContent: 'flex-start',
+    width: '100%',
+  },
   fontFamily: cinzel.style.fontFamily,
   fontWeight: 400,
   borderColor: theme.palette.primary.contrastText,
@@ -61,6 +67,7 @@ const CharacterSearch = () => {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const { character } = useContext(CollectablesContext);
   const { results, loading, search } = useCharacterSearch();
+  const isMobile = useIsMobile();
 
   const handleSelectCharacter = (
     event: React.SyntheticEvent,
@@ -85,62 +92,65 @@ const CharacterSearch = () => {
       <ChangeButton
         onClick={() => setShowSearchModal(true)}
         startIcon={<XivIcon />}
-        variant="outlined"
+        variant={isMobile ? 'text' : 'outlined'}
       >
-        {character?.name ?? 'Select Character'}
+        {isMobile ? 'Search Character' : character?.name}
       </ChangeButton>
       {showSearchModal && (
         <Portal>
           <OverlayBackground>
-            <SearchContent>
-              <Autocomplete
-                clearOnBlur={false}
-                disabled={loading}
-                filterOptions={(x) => x}
-                getOptionLabel={(option) => option.name}
-                inputValue={searchValue}
-                onChange={handleSelectCharacter}
-                onInputChange={(_event, newInputValue, reason) => {
-                  if (reason === 'input') {
-                    setSearchValue(newInputValue);
-                    fetchNewResults(newInputValue);
-                  }
-                }}
-                options={results}
-                renderInput={(params) => (
-                  <SearchField
-                    {...params}
-                    label="Search By Name..."
-                    slotProps={{
-                      input: {
-                        ...params.InputProps,
-                        endAdornment: (
-                          <>
-                            {loading ? (
-                              <CircularProgress size={24} color="primary" />
-                            ) : null}
-                            {params.InputProps.endAdornment}
-                          </>
-                        ),
-                      },
-                    }}
-                    variant="filled"
-                  />
-                )}
-                renderOption={(props, option) => {
-                  const { ...optionProps } = props;
-                  return (
-                    <Box {...optionProps} key={option.id} component="li">
-                      {option.name}
-                    </Box>
-                  );
-                }}
-                slots={{
-                  paper: ResultsContainer,
-                }}
-                open={results.length > 0}
-              />
-            </SearchContent>
+            <ClickAwayListener onClickAway={() => setShowSearchModal(false)}>
+              <SearchContent>
+                <Autocomplete
+                  clearOnBlur={false}
+                  disabled={loading}
+                  disablePortal
+                  filterOptions={(x) => x}
+                  getOptionLabel={(option) => option.name}
+                  inputValue={searchValue}
+                  onChange={handleSelectCharacter}
+                  onInputChange={(_event, newInputValue, reason) => {
+                    if (reason === 'input') {
+                      setSearchValue(newInputValue);
+                      fetchNewResults(newInputValue);
+                    }
+                  }}
+                  options={results}
+                  renderInput={(params) => (
+                    <SearchField
+                      {...params}
+                      label="Search By Name..."
+                      slotProps={{
+                        input: {
+                          ...params.InputProps,
+                          endAdornment: (
+                            <>
+                              {loading ? (
+                                <CircularProgress size={24} color="primary" />
+                              ) : null}
+                              {params.InputProps.endAdornment}
+                            </>
+                          ),
+                        },
+                      }}
+                      variant="filled"
+                    />
+                  )}
+                  renderOption={(props, option) => {
+                    const { ...optionProps } = props;
+                    return (
+                      <Box {...optionProps} key={option.id} component="li">
+                        {option.name}
+                      </Box>
+                    );
+                  }}
+                  slots={{
+                    paper: ResultsContainer,
+                  }}
+                  open={results.length > 0}
+                />
+              </SearchContent>
+            </ClickAwayListener>
           </OverlayBackground>
         </Portal>
       )}
