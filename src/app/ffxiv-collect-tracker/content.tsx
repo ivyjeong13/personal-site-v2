@@ -64,6 +64,9 @@ const SplashContainer = styled(Box)(({ theme }) => ({
 }));
 
 const SplashBottomContent = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    padding: theme.spacing(1),
+  },
   bottom: 0,
   left: 0,
   padding: theme.spacing(3),
