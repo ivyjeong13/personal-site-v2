@@ -17,7 +17,7 @@ import debounce from 'lodash/debounce';
 import { useRouter } from 'next/navigation';
 import { useCallback, useContext, useState } from 'react';
 import useIsMobile from '@/common/hooks/use-is-mobile';
-import { OverlayBackground } from '../..';
+import { BodyText, OverlayBackground, TitleBodyText } from '../..';
 import useCharacterSearch, {
   CharacterSearchResult,
 } from './use-character-search';
@@ -61,7 +61,12 @@ const SearchField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-const CharacterSearch = () => {
+const Option = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+const CharacterSearch = ({ onClose }: { onClose?: () => void }) => {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState('');
   const [showSearchModal, setShowSearchModal] = useState(false);
@@ -87,6 +92,16 @@ const CharacterSearch = () => {
     [],
   );
 
+  const handleClose = () => {
+    setShowSearchModal(false);
+    setSearchValue('');
+    fetchNewResults('');
+
+    if (onClose) {
+      onClose();
+    }
+  };
+
   return (
     <>
       <ChangeButton
@@ -99,11 +114,10 @@ const CharacterSearch = () => {
       {showSearchModal && (
         <Portal>
           <OverlayBackground>
-            <ClickAwayListener onClickAway={() => setShowSearchModal(false)}>
+            <ClickAwayListener onClickAway={handleClose}>
               <SearchContent>
                 <Autocomplete
                   clearOnBlur={false}
-                  disabled={loading}
                   disablePortal
                   filterOptions={(x) => x}
                   getOptionLabel={(option) => option.name}
@@ -140,7 +154,12 @@ const CharacterSearch = () => {
                     const { ...optionProps } = props;
                     return (
                       <Box {...optionProps} key={option.id} component="li">
-                        {option.name}
+                        <Option>
+                          <TitleBodyText>{option.name}</TitleBodyText>
+                          <BodyText>
+                            {option.data_center}: {option.server}
+                          </BodyText>
+                        </Option>
                       </Box>
                     );
                   }}

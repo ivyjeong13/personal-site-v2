@@ -27,6 +27,14 @@ export const BoldBodyText = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
 }));
 
+export const TitleBodyText = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    fontSize: 18,
+  },
+  fontFamily: cinzel.style.fontFamily,
+  fontWeight: 400,
+}));
+
 export const DynamicCounter = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     fontSize: 48,
