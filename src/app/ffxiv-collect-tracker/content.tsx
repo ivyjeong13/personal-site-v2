@@ -14,6 +14,7 @@ import CollectedMounts from './_components/mounts/collected-mounts';
 import CollectedMinions from './_components/minions/collected-minions';
 import Header from './_components/header';
 import Footer from './_components/footer';
+import CharacterInfo from './_components/character-info';
 
 const uncialAntiqua = Uncial_Antiqua({
   weight: '400',
@@ -143,6 +144,8 @@ const Content = ({ character, minions, mounts }: Props) => {
             <MinionCounter />
           </MobileCounterDisplay>
         )}
+
+        <CharacterInfo />
         <CollectedMounts />
         <CollectedMinions />
         <Typography>

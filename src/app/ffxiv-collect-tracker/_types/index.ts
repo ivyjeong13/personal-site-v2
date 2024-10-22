@@ -31,8 +31,16 @@ export type XivCharacter = {
   tribe: z.string(),
   world: z.string(),
    */
+  active_class: string;
   current_title: string;
-  name: string;
+  data_center: string;
+  free_company: string;
+  gender: string;
+  guardian_diety: {
+    name: string;
+    thumbnail_url: string;
+  };
+  level: number;
   minions: {
     name: string;
     image_url: string;
@@ -41,8 +49,16 @@ export type XivCharacter = {
     name: string;
     image_url: string;
   }[];
+  name: string;
+  nameday: string; // birthday
+  portrait_url: string;
+  race: string;
+  rank: string | null;
+  starting_town: string;
   total_minions: number;
   total_mounts: number;
+  tribe: string;
+  world: string;
 };
 
 export type CollectableSource = {
