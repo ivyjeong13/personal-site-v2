@@ -39,18 +39,19 @@ const CollectedMinions = () => {
       const nextEnd = start + initialRows * numberOfItemsPerRow;
       const end =
         nextEnd > collectedMinions.length ? collectedMinions.length : nextEnd;
-      console.log(start, end);
       const nextItems = collectedMinions.slice(start, end);
       setVisible([...visible, ...nextItems]);
     }
   };
 
+  const text =
+    collectedMinions.length > 0
+      ? 'Yonder lie the companions thou hast forged bonds of friendship with...'
+      : 'Thy companions surely await...';
   return (
     <Section flexDirection="column" height="auto">
       <HeaderBodyText>Minions</HeaderBodyText>
-      <BodyText>
-        Yonder lie the companions thou hast forged bonds of friendship with...
-      </BodyText>
+      <BodyText>{text}</BodyText>
       <Box
         sx={{
           ...centeredFlexStyles,
