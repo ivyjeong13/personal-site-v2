@@ -70,13 +70,15 @@ const SplashBottomContent = styled(Box)(({ theme }) => ({
   width: '100%',
 }));
 
+// adjust bottom if first 7 characters contains
+// a l, k, d, tall-letters
 const Subheader = styled(MuiTypography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    bottom: 0,
+    bottom: 8,
     left: 0,
     fontSize: 12,
   },
-  bottom: -64,
+  bottom: -8,
   fontFamily: cinzel.style.fontFamily,
   fontSize: 18,
   fontWeight: 600,
@@ -87,8 +89,9 @@ const Subheader = styled(MuiTypography)(({ theme }) => ({
 const Title = styled(MuiTypography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     fontSize: 64,
-    lineHeight: 0.9,
+    lineHeight: 1,
   },
+  lineHeight: 1,
   fontFamily: uncialAntiqua.style.fontFamily,
   fontSize: 125,
 }));
@@ -147,7 +150,6 @@ const Content = ({ character, minions, mounts }: Props) => {
           <ul>
             <li>Mount/Minions remaining and where to get them</li>
             <li>Add Achievements</li>
-            <li>Select a different Character to track from XIV</li>
           </ul>
         </Typography>
       </Container>

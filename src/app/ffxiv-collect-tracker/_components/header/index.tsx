@@ -6,14 +6,17 @@ import { centeredFlexStyles } from '@/common/styles';
 import {
   Alert,
   Box,
-  Button,
+  ClickAwayListener,
+  IconButton,
+  Portal,
   Snackbar,
   styled,
   Typography,
 } from '@mui/material';
-import { useContext, useState } from 'react';
-import CollectablesContext from '../../_context/collectables';
+import { Menu as MenuIcon } from '@mui/icons-material';
+import { useState } from 'react';
 import { cinzel, thasadith } from '../../_fonts';
+import CharacterSearch from './character-search';
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -38,13 +41,6 @@ const HeaderContainer = styled(Box)(({ theme }) => ({
     backgroundImage: 'linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,1))',
     height: theme.spacing(1),
   },
-}));
-
-const ChangeButton = styled(Button)(({ theme }) => ({
-  fontFamily: cinzel.style.fontFamily,
-  fontWeight: 400,
-  borderColor: theme.palette.primary.contrastText,
-  color: theme.palette.primary.contrastText,
 }));
 
 const DesktopContent = styled(Box)(({ theme }) => ({
@@ -101,10 +97,41 @@ const MobileContent = styled(Box)(({ theme }) => ({
   gap: theme.spacing(1),
 }));
 
+const MobileNavigationButton = styled(IconButton)(({ theme }) => ({
+  color: theme.palette.primary.contrastText,
+  left: theme.spacing(1),
+  position: 'absolute',
+  top: theme.spacing(1.5),
+}));
+
+const MobileNavigation = styled(Box)(({ theme }) => ({
+  position: 'fixed',
+  top: 64,
+  left: 0,
+  width: '100%',
+  height: 'auto',
+  backgroundColor: 'rgba(0, 0, 0, 0.85)',
+  zIndex: 2,
+  '&::before': {
+    content: '""',
+    bottom: `-${theme.spacing(1)}`,
+    left: 0,
+    width: '100%',
+    position: 'absolute',
+    backgroundImage: 'linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,1))',
+    height: theme.spacing(1),
+  },
+}));
+
+const MobileNavigationItem = styled(Box)(({ theme }) => ({
+  padding: `${theme.spacing(1)} 0px`,
+  width: '100%',
+}));
+
 const Header = () => {
+  const [showMobileNavigation, setShowMobileNavigation] = useState(false);
   const [showNotifyUnderConstruction, setNotifyUnderConstruction] =
     useState(false);
-  const { character } = useContext(CollectablesContext);
   const isMobile = useIsMobile();
   const headerTitle = 'XIV Completionist';
 
@@ -117,9 +144,27 @@ const Header = () => {
   return (
     <HeaderContainer>
       {isMobile ? (
-        <MobileContent>
-          <XivIcon /> <MobileTitle>{headerTitle}</MobileTitle>
-        </MobileContent>
+        <>
+          <MobileNavigationButton onClick={() => setShowMobileNavigation(true)}>
+            <MenuIcon />
+          </MobileNavigationButton>
+          <MobileContent>
+            <XivIcon /> <MobileTitle>{headerTitle}</MobileTitle>
+          </MobileContent>
+          {showMobileNavigation && (
+            <Portal>
+              <ClickAwayListener
+                onClickAway={() => setShowMobileNavigation(false)}
+              >
+                <MobileNavigation>
+                  <MobileNavigationItem>
+                    <CharacterSearch />
+                  </MobileNavigationItem>
+                </MobileNavigation>
+              </ClickAwayListener>
+            </Portal>
+          )}
+        </>
       ) : (
         <DesktopContent>
           <DesktopHeaderLeft>
@@ -129,13 +174,7 @@ const Header = () => {
             <HeaderItem onClick={handleClickLink}>Achievements</HeaderItem>
           </DesktopHeaderLeft>
           <DesktopHeaderRight>
-            <ChangeButton
-              onClick={handleClickLink}
-              startIcon={<XivIcon />}
-              variant="outlined"
-            >
-              {character?.name ?? 'Select Character'}
-            </ChangeButton>
+            <CharacterSearch />
           </DesktopHeaderRight>
         </DesktopContent>
       )}
