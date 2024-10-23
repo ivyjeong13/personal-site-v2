@@ -42,13 +42,14 @@ const CollectedMounts = () => {
     }
   };
 
+  const text =
+    collectedMounts.length > 0
+      ? 'Verily, these are the noble steeds thou hast brought under thine influence...'
+      : 'Go out, wander, seek! Thy journey hadst scarcely begun...';
   return (
     <Section flexDirection="column" height="auto">
       <HeaderBodyText>Mounts</HeaderBodyText>
-      <BodyText>
-        Verily, these are the noble steeds thou hast brought under thine
-        influence...
-      </BodyText>
+      <BodyText>{text}</BodyText>
       <Box
         sx={{
           ...centeredFlexStyles,

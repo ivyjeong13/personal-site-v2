@@ -4,7 +4,7 @@ const useCounter = (value: number | undefined) => {
   const [count, setCount] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
-      if (value == null) {
+      if (value == null || value === 0) {
         clearInterval(interval);
         return;
       }

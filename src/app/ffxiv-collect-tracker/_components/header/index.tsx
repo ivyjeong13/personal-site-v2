@@ -140,6 +140,7 @@ const Header = () => {
   };
 
   const handleCloseNotify = () => setNotifyUnderConstruction(false);
+  const handleCloseMobileNavigation = () => setShowMobileNavigation(false);
 
   return (
     <HeaderContainer>
@@ -153,12 +154,10 @@ const Header = () => {
           </MobileContent>
           {showMobileNavigation && (
             <Portal>
-              <ClickAwayListener
-                onClickAway={() => setShowMobileNavigation(false)}
-              >
+              <ClickAwayListener onClickAway={handleCloseMobileNavigation}>
                 <MobileNavigation>
                   <MobileNavigationItem>
-                    <CharacterSearch />
+                    <CharacterSearch onClose={handleCloseMobileNavigation} />
                   </MobileNavigationItem>
                 </MobileNavigation>
               </ClickAwayListener>
