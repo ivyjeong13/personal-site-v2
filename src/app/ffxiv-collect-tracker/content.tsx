@@ -14,6 +14,7 @@ import CollectedMounts from './_components/mounts/collected-mounts';
 import CollectedMinions from './_components/minions/collected-minions';
 import Header from './_components/header';
 import Footer from './_components/footer';
+import CharacterInfo from './_components/character-info';
 
 const uncialAntiqua = Uncial_Antiqua({
   weight: '400',
@@ -63,6 +64,9 @@ const SplashContainer = styled(Box)(({ theme }) => ({
 }));
 
 const SplashBottomContent = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    padding: theme.spacing(1),
+  },
   bottom: 0,
   left: 0,
   padding: theme.spacing(3),
@@ -143,6 +147,8 @@ const Content = ({ character, minions, mounts }: Props) => {
             <MinionCounter />
           </MobileCounterDisplay>
         )}
+
+        <CharacterInfo />
         <CollectedMounts />
         <CollectedMinions />
         <Typography>
