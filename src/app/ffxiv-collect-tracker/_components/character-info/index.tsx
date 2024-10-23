@@ -66,7 +66,7 @@ const CharacterInfo = () => {
       >
         {hasCollectedAll
           ? 'Thou hadst surmounted the insurmountable.'
-          : 'Have you truly caught them all?'}
+          : 'Have you caught them all?'}
       </InlineTitleBodyText>
     </InfoContent>
   ) : null;
