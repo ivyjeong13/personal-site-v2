@@ -152,10 +152,17 @@ const Content = ({ character, minions, mounts }: Props) => {
         <CollectedMounts />
         <CollectedMinions />
         <Typography>
-          More Info Coming Soon! <br /> <br />
+          More Info/Features Coming Soon! <br /> <br />
           <ul>
             <li>Mount/Minions remaining and where to get them</li>
             <li>Add Achievements</li>
+            <li>Add Maxed Leveled Classes</li>
+            <li>Add Relic Weapon Completions</li>
+            <li>Add Claim Character</li>
+            <li>
+              Add &quot;Requests&quot; Board -- Find Like-minded Warriors of
+              Light To Accomplish Goals!
+            </li>
           </ul>
         </Typography>
       </Container>
