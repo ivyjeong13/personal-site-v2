@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { Box, styled } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 import CollectablesContext from '../../_context/collectables';
 import { BodyText, TitleBodyText } from '..';
 
 const InlineTitleBodyText = styled(TitleBodyText)({
   display: 'inline-block',
-});
+}) as typeof Typography;
 
 const InfoContent = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {

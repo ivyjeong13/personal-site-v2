@@ -9,7 +9,7 @@ export const HeaderBodyText = styled(Typography)(({ theme }) => ({
   fontSize: 42,
   fontWeight: 600,
   lineHeight: 0.85,
-}));
+})) as typeof Typography;
 
 export const BodyText = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -17,7 +17,7 @@ export const BodyText = styled(Typography)(({ theme }) => ({
   },
   fontFamily: thasadith.style.fontFamily,
   fontWeight: 400,
-}));
+})) as typeof Typography;
 
 export const BoldBodyText = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -25,12 +25,12 @@ export const BoldBodyText = styled(Typography)(({ theme }) => ({
   },
   fontFamily: thasadith.style.fontFamily,
   fontWeight: 700,
-}));
+})) as typeof Typography;
 
 export const TitleBodyText = styled(Typography)({
   fontFamily: cinzel.style.fontFamily,
   fontWeight: 400,
-});
+}) as typeof Typography;
 
 export const DynamicCounter = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
