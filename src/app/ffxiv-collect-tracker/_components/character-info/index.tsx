@@ -28,19 +28,30 @@ const CharacterInfo = () => {
 
   return character ? (
     <InfoContent>
-      <BodyText>
-        <InlineTitleBodyText>{character.tribe}</InlineTitleBodyText>, whose
-        renown has earned their title of{' '}
-        <InlineTitleBodyText>{character.current_title}</InlineTitleBodyText>,
+      <BodyText component="span">
+        <InlineTitleBodyText component="span">
+          {character.tribe}
+        </InlineTitleBodyText>
+        , whose renown has earned their title of{' '}
+        <InlineTitleBodyText component="span">
+          {character.current_title}
+        </InlineTitleBodyText>
+        ,
       </BodyText>
-      <BodyText>
+      <BodyText component="span">
         Whose steps mark the vastness of{' '}
-        <InlineTitleBodyText>{character.data_center}</InlineTitleBodyText> and
-        lands of <InlineTitleBodyText>{character.world}</InlineTitleBodyText>,
+        <InlineTitleBodyText component="span">
+          {character.data_center}
+        </InlineTitleBodyText>{' '}
+        and lands of{' '}
+        <InlineTitleBodyText component="span">
+          {character.world}
+        </InlineTitleBodyText>
+        ,
       </BodyText>
-      <BodyText>
+      <BodyText component="span">
         Under the watchful eyes of{' '}
-        <InlineTitleBodyText>
+        <InlineTitleBodyText component="span">
           {character.guardian_diety.name}
         </InlineTitleBodyText>
         ,
