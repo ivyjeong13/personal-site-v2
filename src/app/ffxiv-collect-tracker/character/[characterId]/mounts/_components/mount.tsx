@@ -6,7 +6,13 @@ import { Mount } from '../../../../_types';
 const MountListItem = ({ mount }: { mount: Mount }) => (
   <Box sx={{ display: 'flex' }}>
     <Box>
-      <Image alt={mount.name} height={120} width={120} src={mount.image} />
+      <Image
+        alt={mount.name}
+        height={120}
+        width={120}
+        src={mount.image}
+        unoptimized
+      />
     </Box>
     <Box>
       <TitleBodyText>{mount.name}</TitleBodyText>

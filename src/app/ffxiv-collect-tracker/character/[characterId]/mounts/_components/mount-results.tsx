@@ -74,6 +74,7 @@ const MountResults = ({ searchText }: Props) => {
                 alt={`${item.image}, description: ${item.description}`}
                 height={120}
                 width={120}
+                unoptimized
               />
               <Box>
                 <TitleBodyText>{item.name}</TitleBodyText>

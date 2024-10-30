@@ -26,6 +26,7 @@ const CollectedItem = ({ item }: Props) => {
         onClick={() => setShowDialog(true)}
         src={icon}
         height={40}
+        unoptimized
         width={40}
       />
       {showDialog && (
