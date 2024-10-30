@@ -34,6 +34,7 @@ const Title = styled(motion.div)(({ theme }) => ({
     paddingTop: defaultInputPadding.medium + 24,
     fontSize: '16px',
   },
+  color: theme.palette.primary.contrastText,
   fontSize: '22px',
   paddingTop: defaultInputPadding.medium + 35,
   paddingBottom: defaultInputPadding.medium,
