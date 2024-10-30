@@ -9,7 +9,7 @@ export const fetchCharacterInfo = async (id: number) => {
 
 export const fetchCollectionInfo = async () => {
   const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/ffxiv/collectable`;
-  const res = await fetch(url, { cache: 'no-cache' });
+  const res = await fetch(url);
   const data = await res.json();
   const minions: { total: number; results: Minion[] } = data?.minions ?? {
     total: 0,
@@ -20,4 +20,15 @@ export const fetchCollectionInfo = async () => {
     results: [],
   };
   return { minions, mounts };
+};
+
+export const fetchMountInfo = async () => {
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/ffxiv/collectable/mount`;
+  const res = await fetch(url);
+  const data = await res.json();
+  const mounts: { total: number; results: Mount[] } = data?.mounts ?? {
+    total: 0,
+    results: [],
+  };
+  return mounts;
 };

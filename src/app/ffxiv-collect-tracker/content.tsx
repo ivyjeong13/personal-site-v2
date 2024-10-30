@@ -3,7 +3,7 @@
 import { centeredFlexStyles } from '@/common/styles';
 import { Box, styled, Typography as MuiTypography } from '@mui/material';
 import Image from 'next/image';
-import { Cinzel, Thasadith, Uncial_Antiqua } from 'next/font/google';
+import { Uncial_Antiqua } from 'next/font/google';
 import useIsMobile from '@/common/hooks/use-is-mobile';
 import bannerImage from './_assets/dVxANNz.jpeg';
 import MountCounter from './_components/mounts/mount-counter';
@@ -15,31 +15,14 @@ import CollectedMinions from './_components/minions/collected-minions';
 import Header from './_components/header';
 import Footer from './_components/footer';
 import CharacterInfo from './_components/character-info';
+import Section from '../_components/section';
+import { cinzel, thasadith } from './_fonts';
+import { PageContainer } from './_components';
 
 const uncialAntiqua = Uncial_Antiqua({
   weight: '400',
   subsets: ['latin'],
 });
-
-const cinzel = Cinzel({
-  weight: ['400', '600'],
-  subsets: ['latin'],
-});
-
-const thasadith = Thasadith({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-});
-
-const Container = styled(Box)(({ theme }) => ({
-  ...centeredFlexStyles,
-  flexDirection: 'column',
-  backgroundColor: '#121010',
-  minHeight: 300,
-  width: '100%',
-  paddingBottom: theme.spacing(8),
-  rowGap: theme.spacing(4),
-}));
 
 const MobileCounterDisplay = styled(Box)(({ theme }) => ({
   ...centeredFlexStyles,
@@ -140,7 +123,7 @@ const Content = ({ character, minions, mounts }: Props) => {
         {!isMobile && <MountCounter />}
         {!isMobile && <MinionCounter />}
       </SplashContainer>
-      <Container>
+      <PageContainer>
         {isMobile && (
           <MobileCounterDisplay>
             <MountCounter />
@@ -151,21 +134,27 @@ const Content = ({ character, minions, mounts }: Props) => {
         <CharacterInfo />
         <CollectedMounts />
         <CollectedMinions />
-        <Typography>
-          More Info/Features Coming Soon! <br /> <br />
-          <ul>
-            <li>Mount/Minions remaining and where to get them</li>
-            <li>Add Achievements</li>
-            <li>Add Maxed Leveled Classes</li>
-            <li>Add Relic Weapon Completions</li>
-            <li>Add Claim Character</li>
-            <li>
-              Add &quot;Requests&quot; Board -- Find Like-minded Warriors of
-              Light To Accomplish Goals!
-            </li>
-          </ul>
-        </Typography>
-      </Container>
+        <Section flexDirection="column" height="auto">
+          <Typography sx={{ padding: 2 }}>
+            More Info/Features Coming Soon! <br /> <br />
+            <ul>
+              <li>Mount/Minions remaining and where to get them</li>
+              <li>Add Achievements</li>
+              <li>Add Maxed Leveled Classes</li>
+              <li>Add Relic Weapon Completions</li>
+              <li>Add Claim Character</li>
+              <li>
+                Add &quot;Requests&quot; Board -- Find Like-minded Warriors of
+                Light To Accomplish Goals!
+              </li>
+              <li>
+                Add &quot;Bounty Board&quot; -- Weekly/Monthly Goals to Get
+                Closer to Completionist Status!
+              </li>
+            </ul>
+          </Typography>
+        </Section>
+      </PageContainer>
       <Footer />
     </CollectablesContext.Provider>
   );

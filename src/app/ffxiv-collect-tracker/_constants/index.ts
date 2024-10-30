@@ -1,0 +1,1 @@
+export const DEFAULT_CHARACTER_ID = 36534441;

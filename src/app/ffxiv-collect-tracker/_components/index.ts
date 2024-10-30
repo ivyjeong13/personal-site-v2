@@ -1,4 +1,5 @@
 import { Box, styled, Typography } from '@mui/material';
+import { centeredFlexStyles } from '@/common/styles';
 import { cinzel, thasadith } from '../_fonts';
 
 export const HeaderBodyText = styled(Typography)(({ theme }) => ({
@@ -71,3 +72,12 @@ export const OverlayBackground = styled(Box)({
   width: '100%',
   zIndex: 3,
 });
+
+export const PageContainer = styled(Box)(({ theme }) => ({
+  ...centeredFlexStyles,
+  flexDirection: 'column',
+  backgroundColor: '#121010',
+  width: '100%',
+  paddingBottom: theme.spacing(8),
+  rowGap: theme.spacing(4),
+}));

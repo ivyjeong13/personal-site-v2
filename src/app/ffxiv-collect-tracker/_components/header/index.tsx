@@ -14,9 +14,11 @@ import {
   Typography,
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
-import { useState } from 'react';
+import Link from 'next/link';
+import { useContext, useState } from 'react';
 import { cinzel, thasadith } from '../../_fonts';
 import CharacterSearch from './character-search';
+import CollectablesContext from '../../_context/collectables';
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -132,6 +134,7 @@ const Header = () => {
   const [showMobileNavigation, setShowMobileNavigation] = useState(false);
   const [showNotifyUnderConstruction, setNotifyUnderConstruction] =
     useState(false);
+  const { character } = useContext(CollectablesContext);
   const isMobile = useIsMobile();
   const headerTitle = 'XIV Completionist';
 
@@ -167,8 +170,18 @@ const Header = () => {
       ) : (
         <DesktopContent>
           <DesktopHeaderLeft>
-            <HeaderHomeItem>{headerTitle}</HeaderHomeItem>
-            <HeaderItem onClick={handleClickLink}>Mounts</HeaderItem>
+            <Link
+              href={`/ffxiv-collect-tracker/character/${character?.id}`}
+              title="Link To Character Page"
+            >
+              <HeaderHomeItem>{headerTitle}</HeaderHomeItem>
+            </Link>
+            <Link
+              href={`/ffxiv-collect-tracker/character/${character?.id}/mounts`}
+              title="Link To Character Mounts Page"
+            >
+              <HeaderItem>Mounts</HeaderItem>
+            </Link>
             <HeaderItem onClick={handleClickLink}>Minions</HeaderItem>
             <HeaderItem onClick={handleClickLink}>Achievements</HeaderItem>
           </DesktopHeaderLeft>
