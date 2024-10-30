@@ -28,7 +28,10 @@ const Me = styled(Link)({
 
 const Footer = () => (
   <Container>
-    <Link href="https://github.com/ivyjeong13/personal-site-v2/tree/master/src/app/ffxiv-collect-tracker">
+    <Link
+      href="https://github.com/ivyjeong13/personal-site-v2/tree/master/src/app/ffxiv-collect-tracker"
+      title="Link to Ivy's Github page."
+    >
       <GithubIcon />
     </Link>
     <Me href="/">Ivy Jeong</Me>
