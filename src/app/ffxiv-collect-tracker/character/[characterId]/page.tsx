@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import Loading from '@/common/components/loading';
-import { fetchCharacterInfo, fetchCollectionInfo } from '../_api';
-import Content from '../content';
+import { fetchCharacterInfo, fetchCollectionInfo } from '../../_api';
+import Content from '../../content';
 import { Metadata } from 'next';
 
 type Props = {

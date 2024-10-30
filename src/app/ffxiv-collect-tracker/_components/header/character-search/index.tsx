@@ -81,7 +81,7 @@ const CharacterSearch = ({ onClose }: { onClose?: () => void }) => {
   ) => {
     event.preventDefault();
     if (newValue && reason === 'selectOption') {
-      router.push(`/ffxiv-collect-tracker/${newValue.id}`);
+      router.push(`/ffxiv-collect-tracker/character/${newValue.id}`);
     }
   };
 

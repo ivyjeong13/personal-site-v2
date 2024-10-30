@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import Image from 'next/image';
-import { BodyText, TitleBodyText } from '../../_components';
-import { Mount } from '../../_types';
+import { BodyText, TitleBodyText } from '../../../../_components';
+import { Mount } from '../../../../_types';
 
 const MountListItem = ({ mount }: { mount: Mount }) => (
   <Box sx={{ display: 'flex' }}>

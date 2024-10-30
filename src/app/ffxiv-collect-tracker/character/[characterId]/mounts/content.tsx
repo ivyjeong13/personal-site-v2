@@ -5,16 +5,18 @@ import { centeredFlexStyles } from '@/common/styles';
 import { XivIcon } from '@/common/assets/icons';
 import { Box, styled, TextField } from '@mui/material';
 import Image from 'next/image';
-import { useState } from 'react';
-import Footer from '../_components/footer';
-import Header from '../_components/header';
-import CollectablesContext from '../_context/collectables';
-import { Mount, XivCharacter } from '../_types';
-import bannerImage from '../_assets/dVxANNz.jpeg';
-import { PageContainer, TitleBodyText } from '../_components';
+import { useCallback, useState } from 'react';
+import Footer from '../../../_components/footer';
+import Header from '../../../_components/header';
+import CollectablesContext from '../../../_context/collectables';
+import { Mount, XivCharacter } from '../../../_types';
+import bannerImage from '../../../_assets/dVxANNz.jpeg';
+import { PageContainer, TitleBodyText } from '../../../_components';
 import { amber, brown } from '@mui/material/colors';
 import UnownedMountList from './_components/unowned-list';
 import OwnedMountList from './_components/owned-list';
+import MountResults from './_components/mount-results';
+import { debounce } from 'lodash';
 
 type Props = {
   character: XivCharacter | null;
@@ -44,6 +46,9 @@ const SearchField = styled(TextField)(({ theme }) => ({
       color: amber.A700,
       borderBottom: `2px solid ${amber[700]}`,
     },
+    '& .MuiInputLabel-shrink': {
+      color: amber.A700,
+    },
     color: amber.A700,
   },
 }));
@@ -62,9 +67,11 @@ const unselectedBoxShadow = 'rgba(17, 12, 46, 0.15) 0px 48px 100px 0px';
 enum ViewEnum {
   Owned = 'owned',
   Unowned = 'unowned',
+  SearchResults = 'search_results',
 }
 
 const Content = ({ character, mounts }: Props) => {
+  const [searchText, setSearchText] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [selectedView, setSelectedView] = useState<ViewEnum>(ViewEnum.Unowned);
 
@@ -79,11 +86,25 @@ const Content = ({ character, mounts }: Props) => {
       component: <OwnedMountList />,
       name: 'Owned',
     },
+    {
+      key: ViewEnum.SearchResults,
+      component: <MountResults searchText={searchText} />,
+      name: 'Search For Mount',
+    },
   ];
+
+  const tabViews = [views[0], views[1]];
 
   const ComponentToShow = views.find(
     (view) => view.key === selectedView,
   )?.component;
+
+  const updateSearchValue = useCallback(
+    debounce((newSearchValue: string) => {
+      setSearchValue(newSearchValue);
+    }, 300),
+    [],
+  );
   return (
     <CollectablesContext.Provider
       value={{
@@ -102,7 +123,10 @@ const Content = ({ character, mounts }: Props) => {
         <Section flexDirection="column" height="auto">
           <SearchField
             label="Search Mounts..."
-            onChange={(event) => setSearchValue(event.target.value)}
+            onChange={(event) => {
+              setSearchText(event.target.value);
+              updateSearchValue(event.target.value);
+            }}
             slotProps={{
               input: {
                 endAdornment: <XivIcon />,
@@ -111,12 +135,12 @@ const Content = ({ character, mounts }: Props) => {
             variant="filled"
           />
         </Section>
-        {searchValue.length > 0 ? (
-          <Box>Render search results here.</Box>
+        {searchValue.length > 2 ? (
+          <MountResults searchText={searchValue} />
         ) : (
           <>
             <Box sx={{ width: '100%', display: 'flex' }}>
-              {views.map((view) => (
+              {tabViews.map((view) => (
                 <MountButton
                   onClick={() => setSelectedView(view.key)}
                   key={view.key}

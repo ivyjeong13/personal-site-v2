@@ -1,6 +1,6 @@
 import { Grid2 } from '@mui/material';
 import { useContext } from 'react';
-import CollectablesContext from '../../_context/collectables';
+import CollectablesContext from '../../../../_context/collectables';
 import MountListItem from './mount';
 
 const UnownedMountList = () => {
