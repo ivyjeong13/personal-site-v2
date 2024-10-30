@@ -48,6 +48,7 @@ const NameIcon = styled(Typography)(({ theme }) => ({
   padding: 1,
   backgroundColor: theme.palette.primary.main,
   cursor: 'pointer',
+  fontSize: '22px',
 }));
 
 const ProgressBar = styled(motion.div)(({ theme }) => ({
@@ -80,7 +81,7 @@ const Header = () => {
                   behavior: 'smooth',
                 })
               }
-              variant="h6"
+              aria-label="Clicking returns to top of portfolio page"
             >
               <b>ihj</b>
             </NameIcon>
@@ -91,19 +92,25 @@ const Header = () => {
               href="https://res.cloudinary.com/dwnebujkh/image/upload/v1729530449/Ivy_Jeong-Resume.pdf"
               download
             >
-              <Button color="secondary" variant="outlined">
+              <Button
+                color="secondary"
+                variant="outlined"
+                aria-label="Link to Ivy's Resume"
+              >
                 Resume
               </Button>
             </Link>
             <Link
               target="_blank"
               href="https://github.com/ivyjeong13?tab=repositories"
+              title="Link to Ivy's Github; Note: Opens in a new browser tab."
             >
               <GithubIcon fontSize="medium" />
             </Link>
             <Link
               target="_blank"
               href="https://www.linkedin.com/in/ivy-jeong-0582ba95/"
+              title="Link to Ivy's LinkedIn page; Note: Opens in a new browser tab."
             >
               <LinkedInIcon fontSize="medium" />
             </Link>
