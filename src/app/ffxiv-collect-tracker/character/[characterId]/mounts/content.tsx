@@ -150,6 +150,7 @@ const Content = ({ character, mounts }: Props) => {
                         ? selectedBoxShadow
                         : unselectedBoxShadow,
                   }}
+                  aria-label={`Select to view ${view.name} mounts.`}
                 >
                   <TitleBodyText>{view.name}</TitleBodyText>
                 </MountButton>

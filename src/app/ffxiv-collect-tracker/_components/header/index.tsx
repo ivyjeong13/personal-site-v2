@@ -170,11 +170,17 @@ const Header = () => {
       ) : (
         <DesktopContent>
           <DesktopHeaderLeft>
-            <HeaderHomeItem>{headerTitle}</HeaderHomeItem>
+            <Link
+              href={`/ffxiv-collect-tracker/character/${character?.id}`}
+              title="Link To Character Page"
+            >
+              <HeaderHomeItem>{headerTitle}</HeaderHomeItem>
+            </Link>
             <Link
               href={`/ffxiv-collect-tracker/character/${character?.id}/mounts`}
+              title="Link To Character Mounts Page"
             >
-              <HeaderItem onClick={handleClickLink}>Mounts</HeaderItem>
+              <HeaderItem>Mounts</HeaderItem>
             </Link>
             <HeaderItem onClick={handleClickLink}>Minions</HeaderItem>
             <HeaderItem onClick={handleClickLink}>Achievements</HeaderItem>
