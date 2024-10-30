@@ -19,6 +19,7 @@ import { useContext, useState } from 'react';
 import { cinzel, thasadith } from '../../_fonts';
 import CharacterSearch from './character-search';
 import CollectablesContext from '../../_context/collectables';
+import { amber } from '@mui/material/colors';
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -64,7 +65,7 @@ const DesktopHeaderRight = styled(Box)({
   display: 'flex',
 });
 
-const HeaderItem = styled(Typography)(({ theme }) => ({
+const HeaderItem = styled(Typography)({
   position: 'relative',
   cursor: 'pointer',
   fontFamily: thasadith.style.fontFamily,
@@ -77,10 +78,13 @@ const HeaderItem = styled(Typography)(({ theme }) => ({
       left: 0,
       width: '100%',
       height: 1,
-      backgroundColor: theme.palette.primary.contrastText,
+      backgroundColor: amber.A700,
+    },
+    '&:hover': {
+      color: amber.A700,
     },
   },
-}));
+});
 
 const HeaderHomeItem = styled(HeaderItem)({
   fontFamily: cinzel.style.fontFamily,

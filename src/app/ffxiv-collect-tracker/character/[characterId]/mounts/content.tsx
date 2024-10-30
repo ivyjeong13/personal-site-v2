@@ -53,11 +53,16 @@ const SearchField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-const MountButton = styled(Box)({
+const MountButton = styled('button')({
   ...centeredFlexStyles,
   backgroundColor: brown.A700,
+  border: 0,
+  cursor: 'pointer',
   height: 48,
   width: '50%',
+  '&:hover': {
+    backgroundColor: brown[800],
+  },
 });
 
 const selectedBoxShadow =
