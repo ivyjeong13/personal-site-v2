@@ -80,7 +80,11 @@ const ImageItem = ({ item }: Props) => {
                 setShowBlurb(false);
               }}
             >
-              <Image width={360} alt={item.description} src={item.img ?? ''} />
+              <Image
+                width={360}
+                alt={`${item.img}, description: ${item.description}`}
+                src={item.img ?? ''}
+              />
             </ClickAwayListener>
             <Typography sx={{ marginTop: 2, maxWidth: 300 }} variant="caption">
               {item.description}
