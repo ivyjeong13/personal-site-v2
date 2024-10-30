@@ -41,13 +41,13 @@ const SearchField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-input, & .MuiInputBase-adornedEnd': {
     color: theme.palette.primary.contrastText,
   },
+  '& .MuiInputLabel-root.MuiInputLabel-shrink': {
+    color: `${amber.A700}`,
+  },
   '& .Mui-focused': {
     '&:after': {
       color: amber.A700,
       borderBottom: `2px solid ${amber[700]}`,
-    },
-    '& .MuiInputLabel-shrink': {
-      color: amber.A700,
     },
     color: amber.A700,
   },
