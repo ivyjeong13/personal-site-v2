@@ -1,3 +1,5 @@
+'use client';
+
 import { styled } from '@mui/material';
 import { jacquard24, pixelify } from '../../../_fonts';
 import SealImage from '../../../_assets/stamp_seal.png';
@@ -72,6 +74,7 @@ const ResponseItem = styled('button')(({ theme }) => ({
   },
   '& img': {
     flexShrink: 0,
+    imageRendering: 'pixelated',
   },
 }));
 
@@ -132,7 +135,7 @@ const TertiaryQuestion = styled('div')(({ theme }) => ({
 }));
 
 const SubmitButton = styled('button')(({ theme }) => ({
-  marginTop: theme.spacing(4),
+  marginTop: theme.spacing(6),
   backgroundColor: '#623a0a',
   color: '#fff',
   padding: theme.spacing(2),
@@ -168,6 +171,19 @@ const FirstQuestion = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(2),
+}));
+
+const Input = styled('input')(({ theme }) => ({
+  backgroundColor: '#e1bd8e',
+  color: '#343232',
+  fontSize: 18,
+  fontFamily: pixelify.style.fontFamily,
+  fontWeight: 400,
+  padding: theme.spacing(2),
+  borderRadius: theme.spacing(2),
+  outline: 'none',
+  border: 'none',
+  boxShadow: 'inset 0 1px 4px rgba(57, 34, 11, 0.15)',
 }));
 
 const Form = ({
@@ -300,6 +316,14 @@ const Form = ({
           (see here) This is highly tentative and will be finalized closer to
           the date.
         </span>
+        <Input
+          type="text"
+          placeholder="Enter any dietary restrictions"
+          value={fields.food_restrictions}
+          onChange={(e) =>
+            setFields({ ...fields, food_restrictions: e.target.value })
+          }
+        />
       </TertiaryQuestion>
 
       <TertiaryQuestion>

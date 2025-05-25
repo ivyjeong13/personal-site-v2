@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Details from './_components/Details';
+import Content from './_components/Content';
 
 type Props = {
   params: {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const WeddingDetailsPage = ({ params }: Props) => {
-  return <Details tokenId={params.tokenId} />;
+  return <Content tokenId={params.tokenId} />;
 };
 
 export default WeddingDetailsPage;

@@ -1,16 +1,22 @@
 'use client';
 
 import { Box, styled } from '@mui/material';
+import { useEffect, useRef, useState } from 'react';
 import TopScrollImage from '../../../_assets/scroll_top.png';
 import BottomScrollImage from '../../../_assets/scroll_bottom.png';
 import FlatTopScrollImage from '../../../_assets/scroll_top_b.png';
 import FlatBottomScrollImage from '../../../_assets/scroll_bottom_b.png';
-import { useEffect, useRef, useState } from 'react';
-import { jacquard24, pixelify } from '../../../_fonts';
 import BackgroundImage from '../../../_assets/details_bg.png';
-import Form from './Form';
+import HomeIcon from '../../../_assets/home_icon.png';
+import RsvpIcon from '../../../_assets/rsvp_icon.png';
+import QuestIcon from '../../../_assets/quest_icon.png';
 import SealImage from '../../../_assets/stamp_seal.png';
 import AudioButton from '../../_components/AudioButton';
+import { jacquard24, pixelify } from '../../../_fonts';
+import Form from './Form';
+import Tag from './Tag';
+import Info from './Info';
+import Quests from './quests';
 
 const ScrollInner = styled(Box)(({ theme }) => ({
   width: 950,
@@ -48,7 +54,7 @@ const ScrollOuter = styled(Box)({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: 'height 2s ease-in-out',
+  transition: 'height 1s ease-in-out',
   position: 'relative',
   '&:before': {
     content: '""',
@@ -151,6 +157,15 @@ const Image = styled('img')({
   imageRendering: 'pixelated',
 });
 
+const TagContainer = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: theme.spacing(3),
+  right: -80,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: theme.spacing(2),
+}));
+
 const Details = ({ tokenId }: { tokenId: string }) => {
   const [height, setHeight] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -161,9 +176,12 @@ const Details = ({ tokenId }: { tokenId: string }) => {
     typeof window !== 'undefined' &&
       localStorage.getItem('audioMuted') === 'true',
   );
+  const [selectedView, setSelectedView] = useState<'rsvp' | 'info' | 'quests'>(
+    'rsvp',
+  );
 
   useEffect(() => {
-    setHeight(1350);
+    setHeight(1400);
     setBackgroundOpacity(1);
     if (audioRef.current) {
       audioRef.current.volume = audioMuted ? 0 : 0.5;
@@ -189,8 +207,22 @@ const Details = ({ tokenId }: { tokenId: string }) => {
     setTimeout(() => {
       setShowSuccess(true);
       setHeight(300);
-    }, 3000);
+    }, 1500);
   };
+
+  const handleView = (view: 'rsvp' | 'info' | 'quests') => {
+    if (selectedView === view) {
+      return;
+    }
+    setHeight(0);
+    const height = view === 'rsvp' ? 1400 : view === 'info' ? 800 : 450;
+    setTimeout(() => {
+      setShowSuccess(false);
+      setSelectedView(view);
+      setHeight(height);
+    }, 1500);
+  };
+
   return (
     <>
       <audio
@@ -213,24 +245,51 @@ const Details = ({ tokenId }: { tokenId: string }) => {
         <TopScroll />
         <ScrollOuter style={{ height }}>
           <ScrollInner>
-            <>
-              {showSuccess ? (
-                <SuccessContainer>
-                  <Image
-                    alt="stamp"
-                    src={SealImage.src}
-                    width={120}
-                    height={120}
-                  />
-                  <SuccessTitle>Message Delivered</SuccessTitle>
-                  <SuccessDescription>
-                    Thank you for your response! :)
-                  </SuccessDescription>
-                </SuccessContainer>
-              ) : (
-                <Form tokenId={tokenId} onSuccess={() => handleSuccess()} />
-              )}
-            </>
+            <TagContainer>
+              <Tag
+                name="Your RSVP"
+                onClick={() => handleView('rsvp')}
+                selected={selectedView === 'rsvp'}
+              >
+                <img src={RsvpIcon.src} alt="rsvp" />
+              </Tag>
+              <Tag
+                name="Wedding Details"
+                onClick={() => handleView('info')}
+                selected={selectedView === 'info'}
+              >
+                <img src={HomeIcon.src} alt="info" />
+              </Tag>
+              <Tag
+                name="Journal Log"
+                onClick={() => handleView('quests')}
+                selected={selectedView === 'quests'}
+              >
+                <img src={QuestIcon.src} alt="quest" />
+              </Tag>
+            </TagContainer>
+            {selectedView === 'rsvp' && (
+              <>
+                {showSuccess ? (
+                  <SuccessContainer>
+                    <Image
+                      alt="stamp"
+                      src={SealImage.src}
+                      width={120}
+                      height={120}
+                    />
+                    <SuccessTitle>Message Delivered</SuccessTitle>
+                    <SuccessDescription>
+                      Thank you for your response! :)
+                    </SuccessDescription>
+                  </SuccessContainer>
+                ) : (
+                  <Form tokenId={tokenId} onSuccess={() => handleSuccess()} />
+                )}
+              </>
+            )}
+            {selectedView === 'info' && <Info />}
+            {selectedView === 'quests' && <Quests />}
           </ScrollInner>
         </ScrollOuter>
         <BottomScroll />
