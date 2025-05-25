@@ -1,13 +1,15 @@
 import { jacquard24, pixelify } from '@/app/wedding-invitation/_fonts';
-import { centeredFlexStyles } from '@/common/styles';
 import { styled } from '@mui/material';
 
-const Title = styled('h2')({
+const Title = styled('h2')(({ theme }) => ({
   fontSize: 128,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
   textAlign: 'center',
-});
+  [theme.breakpoints.down('md')]: {
+    fontSize: 64,
+  },
+}));
 
 const Subtitle = styled('p')(({ theme }) => ({
   fontSize: 24,
@@ -17,6 +19,9 @@ const Subtitle = styled('p')(({ theme }) => ({
   marginTop: theme.spacing(2),
   maxWidth: 640,
   alignSelf: 'center',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 18,
+  },
 }));
 
 const ClosedQuests = styled('div')(({ theme }) => ({
@@ -27,6 +32,13 @@ const ClosedQuests = styled('div')(({ theme }) => ({
   borderRadius: theme.spacing(1),
   '& p + p': {
     marginTop: theme.spacing(0.5),
+    fontSize: 18,
+  },
+  [theme.breakpoints.down('md')]: {
+    fontSize: 16,
+    '& > p + p': {
+      fontSize: 12,
+    },
   },
 }));
 
@@ -44,9 +56,7 @@ const Quests = () => {
         <p>
           <i>The journal log is currently inactive.</i>
         </p>
-        <p style={{ fontSize: 18 }}>
-          Check back closer to the day of the event!
-        </p>
+        <p>Check back closer to the day of the event!</p>
       </ClosedQuests>
     </>
   );

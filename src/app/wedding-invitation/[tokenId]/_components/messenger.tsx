@@ -40,7 +40,7 @@ const SpeechBubble = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
   width: '100%',
   padding: theme.spacing(2),
-  paddingRight: theme.spacing(6),
+  paddingRight: theme.spacing(2),
   position: 'relative',
   zIndex: 1,
   height: 200,
@@ -73,7 +73,7 @@ const CharacterName = styled('h1')(({ theme }) => ({
   fontSize: 49,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
-  width: 'fit-content',
+  width: 'auto',
   marginTop: 46,
   [theme.breakpoints.down('md')]: {
     marginLeft: 0,

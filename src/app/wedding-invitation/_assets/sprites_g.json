@@ -1,0 +1,69 @@
+{
+    "frames": {
+      "Fairy_001": {
+        "frame": { "x": 13, "y": 2, "w": 36, "h": 59 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 13, "y": 2, "w": 36, "h": 59 },
+        "sourceSize": { "w": 36, "h": 59 }
+      },
+      "Fairy_002": {
+        "frame": { "x": 79, "y": 2, "w": 36, "h": 59 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 79, "y": 2, "w": 36, "h": 59 },
+        "sourceSize": { "w": 36, "h": 59 }
+      },
+      "Fairy_003": {
+        "frame": { "x": 143, "y": 2, "w": 36, "h": 59 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 143, "y": 2, "w": 36, "h": 59 },
+        "sourceSize": { "w": 36, "h": 59 }
+      },
+      "Fairy_004": {
+        "frame": { "x": 210, "y": 2, "w": 36, "h": 59 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 210, "y": 2, "w": 36, "h": 59 },
+        "sourceSize": { "w": 36, "h": 59 }
+      },
+      "Fairy_005": {
+        "frame": { "x": 272, "y": 2, "w": 36, "h": 59 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 272, "y": 2, "w": 36, "h": 59 },
+        "sourceSize": { "w": 36, "h": 59 }
+      },
+      "Fairy_006": {
+        "frame": { "x": 333, "y": 2, "w": 36, "h": 59 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 333, "y": 2, "w": 36, "h": 59 },
+        "sourceSize": { "w": 36, "h": 59 }
+      },
+      "Fairy_007": {
+        "frame": { "x": 396, "y": 2, "w": 36, "h": 59 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 396, "y": 2, "w": 36, "h": 59 },
+        "sourceSize": { "w": 36, "h": 59 }
+      },
+      "Fairy_008": {
+        "frame": { "x": 459, "y": 2, "w": 36, "h": 59 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 459, "y": 2, "w": 36, "h": 59 },
+        "sourceSize": { "w": 36, "h": 59 }
+      }
+    },
+    "meta": {
+      "app": "https://www.codeandweb.com/texturepacker",
+      "version": "1.0",
+      "image": "https://res.cloudinary.com/dwnebujkh/image/upload/v1748302680/Fairy_t6wmwl.png",
+      "format": "RGBA8888",
+      "size": { "w": 512, "h": 64 },
+      "scale": "1"
+    }
+  }
+  

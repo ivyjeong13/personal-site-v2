@@ -1,17 +1,21 @@
 'use client';
 
-import { styled } from '@mui/material';
+import { styled, useMediaQuery } from '@mui/material';
 import { jacquard24, pixelify } from '../../../_fonts';
 import SealImage from '../../../_assets/stamp_seal.png';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
+import theme from '@/common/theme';
 
-const Title = styled('h1')({
+const Title = styled('h1')(({ theme }) => ({
   fontSize: 182,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
   textAlign: 'center',
-});
+  [theme.breakpoints.down('md')]: {
+    fontSize: 64,
+  },
+}));
 
 const Date = styled('h2')(({ theme }) => ({
   fontSize: 48,
@@ -19,28 +23,46 @@ const Date = styled('h2')(({ theme }) => ({
   fontWeight: 400,
   textAlign: 'center',
   marginTop: theme.spacing(2),
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: 28,
+  },
 }));
 
-const Subtitle = styled('h2')({
+const Subtitle = styled('h2')(({ theme }) => ({
   fontSize: 64,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
   textAlign: 'center',
   marginTop: -24,
-});
 
-const Substitle2 = styled('h2')({
+  [theme.breakpoints.down('md')]: {
+    fontSize: 36,
+    marginTop: theme.spacing(1),
+  },
+}));
+
+const Substitle2 = styled('h2')(({ theme }) => ({
   fontSize: 28,
   fontFamily: pixelify.style.fontFamily,
   fontWeight: 400,
   textAlign: 'center',
-});
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: 14,
+  },
+}));
 
 const RSVP = styled('h4')(({ theme }) => ({
   fontSize: 64,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 300,
   marginTop: theme.spacing(4),
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: 32,
+    textAlign: 'center',
+  },
 }));
 
 const RespondBy = styled('p')(({ theme }) => ({
@@ -49,6 +71,12 @@ const RespondBy = styled('p')(({ theme }) => ({
   fontWeight: 300,
   textAlign: 'right',
   paddingRight: theme.spacing(2),
+  [theme.breakpoints.down('md')]: {
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: theme.spacing(0.5),
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 const ResponseItem = styled('button')(({ theme }) => ({
@@ -76,30 +104,50 @@ const ResponseItem = styled('button')(({ theme }) => ({
     flexShrink: 0,
     imageRendering: 'pixelated',
   },
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: 13,
+    gap: theme.spacing(1),
+  },
 }));
 
-const Response = styled('b')({
+const Response = styled('b')(({ theme }) => ({
   fontSize: 64,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
   transition: 'color 0.3s ease, text-decoration 0.3s ease',
   textDecoration: 'underline transparent',
-});
 
-const ResponseItemPlaceholder = styled('div')({
+  [theme.breakpoints.down('md')]: {
+    fontSize: 30,
+  },
+}));
+
+const ResponseItemPlaceholder = styled('div')(({ theme }) => ({
   width: 100,
   height: 100,
   borderBottom: '2px solid #000',
-});
+  flexShrink: 0,
 
-const AltResponseItemPlaceholder = styled('div')({
+  [theme.breakpoints.down('md')]: {
+    width: 48,
+    height: 48,
+  },
+}));
+
+const AltResponseItemPlaceholder = styled('div')(({ theme }) => ({
   width: 65,
   height: 65,
   borderBottom: '2px solid #000',
   flexShrink: 0,
-});
 
-const SecondaryQuestion = styled('div')({
+  [theme.breakpoints.down('md')]: {
+    width: 32,
+    height: 32,
+  },
+}));
+
+const SecondaryQuestion = styled('div')(({ theme }) => ({
   textAlign: 'left',
   '& > p': {
     fontSize: 36,
@@ -112,7 +160,15 @@ const SecondaryQuestion = styled('div')({
     fontWeight: 400,
     display: 'inline-block',
   },
-});
+  [theme.breakpoints.down('md')]: {
+    '& > p': {
+      fontSize: 24,
+    },
+    '& > span': {
+      fontSize: 13,
+    },
+  },
+}));
 
 const TertiaryQuestion = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -131,6 +187,14 @@ const TertiaryQuestion = styled('div')(({ theme }) => ({
   },
   '& > input, & > button': {
     marginTop: theme.spacing(2),
+  },
+  [theme.breakpoints.down('md')]: {
+    '& > p': {
+      fontSize: 24,
+    },
+    '& > span': {
+      fontSize: 13,
+    },
   },
 }));
 
@@ -152,6 +216,11 @@ const SubmitButton = styled('button')(({ theme }) => ({
     backgroundColor: '#4a2c08',
     boxShadow:
       'inset 1px 1px 0px 0px rgba(0, 0, 0, 0.5), inset -1px -1px 0px 0px rgba(255, 255, 255, 0.2)',
+  },
+  [theme.breakpoints.down('md')]: {
+    fontSize: 24,
+    padding: theme.spacing(1),
+    marginTop: theme.spacing(4),
   },
 }));
 
@@ -184,14 +253,19 @@ const Input = styled('input')(({ theme }) => ({
   outline: 'none',
   border: 'none',
   boxShadow: 'inset 0 1px 4px rgba(57, 34, 11, 0.15)',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 14,
+    padding: theme.spacing(1),
+    borderRadius: theme.spacing(0.5),
+  },
 }));
 
 const Form = ({
-  tokenId,
+  guestId,
   onSuccess,
 }: {
-  tokenId: string;
-  onSuccess: () => void;
+  guestId: number;
+  onSuccess: (response: 'yes' | 'no', isNew: boolean) => void;
 }) => {
   const client = createClient();
   const [fields, setFields] = useState<{
@@ -212,7 +286,7 @@ const Form = ({
     const { data } = await client
       .from('wedding_invitation_response')
       .select('*')
-      .eq('token_id', tokenId);
+      .eq('guest_id', guestId);
 
     const invitation = data?.[0];
     if (invitation) {
@@ -249,7 +323,7 @@ const Form = ({
         plus_one: fields.plus_one,
         hotel: fields.hotel,
         food_restrictions: fields.food_restrictions,
-        token_id: tokenId,
+        guest_id: guestId,
       });
       error = response.error;
     }
@@ -257,10 +331,14 @@ const Form = ({
     if (error) {
       setError(error.message);
     } else {
-      onSuccess?.();
+      localStorage.setItem('rsvp', 'true');
+      onSuccess?.(fields.response ?? 'no', !fields.id);
     }
   };
 
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const stampWidth = isMobile ? 48 : 100;
+  const altStampWidth = isMobile ? 32 : 65;
   return (
     <>
       <Title>Dave & Ivy</Title>
@@ -275,7 +353,12 @@ const Form = ({
       <FirstQuestion>
         <ResponseItem onClick={() => setFields({ ...fields, response: 'yes' })}>
           {fields.response === 'yes' ? (
-            <img src={SealImage.src} alt="stamp" width={100} height={100} />
+            <img
+              src={SealImage.src}
+              alt="stamp"
+              width={stampWidth}
+              height={stampWidth}
+            />
           ) : (
             <ResponseItemPlaceholder />
           )}
@@ -283,7 +366,12 @@ const Form = ({
         </ResponseItem>
         <ResponseItem onClick={() => setFields({ ...fields, response: 'no' })}>
           {fields.response === 'no' ? (
-            <img src={SealImage.src} alt="stamp" width={100} height={100} />
+            <img
+              src={SealImage.src}
+              alt="stamp"
+              width={stampWidth}
+              height={stampWidth}
+            />
           ) : (
             <ResponseItemPlaceholder />
           )}
@@ -295,7 +383,12 @@ const Form = ({
         onClick={() => setFields({ ...fields, plus_one: !fields.plus_one })}
       >
         {fields.plus_one ? (
-          <img src={SealImage.src} alt="stamp" width={65} height={65} />
+          <img
+            src={SealImage.src}
+            alt="stamp"
+            width={altStampWidth}
+            height={altStampWidth}
+          />
         ) : (
           <AltResponseItemPlaceholder />
         )}
@@ -313,8 +406,8 @@ const Form = ({
         <p>Do you or your plus one have any dietary restrictions?</p>
         <span>
           A menu of what food that will be provided as an example is available
-          (see here) This is highly tentative and will be finalized closer to
-          the date.
+          under <i>Sample Menu</i> to your right. This is highly tentative and
+          will be finalized closer to the date.
         </span>
         <Input
           type="text"
@@ -331,7 +424,12 @@ const Form = ({
 
         <ResponseItem onClick={() => setFields({ ...fields, hotel: true })}>
           {fields.hotel === true ? (
-            <img src={SealImage.src} alt="stamp" width={65} height={65} />
+            <img
+              src={SealImage.src}
+              alt="stamp"
+              width={altStampWidth}
+              height={altStampWidth}
+            />
           ) : (
             <AltResponseItemPlaceholder />
           )}
@@ -346,7 +444,12 @@ const Form = ({
 
         <ResponseItem onClick={() => setFields({ ...fields, hotel: false })}>
           {fields.hotel === false ? (
-            <img src={SealImage.src} alt="stamp" width={65} height={65} />
+            <img
+              src={SealImage.src}
+              alt="stamp"
+              width={altStampWidth}
+              height={altStampWidth}
+            />
           ) : (
             <AltResponseItemPlaceholder />
           )}

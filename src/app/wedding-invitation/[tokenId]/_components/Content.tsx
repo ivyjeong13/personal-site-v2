@@ -154,6 +154,7 @@ const Scene = ({ onShow }: { onShow: () => void }) => {
 
 const CenterContainer = styled(Box)({
   ...centeredFlexStyles,
+  flexDirection: 'column',
   width: '100%',
   height: '100%',
   color: 'white',
@@ -194,7 +195,7 @@ const PlayButton = styled('button')({
   fontSize: '24px',
   fontFamily: pixelify.style.fontFamily,
   position: 'relative',
-  paddingLeft: 40,
+  paddingLeft: 44,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -236,6 +237,20 @@ const CanvasContainer = styled(Box)({
   position: 'relative',
 });
 
+const SoundNote = styled('div')({
+  fontSize: '14px',
+  fontFamily: pixelify.style.fontFamily,
+  color: 'white',
+  marginTop: theme.spacing(2),
+  transform: 'translateY(-22px)',
+});
+
+declare global {
+  interface Window {
+    webkitAudioContext: typeof AudioContext;
+  }
+}
+
 const Contents = ({ tokenId }: { tokenId: string }) => {
   const client = createClient();
   const [showMessenger, setShowMessenger] = useState(false);
@@ -243,6 +258,9 @@ const Contents = ({ tokenId }: { tokenId: string }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [guest, setGuest] = useState<WeddingGuest>();
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const [isIOS, setIsIOS] = useState(false);
 
   const router = useRouter();
 
@@ -256,19 +274,6 @@ const Contents = ({ tokenId }: { tokenId: string }) => {
     typeof window !== 'undefined' &&
       localStorage.getItem('audioMuted') === 'true',
   );
-  const handlePlayClick = () => {
-    setButtonOpacity(0);
-    setTimeout(() => {
-      setPlaying(true);
-      if (audioRef.current) {
-        audioRef.current.volume = audioMuted ? 0 : 0.5;
-        audioRef.current.play();
-      }
-      setTimeout(() => {
-        setCanvasOpacity(1);
-      }, 50);
-    }, 300);
-  };
 
   const init = async () => {
     const { data: tokens } = await client
@@ -297,12 +302,29 @@ const Contents = ({ tokenId }: { tokenId: string }) => {
       setViewportHeight(window.innerHeight);
     };
 
+    // Check if device is iOS
+    const checkIOS = () => {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/.test(userAgent);
+    };
+    setIsIOS(checkIOS());
+
     updateHeight();
     window.addEventListener('resize', updateHeight);
 
     init();
 
-    return () => window.removeEventListener('resize', updateHeight);
+    // Add click event listener to initialize audio
+    const handleClick = () => {
+      initializeAudio();
+      document.removeEventListener('click', handleClick);
+    };
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+      document.removeEventListener('click', handleClick);
+    };
   }, []);
 
   const handleViewInvitation = () => {
@@ -326,6 +348,94 @@ const Contents = ({ tokenId }: { tokenId: string }) => {
     }, 1000);
   };
 
+  const initializeAudio = async () => {
+    if (!audioContextRef.current) {
+      const context = new (window.AudioContext || window.webkitAudioContext)();
+      audioContextRef.current = context;
+      setAudioContext(context);
+    }
+    return audioContextRef.current;
+  };
+
+  const handleAudioMute = async (muted: boolean) => {
+    setAudioMuted(muted);
+    localStorage.setItem('audioMuted', muted ? 'true' : 'false');
+
+    if (audioRef.current) {
+      try {
+        const context = await initializeAudio();
+        if (context?.state === 'suspended') {
+          await context.resume();
+        }
+
+        // For iOS Safari, we need to handle volume differently
+        if (muted) {
+          // Set volume to 0 and pause the audio
+          audioRef.current.volume = 0;
+          audioRef.current.pause();
+        } else {
+          // Resume playing and set volume
+          audioRef.current.volume = 0.5;
+          if (audioRef.current.paused) {
+            const playPromise = audioRef.current.play();
+            if (playPromise !== undefined) {
+              playPromise.catch((error) => {
+                console.error('Failed to play audio:', error);
+              });
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error handling audio:', error);
+      }
+    }
+  };
+
+  const handlePlayClick = async () => {
+    setButtonOpacity(0);
+    setTimeout(async () => {
+      setPlaying(true);
+      if (audioRef.current) {
+        try {
+          // Initialize audio context if not already done
+          if (!audioContext) {
+            const context = new (window.AudioContext ||
+              window.webkitAudioContext)();
+            setAudioContext(context);
+          }
+
+          // Resume audio context if it's suspended
+          if (audioContext?.state === 'suspended') {
+            await audioContext.resume();
+          }
+
+          // Set volume before playing
+          audioRef.current.volume = audioMuted ? 0 : 0.5;
+
+          // Force a reload of the audio element
+          audioRef.current.load();
+
+          // Use play() with a promise to handle iOS Safari
+          const playPromise = audioRef.current.play();
+          if (playPromise !== undefined) {
+            playPromise.catch((error) => {
+              console.error('Failed to play audio:', error);
+              // If autoplay is blocked, we'll need user interaction to play
+              if (error.name === 'NotAllowedError') {
+                console.log('Autoplay blocked. Waiting for user interaction.');
+              }
+            });
+          }
+        } catch (error) {
+          console.error('Error playing audio:', error);
+        }
+      }
+      setTimeout(() => {
+        setCanvasOpacity(1);
+      }, 50);
+    }, 300);
+  };
+
   return (
     <>
       <audio
@@ -333,16 +443,11 @@ const Contents = ({ tokenId }: { tokenId: string }) => {
         src="/wedding-invitation/_assets/bg_music.mp3"
         loop
         preload="auto"
+        playsInline
       />
-      <AudioButton
-        audioMuted={audioMuted}
-        onChange={(muted) => {
-          setAudioMuted(muted);
-          if (audioRef.current) {
-            audioRef.current.volume = muted ? 0 : 0.5;
-          }
-        }}
-      />
+      {!isIOS && (
+        <AudioButton audioMuted={audioMuted} onChange={handleAudioMute} />
+      )}
       <Container style={{ opacity: containerOpacity }}>
         <Box
           sx={{
@@ -368,6 +473,7 @@ const Contents = ({ tokenId }: { tokenId: string }) => {
               >
                 Open Invitation
               </PlayButton>
+              <SoundNote>Note: Sound will play.</SoundNote>
             </CenterContainer>
           ) : (
             <CanvasContainer style={{ opacity: canvasOpacity }}>

@@ -1,9 +1,11 @@
-import { styled } from '@mui/material';
+import { Box, styled, useMediaQuery } from '@mui/material';
 import TagTileImage from '../../../_assets/scroll_tag_tile.png';
 import TagEndImage from '../../../_assets/scroll_tag_end.png';
 import TagStartImage from '../../../_assets/scroll_tag_start.png';
+import SquareButtonImage from '../../../_assets/square_button.png';
 import { pixelify } from '@/app/wedding-invitation/_fonts';
 import { useState } from 'react';
+import theme from '@/common/theme';
 
 const TagContainer = styled('button')(({ theme }) => ({
   position: 'relative',
@@ -63,7 +65,6 @@ const TagContainer = styled('button')(({ theme }) => ({
 const TextContainer = styled('p')(({ theme }) => ({
   fontFamily: pixelify.style.fontFamily,
   fontSize: 20,
-  color: '#000',
   textAlign: 'center',
   transition: 'opacity 0.3s ease-in-out',
   position: 'absolute',
@@ -75,6 +76,44 @@ const TextContainer = styled('p')(({ theme }) => ({
   padding: `${theme.spacing(0.5)} ${theme.spacing(1)}`,
   borderRadius: theme.spacing(1),
   zIndex: 2,
+  [theme.breakpoints.down('md')]: {
+    opacity: '1 !important',
+    left: 'auto',
+    bottom: 'auto',
+    position: 'relative',
+    transform: 'none',
+    backgroundColor: 'transparent',
+    fontSize: 11,
+  },
+}));
+
+const Block = styled('button')(({ theme }) => ({
+  position: 'relative',
+  outline: 'none',
+  border: 'none',
+  backgroundColor: 'transparent',
+  backgroundImage: `url(${SquareButtonImage.src})`,
+  backgroundSize: 'contain',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'repeat',
+  imageRendering: 'pixelated',
+  padding: theme.spacing(2),
+  flexShrink: 0,
+  cursor: 'pointer',
+  '& > img:hover': {
+    animation: 'bounce 1s ease-in-out infinite',
+  },
+  '@keyframes bounce': {
+    '0%, 100%': {
+      transform: 'translateY(0)',
+    },
+    '50%': {
+      transform: 'translateY(-10px)',
+    },
+  },
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(2),
+  },
 }));
 
 const Tag = ({
@@ -82,14 +121,40 @@ const Tag = ({
   children,
   name,
   selected,
+  simple,
 }: {
   onClick: () => void;
   children: React.ReactNode;
   name: string;
   selected?: boolean;
+  simple?: boolean;
 }) => {
   const [hovering, setHovering] = useState(false);
-  return (
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'), { noSsr: true });
+  return simple ? (
+    <Box
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
+      <Block
+        className={selected ? 'selected' : ''}
+        onClick={onClick}
+        onMouseOver={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+      >
+        {children}
+        {!isMobile && (
+          <TextContainer style={{ opacity: hovering ? 1 : 0 }}>
+            {name}
+          </TextContainer>
+        )}
+      </Block>
+      {isMobile && (
+        <TextContainer style={{ opacity: hovering ? 1 : 0 }}>
+          {name}
+        </TextContainer>
+      )}
+    </Box>
+  ) : (
     <TagContainer
       className={selected ? 'selected' : ''}
       onClick={onClick}

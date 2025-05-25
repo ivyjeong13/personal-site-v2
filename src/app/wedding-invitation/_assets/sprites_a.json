@@ -1,0 +1,222 @@
+{
+  "frames": {
+    "LuteBard_001": {
+      "frame": { "x": 18, "y": 21, "w": 28, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 18, "y": 21, "w": 28, "h": 43 },
+      "sourceSize": { "w": 28, "h": 43 }
+    },
+    "LuteBard_002": {
+      "frame": { "x": 82, "y": 21, "w": 28, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 18, "y": 21, "w": 28, "h": 43 },
+      "sourceSize": { "w": 28, "h": 43 }
+    },
+    "LuteBard_003": {
+      "frame": { "x": 146, "y": 21, "w": 28, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 146, "y": 22, "w": 28, "h": 43 },
+      "sourceSize": { "w": 28, "h": 43 }
+    },
+    "LuteBard_004": {
+      "frame": { "x": 210, "y": 21, "w": 28, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 210, "y": 22, "w": 28, "h": 43 },
+      "sourceSize": { "w": 28, "h": 43 }
+    },
+    "LuteBard_005": {
+      "frame": { "x": 274, "y": 21, "w": 28, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 274, "y": 21, "w": 28, "h": 43 },
+      "sourceSize": { "w": 28, "h": 43 }
+    },
+    "FluteBard_001": {
+      "frame": { "x": 19, "y": 83, "w": 26, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 19, "y": 83, "w": 25, "h": 45 },
+      "sourceSize": { "w": 26, "h": 45 }
+    },
+    "FluteBard_002": {
+      "frame": { "x": 81, "y": 83, "w": 26, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 81, "y": 83, "w": 25, "h": 45 },
+      "sourceSize": { "w": 26, "h": 45 }
+    },
+    "FluteBard_003": {
+      "frame": { "x": 144, "y": 83, "w": 26, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 43 },
+      "sourceSize": { "w": 26, "h": 45 }
+    },
+    "FluteBard_004": {
+      "frame": { "x": 209, "y": 83, "w": 26, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 26, "h": 45 },
+      "sourceSize": { "w": 26, "h": 45 }
+    },
+    "FluteBard_005": {
+      "frame": { "x": 274, "y": 84, "w": 26, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 274, "y": 84, "w": 26, "h": 45 },
+      "sourceSize": { "w": 26, "h": 45 }
+    },
+    "Drunkard_001": {
+      "frame": { "x": 16, "y": 149, "w": 27, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 43 },
+      "sourceSize": { "w": 27, "h": 43 }
+    },
+    "Drunkard_002": {
+      "frame": { "x": 81, "y": 149, "w": 27, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 43 },
+      "sourceSize": { "w": 27, "h": 43 }
+    },
+    "Drunkard_003": {
+      "frame": { "x": 146, "y": 149, "w": 27, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 43 },
+      "sourceSize": { "w": 27, "h": 43 }
+    },
+    "Drunkard_004": {
+      "frame": { "x": 211, "y": 149, "w": 27, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 43 },
+      "sourceSize": { "w": 27, "h": 43 }
+    },
+    "Drunkard_005": {
+      "frame": { "x": 273, "y": 149, "w": 27, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 27, "h": 43 },
+      "sourceSize": { "w": 27, "h": 43 }
+    },
+    "CoupleA_001": {
+      "frame": { "x": 15, "y": 213, "w": 36, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 15, "y": 213, "w": 34, "h": 43 },
+      "sourceSize": { "w": 36, "h": 43 }
+    },
+    "CoupleA_002": {
+      "frame": { "x": 79, "y": 213, "w": 36, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 79, "y": 213, "w": 36, "h": 43 },
+      "sourceSize": { "w": 36, "h": 43 }
+    },
+    "CoupleA_003": {
+      "frame": { "x": 143, "y": 213, "w": 36, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 143, "y": 213, "w": 36, "h": 43 },
+      "sourceSize": { "w": 36, "h": 43 }
+    },
+    "CoupleA_004": {
+      "frame": { "x": 207, "y": 214, "w": 36, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 207, "y": 214, "w": 36, "h": 43 },
+      "sourceSize": { "w": 36, "h": 43 }
+    },
+    "CoupleA_005": {
+      "frame": { "x": 271, "y": 214, "w": 36, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 271, "y": 214, "w": 36, "h": 43 },
+      "sourceSize": { "w": 36, "h": 43 }
+    },
+    "CoupleA_006": {
+      "frame": { "x": 334, "y": 213, "w": 36, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 334, "y": 213, "w": 36, "h": 43 },
+      "sourceSize": { "w": 36, "h": 43 }
+    },
+    "CoupleA_007": {
+      "frame": { "x": 399, "y": 213, "w": 36, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 399, "y": 213, "w": 36, "h": 43 },
+      "sourceSize": { "w": 36, "h": 43 }
+    },
+    "CoupleA_008": {
+      "frame": { "x": 463, "y": 213, "w": 36, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize":  { "x": 463, "y": 213, "w": 36, "h": 43 },
+      "sourceSize": { "w": 36, "h": 43 }
+    },
+    "CoupleA_009": {
+      "frame": { "x": 527, "y": 214, "w": 36, "h": 43 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 527, "y": 214, "w": 36, "h": 43 },
+      "sourceSize": { "w": 36, "h": 43 }
+    },
+    "CoupleA_010": {
+      "frame": { "x": 591, "y": 214, "w": 34, "h": 48 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 591, "y": 214, "w": 34, "h": 48 },
+      "sourceSize": { "w": 34, "h": 48 }
+    },
+    "CoupleB_001": {
+      "frame": { "x": 17, "y": 274, "w": 28, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 17, "y": 274, "w": 28, "h": 45 },
+      "sourceSize": { "w": 28, "h": 45 }
+    },
+    "CoupleB_002": {
+      "frame": { "x": 81, "y": 275, "w": 28, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 81, "y": 275, "w": 28, "h": 45 },
+      "sourceSize": { "w": 28, "h": 45 }
+    },
+    "CoupleB_003": {
+      "frame": { "x": 145, "y": 275, "w": 28, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 145, "y": 275, "w": 28, "h": 45 },
+      "sourceSize": { "w": 28, "h": 45 }
+    },
+    "CoupleB_004": {
+      "frame": { "x": 209, "y": 276, "w": 28, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 209, "y": 276, "w": 28, "h": 45 },
+      "sourceSize": { "w": 28, "h": 45 }
+    },
+    "CoupleB_005": {
+      "frame": { "x": 274, "y": 276, "w": 28, "h": 45 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 274, "y": 276, "w": 28, "h": 45 },
+      "sourceSize": { "w": 28, "h": 45 }
+    }
+  },
+  "meta": {
+    "app": "https://www.codeandweb.com/texturepacker",
+    "version": "1.0",
+    "image": "GandalfHardcore_tavern_NPCs_ujqcvj.png",
+    "format": "RGBA8888",
+    "size": { "w": 640, "h": 320 },
+    "scale": "1"
+  }
+}

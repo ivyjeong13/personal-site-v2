@@ -5,7 +5,7 @@ import MuteOnSelected from '../../_assets/mute_on_selected_icon.png';
 import MuteOffSelected from '../../_assets/mute_off_selected_icon.png';
 import { styled } from '@mui/material';
 import { pixelify } from '../../_fonts';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Container = styled('button')({
   position: 'absolute',
@@ -17,7 +17,9 @@ const Container = styled('button')({
   backgroundColor: 'transparent',
   border: 'none',
   outline: 'none',
-  zIndex: 10,
+  zIndex: 9999,
+  WebkitTapHighlightColor: 'transparent',
+  touchAction: 'manipulation',
   '& > img': {
     imageRendering: 'pixelated',
   },
@@ -31,10 +33,15 @@ const TextContainer = styled('p')(({ theme }) => ({
   transition: 'opacity 0.3s ease-in-out',
   position: 'absolute',
   top: theme.spacing(1.5),
-  right: 52,
-  backgroundColor: 'rgba(0, 0, 0, 0.35)',
+  right: 56,
+  backgroundColor: 'rgba(0, 0, 0, 0.45)',
   padding: theme.spacing(1),
   borderRadius: theme.spacing(1),
+  zIndex: 9999,
+  [theme.breakpoints.down('md')]: {
+    fontSize: 12,
+    top: theme.spacing(2.25),
+  },
 }));
 
 const AudioButton = ({
@@ -45,14 +52,30 @@ const AudioButton = ({
   onChange: (muted: boolean) => void;
 }) => {
   const [hovering, setHovering] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setIsTouchDevice('ontouchstart' in window);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    const updatedMuted = !audioMuted;
+    localStorage.setItem('audioMuted', updatedMuted ? 'true' : 'false');
+    onChange(updatedMuted);
+  };
+
   return (
     <>
       <Container
-        onClick={() => {
-          const updatedMuted = !audioMuted;
-          localStorage.setItem('audioMuted', updatedMuted ? 'true' : 'false');
-          onChange(updatedMuted);
-        }}
+        onClick={!isTouchDevice ? handleClick : undefined}
+        onTouchStart={isTouchDevice ? handleClick : undefined}
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
       >
