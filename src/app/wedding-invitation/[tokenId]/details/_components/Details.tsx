@@ -39,7 +39,7 @@ const ScrollInner = styled(Box)(({ theme }) => ({
     zIndex: -1,
   },
 }));
-const ScrollOuter = styled(Box)(({ theme }) => ({
+const ScrollOuter = styled(Box)({
   width: '100%',
   maxWidth: 1400,
   height: 0,
@@ -75,7 +75,7 @@ const ScrollOuter = styled(Box)(({ theme }) => ({
     backgroundRepeat: 'no-repeat',
     imageRendering: 'pixelated',
   },
-}));
+});
 
 const Container = styled(Box)(({ theme }) => ({
   width: '100%',
@@ -128,24 +128,24 @@ const BottomScroll = styled(Box)({
   flexShrink: 0,
 });
 
-const SuccessTitle = styled('h4')(({ theme }) => ({
+const SuccessTitle = styled('h4')({
   fontSize: 88,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
-}));
+});
 
-const SuccessDescription = styled('p')(({ theme }) => ({
+const SuccessDescription = styled('p')({
   fontSize: 24,
   fontFamily: pixelify.style.fontFamily,
   fontWeight: 400,
-}));
+});
 
-const SuccessContainer = styled(Box)(({ theme }) => ({
+const SuccessContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-}));
+});
 
 const Image = styled('img')({
   imageRendering: 'pixelated',

@@ -4,12 +4,12 @@ import SealImage from '../../../_assets/stamp_seal.png';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 
-const Title = styled('h1')(({ theme }) => ({
+const Title = styled('h1')({
   fontSize: 182,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
   textAlign: 'center',
-}));
+});
 
 const Date = styled('h2')(({ theme }) => ({
   fontSize: 48,
@@ -19,20 +19,20 @@ const Date = styled('h2')(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-const Subtitle = styled('h2')(({ theme }) => ({
+const Subtitle = styled('h2')({
   fontSize: 64,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
   textAlign: 'center',
   marginTop: -24,
-}));
+});
 
-const Substitle2 = styled('h2')(({ theme }) => ({
+const Substitle2 = styled('h2')({
   fontSize: 28,
   fontFamily: pixelify.style.fontFamily,
   fontWeight: 400,
   textAlign: 'center',
-}));
+});
 
 const RSVP = styled('h4')(({ theme }) => ({
   fontSize: 64,
@@ -75,28 +75,28 @@ const ResponseItem = styled('button')(({ theme }) => ({
   },
 }));
 
-const Response = styled('b')(({ theme }) => ({
+const Response = styled('b')({
   fontSize: 64,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
   transition: 'color 0.3s ease, text-decoration 0.3s ease',
   textDecoration: 'underline transparent',
-}));
+});
 
-const ResponseItemPlaceholder = styled('div')(({ theme }) => ({
+const ResponseItemPlaceholder = styled('div')({
   width: 100,
   height: 100,
   borderBottom: '2px solid #000',
-}));
+});
 
-const AltResponseItemPlaceholder = styled('div')(({ theme }) => ({
+const AltResponseItemPlaceholder = styled('div')({
   width: 65,
   height: 65,
   borderBottom: '2px solid #000',
   flexShrink: 0,
-}));
+});
 
-const SecondaryQuestion = styled('div')(({ theme }) => ({
+const SecondaryQuestion = styled('div')({
   textAlign: 'left',
   '& > p': {
     fontSize: 36,
@@ -109,7 +109,7 @@ const SecondaryQuestion = styled('div')(({ theme }) => ({
     fontWeight: 400,
     display: 'inline-block',
   },
-}));
+});
 
 const TertiaryQuestion = styled('div')(({ theme }) => ({
   display: 'flex',
