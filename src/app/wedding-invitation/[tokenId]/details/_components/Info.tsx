@@ -169,11 +169,13 @@ function Layer({ image, width, height }: LayerProps) {
 
 const Scene = ({
   width,
+  viewportWidth,
   height,
   characters,
   isMobile,
 }: {
   width: number;
+  viewportWidth: number;
   height: number;
   characters: WeddingGuestSprite[];
   isMobile: boolean;
@@ -184,7 +186,7 @@ const Scene = ({
       {characters.map((character) => (
         <Character
           key={character.sprite_animation}
-          canvasWidth={width}
+          canvasWidth={isMobile ? viewportWidth : width}
           canvasHeight={height}
           animationFrame={character.sprite_animation}
           textureImageURL={character.sprite_image_url}
@@ -484,7 +486,15 @@ function Character({
   const maxX = canvasWidth / 2 - padding;
   const randomX = minX + Math.random() * (maxX - minX);
 
-  const [position] = useState<number[] & Vector3>([randomX, randomY, 1]);
+  // Calculate z position based on y position
+  // Characters with more negative Y (farther from 0) should have higher z value
+  const zPosition = 1 + (maxY - randomY) / (maxY - minY);
+
+  const [position] = useState<number[] & Vector3>([
+    randomX,
+    randomY,
+    zPosition,
+  ]);
   const [currentFrame, setCurrentFrame] = useState(0);
   const [spriteData, setSpriteData] = useState<SpriteData | null>(null);
   const [texture, setTexture] = useState<Texture | null>(null);
@@ -933,6 +943,7 @@ const Info = ({
               }}
             >
               <Scene
+                viewportWidth={viewportDimensions.width}
                 width={isMobile ? 900 : viewportDimensions.width}
                 height={isMobile ? viewportDimensions.height - 100 : 700}
                 characters={characters}
