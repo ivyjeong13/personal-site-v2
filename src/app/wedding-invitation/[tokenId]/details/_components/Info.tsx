@@ -1,6 +1,6 @@
 import { jacquard24, pixelify } from '@/app/wedding-invitation/_fonts';
 import { Canvas, useLoader, Vector3, useFrame } from '@react-three/fiber';
-import { Plane } from '@react-three/drei';
+import { Plane, Text } from '@react-three/drei';
 import { TextureLoader, Texture, MeshBasicMaterial } from 'three';
 import { Box, styled, useMediaQuery } from '@mui/material';
 import ChurchBg from '../../../_assets/church_bg.png';
@@ -58,11 +58,11 @@ const BecomeFullscreen = styled('div')(({ theme }) => ({
   minHeight: 1,
   width: '100%',
   zIndex: 999,
-  overflowY: 'auto',
   borderRadius: theme.spacing(4),
   transform: 'scale(1)',
   transformOrigin: '50% 95%',
   transition: 'transform 1s ease, background-color 1s ease',
+  overflow: 'visible',
   '&:before': {
     position: 'absolute',
     top: 0,
@@ -78,7 +78,6 @@ const BecomeFullscreen = styled('div')(({ theme }) => ({
     transition: 'all 1s ease',
     zIndex: 9,
     borderRadius: 0,
-    overflow: 'visible',
   },
   '&.zoom': {
     transform: 'scale(20)',
@@ -192,6 +191,7 @@ const Scene = ({
           textureImageURL={character.sprite_image_url}
           textureDataURL={character.sprite_data_name}
           isMobile={isMobile}
+          name={character.wedding_guest?.name ?? ''}
         />
       ))}
     </Suspense>
@@ -466,6 +466,7 @@ function Character({
   textureImageURL,
   textureDataURL,
   isMobile,
+  // name,
 }: {
   canvasWidth: number;
   canvasHeight: number;
@@ -473,6 +474,7 @@ function Character({
   textureImageURL: string;
   textureDataURL: string;
   isMobile: boolean;
+  name: string;
 }) {
   // Calculate Y position in bottom half of canvas
   const minY = -(canvasHeight / 2); // Bottom of canvas
@@ -566,19 +568,34 @@ function Character({
   material.map!.repeat.set(frame.w / textureWidth, frame.h / textureHeight);
 
   const scaleMultiplier = isMobile ? 3.5 : 5;
+  // const characterHeight = frame.h * scaleMultiplier;
+
   return (
-    <Plane
-      position={position}
-      scale={[frame.w * scaleMultiplier, frame.h * scaleMultiplier, 1]}
-    >
-      <meshBasicMaterial
-        attach="material"
-        map={material.map}
-        transparent
-        alphaTest={0.001}
-        side={THREE.DoubleSide}
-      />
-    </Plane>
+    <group position={position}>
+      <Plane
+        position={[0, 0, 0]}
+        scale={[frame.w * scaleMultiplier, frame.h * scaleMultiplier, 1]}
+      >
+        <meshBasicMaterial
+          attach="material"
+          map={material.map}
+          transparent
+          alphaTest={0.001}
+          side={THREE.DoubleSide}
+        />
+      </Plane>
+      {/* <Text
+        position={[0, characterHeight / 2 + 10, 0]}
+        fontSize={isMobile ? 10 : 16}
+        color="#ffffff"
+        anchorX="center"
+        anchorY="middle"
+        outlineWidth={2}
+        outlineColor="#000000"
+      >
+        {name}
+      </Text> */}
+    </group>
   );
 }
 

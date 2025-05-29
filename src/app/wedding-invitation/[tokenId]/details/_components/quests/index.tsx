@@ -1,4 +1,5 @@
 import { jacquard24, pixelify } from '@/app/wedding-invitation/_fonts';
+import theme from '@/common/theme';
 import { styled } from '@mui/material';
 
 const Title = styled('h2')(({ theme }) => ({
@@ -45,14 +46,14 @@ const ClosedQuests = styled('div')(({ theme }) => ({
 const Quests = () => {
   return (
     <>
-      <Title>Journal Log</Title>
+      <Title sx={{ marginTop: theme.spacing(4) }}>Journal Log</Title>
       <Subtitle>
         What is a classic RPG without quests? The day of festivities will
         include various quests to complete. For the adventurous lady or sire
         that completes the most, they will be rewarded with a prize.
       </Subtitle>
 
-      <ClosedQuests>
+      <ClosedQuests sx={{ marginBottom: theme.spacing(8) }}>
         <p>
           <i>The journal log is currently inactive.</i>
         </p>

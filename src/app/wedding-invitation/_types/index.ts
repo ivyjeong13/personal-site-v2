@@ -9,6 +9,9 @@ export type WeddingGuestSprite = {
   sprite_image_url: string;
   sprite_data_name: string;
   sprite_animation: string;
+  wedding_guest?: {
+    name: string;
+  };
 };
 
 export type LayerProps = {

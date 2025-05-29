@@ -254,16 +254,23 @@ const ViewContent = styled(Box)(({ theme }) => ({
   borderRight: '13px solid #e1be88',
   padding: `${theme.spacing(4)} ${theme.spacing(6)}`,
   flexDirection: 'column',
+  flexGrow: 1,
   justifyContent: 'start',
   display: 'flex',
   [theme.breakpoints.down('md')]: {
     borderLeft: '4px solid #e1be88',
     borderRight: '4px solid #e1be88',
-    padding: `${theme.spacing(2)} ${theme.spacing(1)}`,
+    padding: theme.spacing(2),
   },
 }));
 
-const Details = ({ guestId }: { guestId: number }) => {
+const Details = ({
+  guestId,
+  disabledFields,
+}: {
+  guestId: number;
+  disabledFields?: string[] | null;
+}) => {
   const [height, setHeight] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
   const [isNew, setIsNew] = useState(false);
@@ -285,7 +292,7 @@ const Details = ({ guestId }: { guestId: number }) => {
   });
 
   const ViewHeights = {
-    rsvp: isMobile ? 1150 : 1400,
+    rsvp: isMobile ? 1250 : 1500,
     menu: isMobile ? 1984 : 2350,
     info: isMobile ? 325 : 600,
     quests: 450,
@@ -598,7 +605,13 @@ const Details = ({ guestId }: { guestId: number }) => {
         )}
 
         <TopScroll />
-        <ScrollOuter style={{ height }} id="scroll-outer">
+        <ScrollOuter
+          style={{
+            height,
+            maxHeight: selectedView !== 'info' ? 'fit-content' : undefined,
+          }}
+          id="scroll-outer"
+        >
           <ScrollInner>
             {!isMobile && (
               <TagContainer>
@@ -657,7 +670,11 @@ const Details = ({ guestId }: { guestId: number }) => {
                       </SuccessDescriptionSmall>
                     </SuccessContainer>
                   ) : (
-                    <Form guestId={guestId} onSuccess={handleSuccess} />
+                    <Form
+                      guestId={guestId}
+                      onSuccess={handleSuccess}
+                      disabledFields={disabledFields}
+                    />
                   )}
                 </>
               )}

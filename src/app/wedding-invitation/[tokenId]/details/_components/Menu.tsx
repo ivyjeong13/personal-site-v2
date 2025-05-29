@@ -279,7 +279,7 @@ const Menu = () => {
         Beverages
         <img src={Beer.src} alt="Beer" height={iconSize} width={iconSize} />
       </HeaderWithSpacing>
-      <TwoColumnContainer>
+      <TwoColumnContainer sx={{ paddingBottom: theme.spacing(12) }}>
         <div>
           <MenuItem>
             <p>Full Bar</p>

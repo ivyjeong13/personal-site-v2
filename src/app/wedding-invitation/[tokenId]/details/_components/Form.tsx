@@ -6,6 +6,7 @@ import SealImage from '../../../_assets/stamp_seal.png';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import theme from '@/common/theme';
+import Image from 'next/image';
 
 const Title = styled('h1')(({ theme }) => ({
   fontSize: 182,
@@ -236,10 +237,16 @@ const ErrorMessage = styled('p')(({ theme }) => ({
 
 const FirstQuestion = styled('div')(({ theme }) => ({
   marginTop: theme.spacing(2),
-  marginBottom: theme.spacing(6),
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(2),
+  marginBottom: theme.spacing(8),
+  '& > button + button': {
+    marginTop: theme.spacing(2),
+  },
+  [theme.breakpoints.down('md')]: {
+    marginBottom: theme.spacing(6),
+  },
 }));
 
 const Input = styled('input')(({ theme }) => ({
@@ -263,9 +270,11 @@ const Input = styled('input')(({ theme }) => ({
 const Form = ({
   guestId,
   onSuccess,
+  disabledFields,
 }: {
   guestId: number;
   onSuccess: (response: 'yes' | 'no', isNew: boolean) => void;
+  disabledFields?: string[] | null;
 }) => {
   const client = createClient();
   const [fields, setFields] = useState<{
@@ -281,6 +290,7 @@ const Form = ({
     food_restrictions: undefined,
   });
   const [error, setError] = useState<string>();
+  const disabledFieldSet = new Set(disabledFields);
 
   const init = async () => {
     const { data } = await client
@@ -351,63 +361,86 @@ const Form = ({
       <RespondBy>Please respond by 9/1/2025</RespondBy>
 
       <FirstQuestion>
-        <ResponseItem onClick={() => setFields({ ...fields, response: 'yes' })}>
-          {fields.response === 'yes' ? (
-            <img
-              src={SealImage.src}
-              alt="stamp"
-              width={stampWidth}
-              height={stampWidth}
-            />
-          ) : (
-            <ResponseItemPlaceholder />
-          )}
-          <Response>Verily!</Response> I am prepared to make merry!
-        </ResponseItem>
-        <ResponseItem onClick={() => setFields({ ...fields, response: 'no' })}>
-          {fields.response === 'no' ? (
-            <img
-              src={SealImage.src}
-              alt="stamp"
-              width={stampWidth}
-              height={stampWidth}
-            />
-          ) : (
-            <ResponseItemPlaceholder />
-          )}
-          <Response>No!</Response> My feline beast is aflame.
-        </ResponseItem>
+        {(!disabledFieldSet.has('response') ||
+          (disabledFieldSet.has('response') && fields.response === 'yes')) && (
+          <ResponseItem
+            onClick={() => setFields({ ...fields, response: 'yes' })}
+            disabled={disabledFieldSet.has('response')}
+          >
+            {fields.response === 'yes' ? (
+              <Image
+                src={SealImage.src}
+                alt="stamp"
+                width={stampWidth}
+                height={stampWidth}
+                unoptimized
+              />
+            ) : (
+              <ResponseItemPlaceholder />
+            )}
+            <Response>Verily!</Response> I am prepared to make merry!
+          </ResponseItem>
+        )}
+        {(!disabledFieldSet.has('response') ||
+          (disabledFieldSet.has('response') && fields.response === 'no')) && (
+          <ResponseItem
+            onClick={() => setFields({ ...fields, response: 'no' })}
+            disabled={disabledFieldSet.has('response')}
+          >
+            {fields.response === 'no' ? (
+              <Image
+                src={SealImage.src}
+                alt="stamp"
+                width={stampWidth}
+                height={stampWidth}
+                unoptimized
+              />
+            ) : (
+              <ResponseItemPlaceholder />
+            )}
+            <Response>No!</Response> My feline beast is aflame.
+          </ResponseItem>
+        )}
       </FirstQuestion>
 
-      <ResponseItem
-        onClick={() => setFields({ ...fields, plus_one: !fields.plus_one })}
-      >
-        {fields.plus_one ? (
-          <img
-            src={SealImage.src}
-            alt="stamp"
-            width={altStampWidth}
-            height={altStampWidth}
-          />
-        ) : (
-          <AltResponseItemPlaceholder />
-        )}
-        <SecondaryQuestion>
-          <p>A companion (+1) will be joining me.</p>
-          <span>
-            Note: Due to the nature of the festivities, we request that children
-            stay at home. We wish all guests to indulge in appropriate
-            inebriation.
-          </span>
-        </SecondaryQuestion>
-      </ResponseItem>
+      {!disabledFieldSet.has('plus_one') && (
+        <ResponseItem
+          onClick={() => setFields({ ...fields, plus_one: !fields.plus_one })}
+          sx={{ marginBottom: theme.spacing(4) }}
+        >
+          {fields.plus_one ? (
+            <Image
+              src={SealImage.src}
+              alt="stamp"
+              width={altStampWidth}
+              height={altStampWidth}
+              unoptimized
+            />
+          ) : (
+            <AltResponseItemPlaceholder />
+          )}
+          <SecondaryQuestion>
+            <p>A companion (+1) will be joining me.</p>
+            <span>
+              Note: Due to the nature of the festivities, we request that
+              children stay at home. We wish all guests to indulge in
+              appropriate inebriation.
+            </span>
+          </SecondaryQuestion>
+        </ResponseItem>
+      )}
 
       <TertiaryQuestion>
-        <p>Do you or your plus one have any dietary restrictions?</p>
+        {!disabledFieldSet.has('plus_one') ? (
+          <p>Do you or your plus one have any dietary restrictions?</p>
+        ) : (
+          <p>Do you have any dietary restrictions?</p>
+        )}
         <span>
           A menu of what food that will be provided as an example is available
-          under <i>Sample Menu</i> to your right. This is highly tentative and
-          will be finalized closer to the date.
+          under <i>Sample Menu</i>{' '}
+          {isMobile ? 'in the navigation below' : 'to your right'}. This is
+          highly tentative and will be finalized closer to the date.
         </span>
         <Input
           type="text"
@@ -419,49 +452,53 @@ const Form = ({
         />
       </TertiaryQuestion>
 
-      <TertiaryQuestion>
-        <p>Would you like to book a hotel with the party?</p>
+      {!disabledFieldSet.has('hotel') && (
+        <TertiaryQuestion sx={{ paddingTop: theme.spacing(4) }}>
+          <p>Would you like to book a hotel with the party?</p>
 
-        <ResponseItem onClick={() => setFields({ ...fields, hotel: true })}>
-          {fields.hotel === true ? (
-            <img
-              src={SealImage.src}
-              alt="stamp"
-              width={altStampWidth}
-              height={altStampWidth}
-            />
-          ) : (
-            <AltResponseItemPlaceholder />
-          )}
-          <SecondaryQuestion>
-            <p>Yes, book me a room!</p>
-            <span>
-              We will be providing a shuttle to and from the wedding venue.
-              Details TBD.
-            </span>
-          </SecondaryQuestion>
-        </ResponseItem>
+          <ResponseItem onClick={() => setFields({ ...fields, hotel: true })}>
+            {fields.hotel === true ? (
+              <Image
+                src={SealImage.src}
+                alt="stamp"
+                width={altStampWidth}
+                height={altStampWidth}
+                unoptimized
+              />
+            ) : (
+              <AltResponseItemPlaceholder />
+            )}
+            <SecondaryQuestion>
+              <p>Yes, book me a room!</p>
+              <span>
+                We will be providing a shuttle to and from the wedding venue.
+                Details TBD.
+              </span>
+            </SecondaryQuestion>
+          </ResponseItem>
 
-        <ResponseItem onClick={() => setFields({ ...fields, hotel: false })}>
-          {fields.hotel === false ? (
-            <img
-              src={SealImage.src}
-              alt="stamp"
-              width={altStampWidth}
-              height={altStampWidth}
-            />
-          ) : (
-            <AltResponseItemPlaceholder />
-          )}
-          <SecondaryQuestion>
-            <p>No, I&apos;m good.</p>
-            <span>
-              I will be making my own arrangements or I live locally and do not
-              need a hotel.
-            </span>
-          </SecondaryQuestion>
-        </ResponseItem>
-      </TertiaryQuestion>
+          <ResponseItem onClick={() => setFields({ ...fields, hotel: false })}>
+            {fields.hotel === false ? (
+              <Image
+                src={SealImage.src}
+                alt="stamp"
+                width={altStampWidth}
+                height={altStampWidth}
+                unoptimized
+              />
+            ) : (
+              <AltResponseItemPlaceholder />
+            )}
+            <SecondaryQuestion>
+              <p>No, I&apos;m good.</p>
+              <span>
+                I will be making my own arrangements or I live locally and do
+                not need a hotel.
+              </span>
+            </SecondaryQuestion>
+          </ResponseItem>
+        </TertiaryQuestion>
+      )}
 
       <SubmitButton onClick={handleSubmit}>Submit Response</SubmitButton>
       <ErrorMessage style={{ opacity: error ? 1 : 0 }}>
