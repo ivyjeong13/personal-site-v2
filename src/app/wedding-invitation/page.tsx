@@ -29,17 +29,35 @@ const Guard = styled('div')(({ theme }) => ({
 }));
 
 export default function Home() {
-  const [audioMuted] = useState(
-    typeof window !== 'undefined' &&
-      localStorage.getItem('audioMuted') === 'true',
-  );
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
 
-  const handleGuardClick = () => {
-    if (audioRef.current && !audioMuted) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.volume = 0.5;
-      audioRef.current.play();
+  const handleGuardClick = async () => {
+    if (audioRef.current) {
+      try {
+        // Initialize audio context if not already done
+        if (!audioContext) {
+          const context = new (window.AudioContext ||
+            window.webkitAudioContext)();
+          setAudioContext(context);
+        }
+
+        // Resume audio context if it's suspended
+        if (audioContext?.state === 'suspended') {
+          await audioContext.resume();
+        }
+
+        audioRef.current.currentTime = 0;
+        audioRef.current.volume = 0.5;
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.error('Failed to play audio:', error);
+          });
+        }
+      } catch (error) {
+        console.error('Error playing audio:', error);
+      }
     }
   };
 
@@ -63,6 +81,7 @@ export default function Home() {
         ref={audioRef}
         src="https://res.cloudinary.com/dwnebujkh/video/upload/v1748472859/stoprightthere_mlvh72.mp3"
         preload="auto"
+        playsInline
       />
       <Box
         sx={{
