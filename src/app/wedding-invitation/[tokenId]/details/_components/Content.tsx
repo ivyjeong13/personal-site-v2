@@ -431,9 +431,6 @@ const Details = ({ guestId }: { guestId: number }) => {
   };
 
   const handleChangeMusic = async (val: 'intro' | 'info') => {
-    const audioToPause = val === 'intro' ? infoAudioRef : audioRef;
-    const audioToPlay = val === 'intro' ? audioRef : infoAudioRef;
-
     // Initialize audio context if not already done
     if (!audioContext) {
       const context = new (window.AudioContext || window.webkitAudioContext)();
@@ -444,6 +441,17 @@ const Details = ({ guestId }: { guestId: number }) => {
     if (audioContext?.state === 'suspended') {
       await audioContext.resume();
     }
+    if (isIOS) {
+      // not allowing changing of music on iOS
+      // if audioRef isn't playing, play it
+      if (audioRef.current && !audioRef.current.paused) {
+        audioRef.current.play();
+      }
+      return;
+    }
+
+    const audioToPause = val === 'intro' ? infoAudioRef : audioRef;
+    const audioToPlay = val === 'intro' ? audioRef : infoAudioRef;
 
     const fadeOutInterval = setInterval(() => {
       if (!audioToPause.current) {
