@@ -175,6 +175,135 @@ const sprites_g = [
   },
 ];
 
+const sprites_h = [
+  {
+    name: 'Baba Yaga',
+    sprite_animation: 'babayaga',
+  },
+];
+const sprites_i = [
+  {
+    name: 'Ladies',
+    sprite_animation: 'ladies',
+  },
+  {
+    name: 'Wink',
+    sprite_animation: 'wink',
+  },
+  {
+    name: 'Madam',
+    sprite_animation: 'madam',
+  },
+  {
+    name: 'Archer',
+    sprite_animation: 'archer',
+  },
+  {
+    name: 'Knight Axe',
+    sprite_animation: 'knightaxe',
+  },
+  {
+    name: 'Knight Sit',
+    sprite_animation: 'knightsit',
+  },
+  {
+    name: 'Crossbow Man',
+    sprite_animation: 'crossbowman',
+  },
+  {
+    name: 'Dancer',
+    sprite_animation: 'dancerwink',
+  },
+  {
+    name: 'Sculptor',
+    sprite_animation: 'sculptor',
+  },
+  {
+    name: 'Painter',
+    sprite_animation: 'painter',
+  },
+  {
+    name: 'Chemist',
+    sprite_animation: 'chemist',
+  },
+  {
+    name: 'Flower Girl',
+    sprite_animation: 'flowergirl',
+  },
+  {
+    name: 'Jester',
+    sprite_animation: 'jester',
+  },
+  {
+    name: 'Noble Lady',
+    sprite_animation: 'noblelady',
+  },
+  {
+    name: 'Mage',
+    sprite_animation: 'mage',
+  },
+  {
+    name: 'Goat Man',
+    sprite_animation: 'goatman',
+  },
+  {
+    name: 'Monk',
+    sprite_animation: 'monk',
+  },
+];
+const sprites_j = [
+  {
+    name: 'Knight',
+    sprite_animation: 'knight',
+  },
+  {
+    name: 'Thief',
+    sprite_animation: 'thief',
+  },
+  {
+    name: 'Priest',
+    sprite_animation: 'priest',
+  },
+  {
+    name: 'Pikeman',
+    sprite_animation: 'pikeman',
+  },
+  {
+    name: 'Dwarf',
+    sprite_animation: 'dwarf',
+  },
+  {
+    name: 'Barrel',
+    sprite_animation: 'barrel',
+  },
+];
+const sprites_k = [
+  {
+    name: 'Fae',
+    sprite_animation: 'fae',
+  },
+  {
+    name: 'Nun',
+    sprite_animation: 'nun',
+  },
+  {
+    name: 'Thief',
+    sprite_animation: 'thief',
+  },
+  {
+    name: 'Knight',
+    sprite_animation: 'knight',
+  },
+  {
+    name: 'Vampire',
+    sprite_animation: 'vampire',
+  },
+  {
+    name: 'Merchant',
+    sprite_animation: 'merchant',
+  },
+];
+
 const characters = [
   ...sprites_a.map((sprite) => ({
     ...sprite,
@@ -217,6 +346,30 @@ const characters = [
     sprite_image_url:
       'https://res.cloudinary.com/dwnebujkh/image/upload/v1748302680/Fairy_t6wmwl.png',
     sprite_data_name: 'sprites_g.json',
+  })),
+  ...sprites_h.map((sprite) => ({
+    ...sprite,
+    sprite_image_url:
+      'https://res.cloudinary.com/dwnebujkh/image/upload/v1748479468/GandalfHardcore_Baba_Yaga_tvlgwb.png',
+    sprite_data_name: 'sprites_h.json',
+  })),
+  ...sprites_i.map((sprite) => ({
+    ...sprite,
+    sprite_image_url:
+      'https://res.cloudinary.com/dwnebujkh/image/upload/v1748479525/GandalfHardcore_characters_sheet_1_mlcffy.png',
+    sprite_data_name: 'sprites_i.json',
+  })),
+  ...sprites_j.map((sprite) => ({
+    ...sprite,
+    sprite_image_url:
+      'https://res.cloudinary.com/dwnebujkh/image/upload/v1748479592/Male_Pixel_Art_characters_er5uge.png',
+    sprite_data_name: 'sprites_j.json',
+  })),
+  ...sprites_k.map((sprite) => ({
+    ...sprite,
+    sprite_image_url:
+      'https://res.cloudinary.com/dwnebujkh/image/upload/v1748479604/Female_Pixel_Art_characters_xmviwf.png',
+    sprite_data_name: 'sprites_k.json',
   })),
 ];
 

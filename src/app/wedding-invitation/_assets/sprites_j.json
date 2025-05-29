@@ -1,0 +1,279 @@
+{
+    "frames": {
+      "Knight_001": {
+        "frame": { "x": 9, "y": 76, "w": 44, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 9, "y": 76, "w": 44, "h": 52 },
+        "sourceSize": { "w": 44, "h": 52 }
+      },
+      "Knight_002": {
+        "frame": { "x": 9, "y": 141, "w": 44, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 9, "y": 141, "w": 44, "h": 52 },
+        "sourceSize": { "w": 44, "h": 52 }
+      },
+      "Knight_003": {
+        "frame": { "x": 9, "y": 206, "w": 44, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 9, "y": 206, "w": 44, "h": 52 },
+        "sourceSize": { "w": 44, "h": 52 }
+      },
+      "Knight_004": {
+        "frame": { "x": 9, "y": 270, "w": 44, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 9, "y": 270, "w": 44, "h": 52 },
+        "sourceSize": { "w": 44, "h": 52 }
+      },
+      "Knight_005": {
+        "frame": { "x": 9, "y": 333, "w": 44, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 9, "y": 333, "w": 44, "h": 52 },
+        "sourceSize": { "w": 44, "h": 52 }
+      },
+      "Thief_001": {
+        "frame": { "x": 214, "y": 86, "w": 22, "h": 42 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 214, "y": 86, "w": 22, "h": 42 },
+        "sourceSize": { "w": 22, "h": 42 }
+      },
+      "Thief_002": {
+        "frame": { "x": 214, "y": 151, "w": 22, "h": 42 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 214, "y": 151, "w": 22, "h": 42 },
+        "sourceSize": { "w": 22, "h": 42 }
+      },
+      "Thief_003": {
+        "frame": { "x": 214, "y": 216, "w": 22, "h": 42 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 214, "y": 216, "w": 22, "h": 42 },
+        "sourceSize": { "w": 22, "h": 42 }
+      },
+      "Thief_004": {
+        "frame": { "x": 214, "y": 280, "w": 22, "h": 42 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 214, "y": 280, "w": 22, "h": 42 },
+        "sourceSize": { "w": 22, "h": 42 }
+      },
+      "Thief_005": {
+        "frame": { "x": 214, "y": 343, "w": 22, "h": 42 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 214, "y": 343, "w": 22, "h": 42 },
+        "sourceSize": { "w": 22, "h": 42 }
+      },
+      "Priest_001": {
+        "frame": { "x": 267, "y": 76, "w": 37, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 267, "y": 76, "w": 37, "h": 52 },
+        "sourceSize": { "w": 37, "h": 52 }
+      },
+      "Priest_002": {
+        "frame": { "x": 267, "y": 141, "w": 37, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 267, "y": 141, "w": 37, "h": 52 },
+        "sourceSize": { "w": 37, "h": 52 }
+      },
+      "Priest_003": {
+        "frame": { "x": 267, "y": 206, "w": 37, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 267, "y": 206, "w": 37, "h": 52 },
+        "sourceSize": { "w": 37, "h": 52 }
+      },
+      "Priest_004": {
+        "frame": { "x": 267, "y": 270, "w": 37, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 267, "y": 270, "w": 37, "h": 52 },
+        "sourceSize": { "w": 37, "h": 52 }
+      },
+      "Priest_005": {
+        "frame": { "x": 267, "y": 333, "w": 37, "h": 52 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 267, "y": 333, "w": 37, "h": 52 },
+        "sourceSize": { "w": 37, "h": 52 }
+      },
+      "Pikeman_001": {
+        "frame": { "x": 330, "y": 72, "w": 41, "h": 56 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 330, "y": 72, "w": 41, "h": 56 },
+        "sourceSize": { "w": 41, "h": 56 }
+      },
+      "Pikeman_002": {
+        "frame": { "x": 330, "y": 136, "w": 41, "h": 56 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 330, "y": 136, "w": 41, "h": 56 },
+        "sourceSize": { "w": 41, "h": 56 }
+      },
+      "Pikeman_003": {
+        "frame": { "x": 330, "y": 201, "w": 41, "h": 56 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 330, "y": 201, "w": 41, "h": 56 },
+        "sourceSize": { "w": 41, "h": 56 }
+      },
+      "Pikeman_004": {
+        "frame": { "x": 330, "y": 265, "w": 41, "h": 56 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 330, "y": 265, "w": 41, "h": 56 },
+        "sourceSize": { "w": 41, "h": 56 }
+      },
+      "Pikeman_005": {
+        "frame": { "x": 330, "y": 328, "w": 41, "h": 56 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 330, "y": 328, "w": 41, "h": 56 },
+        "sourceSize": { "w": 41, "h": 56 }
+      },
+      "Dwarf_001": {
+        "frame": { "x": 399, "y": 94, "w": 33, "h": 34 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 399, "y": 94, "w": 33, "h": 34 },
+        "sourceSize": { "w": 33, "h": 34 }
+      },
+      "Dwarf_002": {
+        "frame": { "x": 399, "y": 159, "w": 33, "h": 34 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 399, "y": 159, "w": 33, "h": 34 },
+        "sourceSize": { "w": 33, "h": 34 }
+      },
+      "Dwarf_003": {
+        "frame": { "x": 399, "y": 224, "w": 33, "h": 34 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 399, "y": 224, "w": 33, "h": 34 },
+        "sourceSize": { "w": 33, "h": 34 }
+      },
+      "Dwarf_004": {
+        "frame": { "x": 399, "y": 288, "w": 33, "h": 34 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 399, "y": 288, "w": 33, "h": 34 },
+        "sourceSize": { "w": 33, "h": 34 }
+      },
+      "Dwarf_005": {
+        "frame": { "x": 399, "y": 351, "w": 33, "h": 34 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 399, "y": 351, "w": 33, "h": 34 },
+        "sourceSize": { "w": 33, "h": 34 }
+      },
+      "Barrel_001": {
+        "frame": { "x": 590, "y": 95, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 95, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_002": {
+        "frame": { "x": 590, "y": 159, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 159, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_003": {
+        "frame": { "x": 590, "y": 223, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 223, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_004": {
+        "frame": { "x": 590, "y": 287, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 287, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_005": {
+        "frame": { "x": 590, "y": 350, "w": 40, "h": 34 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 350, "w": 40, "h": 34 },
+        "sourceSize": { "w": 40, "h": 34 }
+      },
+      "Barrel_006": {
+        "frame": { "x": 590, "y": 415, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 415, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_007": {
+        "frame": { "x": 590, "y": 479, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 479, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_008": {
+        "frame": { "x": 590, "y": 543, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 543, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_009": {
+        "frame": { "x": 590, "y": 607, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 607, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_010": {
+        "frame": { "x": 590, "y": 671, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 671, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_011": {
+        "frame": { "x": 590, "y": 735, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 735, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_012": {
+        "frame": { "x": 590, "y": 799, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 799, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      },
+      "Barrel_013": {
+        "frame": { "x": 590, "y": 863, "w": 40, "h": 33 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 590, "y": 863, "w": 40, "h": 33 },
+        "sourceSize": { "w": 40, "h": 33 }
+      }
+    },
+    "meta": {
+      "app": "https://www.codeandweb.com/texturepacker",
+      "version": "1.0",
+      "image": "https://res.cloudinary.com/dwnebujkh/image/upload/v1748479592/Male_Pixel_Art_characters_er5uge.png",
+      "format": "RGBA8888",
+      "size": { "w": 704, "h": 896 },
+      "scale": "1"
+    }
+  }
+  
