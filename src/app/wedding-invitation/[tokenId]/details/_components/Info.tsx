@@ -1,6 +1,6 @@
 import { jacquard24, pixelify } from '@/app/wedding-invitation/_fonts';
 import { Canvas, useLoader, Vector3, useFrame } from '@react-three/fiber';
-import { Plane, Text } from '@react-three/drei';
+import { Plane } from '@react-three/drei';
 import { TextureLoader, Texture, MeshBasicMaterial } from 'three';
 import { Box, styled, useMediaQuery } from '@mui/material';
 import ChurchBg from '../../../_assets/church_bg.png';

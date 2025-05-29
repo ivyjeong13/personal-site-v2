@@ -295,7 +295,7 @@ const Details = ({
     rsvp: isMobile ? 1250 : 1500,
     menu: isMobile ? 1984 : 2350,
     info: isMobile ? 325 : 600,
-    quests: 450,
+    quests: 550,
   };
 
   // Update refs when state changes
