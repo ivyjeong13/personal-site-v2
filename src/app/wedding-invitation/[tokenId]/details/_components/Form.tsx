@@ -1,12 +1,15 @@
 'use client';
 
-import { styled, useMediaQuery } from '@mui/material';
+import { Box, styled, useMediaQuery } from '@mui/material';
 import { jacquard24, pixelify } from '../../../_fonts';
 import SealImage from '../../../_assets/stamp_seal.png';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import theme from '@/common/theme';
 import Image from 'next/image';
+import Banner from '../../../_assets/decorated_banner.png';
+import Church from '../../../_assets/fb37.png';
+import ConfirmButtonBg from '../../../_assets/button.png';
 
 const Title = styled('h1')(({ theme }) => ({
   fontSize: 182,
@@ -18,15 +21,55 @@ const Title = styled('h1')(({ theme }) => ({
   },
 }));
 
+const MiniTitle = styled('p')(({ theme }) => ({
+  fontSize: 42,
+  fontFamily: jacquard24.style.fontFamily,
+  fontWeight: 400,
+  textAlign: 'center',
+  transform: 'translateY(-22px)',
+  margin: '0 auto',
+  [theme.breakpoints.down('md')]: {
+    fontSize: 22,
+    transform: 'translateY(0px)',
+    lineHeight: '22px',
+    padding: '0 24px',
+  },
+}));
+
+const LocationContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  backgroundImage: `url(${Banner.src})`,
+  backgroundSize: 'contain',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  imageRendering: 'pixelated',
+  width: '100%',
+  height: 268,
+  marginTop: theme.spacing(2),
+
+  [theme.breakpoints.down('md')]: {
+    height: 135,
+    margin: '52px 0 0 0',
+    '& > *': {
+      position: 'relative',
+      top: -28,
+    },
+  },
+}));
+
 const Date = styled('h2')(({ theme }) => ({
   fontSize: 48,
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
   textAlign: 'center',
-  marginTop: theme.spacing(2),
+  marginTop: theme.spacing(1),
 
   [theme.breakpoints.down('md')]: {
-    fontSize: 28,
+    fontSize: 22,
   },
 }));
 
@@ -35,10 +78,9 @@ const Subtitle = styled('h2')(({ theme }) => ({
   fontFamily: jacquard24.style.fontFamily,
   fontWeight: 400,
   textAlign: 'center',
-  marginTop: -24,
 
   [theme.breakpoints.down('md')]: {
-    fontSize: 36,
+    fontSize: 32,
     marginTop: theme.spacing(1),
   },
 }));
@@ -63,6 +105,7 @@ const RSVP = styled('h4')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     fontSize: 32,
     textAlign: 'center',
+    marginTop: theme.spacing(2),
   },
 }));
 
@@ -72,11 +115,19 @@ const RespondBy = styled('p')(({ theme }) => ({
   fontWeight: 300,
   textAlign: 'right',
   paddingRight: theme.spacing(2),
+  '& > span': {
+    fontSize: 32,
+    fontFamily: jacquard24.style.fontFamily,
+    paddingLeft: theme.spacing(0.5),
+  },
   [theme.breakpoints.down('md')]: {
     fontSize: 12,
     textAlign: 'center',
     marginTop: theme.spacing(0.5),
     marginBottom: theme.spacing(2),
+    '& > span': {
+      fontSize: 22,
+    },
   },
 }));
 
@@ -201,27 +252,30 @@ const TertiaryQuestion = styled('div')(({ theme }) => ({
 
 const SubmitButton = styled('button')(({ theme }) => ({
   marginTop: theme.spacing(6),
-  backgroundColor: '#623a0a',
-  color: '#fff',
-  padding: theme.spacing(2),
-  borderRadius: theme.spacing(2),
-  fontFamily: jacquard24.style.fontFamily,
-  fontWeight: 400,
-  fontSize: 32,
+  backgroundImage: `url(${ConfirmButtonBg.src})`,
+  backgroundSize: 'contain',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  width: '100%',
+  height: 64,
   cursor: 'pointer',
-  transition: 'all 0.3s ease',
-  boxShadow:
-    'inset 2px 2px 0px 0px rgba(0, 0, 0, 0.5), inset -2px -2px 0px 0px rgba(255, 255, 255, 0.2)',
-  border: 'none',
-  '&:hover': {
-    backgroundColor: '#4a2c08',
-    boxShadow:
-      'inset 1px 1px 0px 0px rgba(0, 0, 0, 0.5), inset -1px -1px 0px 0px rgba(255, 255, 255, 0.2)',
-  },
-  [theme.breakpoints.down('md')]: {
-    fontSize: 24,
-    padding: theme.spacing(1),
+  imageRendering: 'pixelated',
+  color: '#000',
+  fontFamily: pixelify.style.fontFamily,
+  fontSize: 24,
+  fontWeight: 500,
+  textTransform: 'uppercase',
+  border: 0,
+  outline: 'none',
+  backgroundColor: 'transparent',
+  transition: 'transform 0.3s ease',
+  [theme.breakpoints.down('sm')]: {
+    height: 42,
+    fontSize: 14,
     marginTop: theme.spacing(4),
+  },
+  '&:hover': {
+    transform: 'scale(1.05)',
   },
 }));
 
@@ -240,12 +294,12 @@ const FirstQuestion = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   gap: theme.spacing(2),
-  marginBottom: theme.spacing(8),
+  marginBottom: theme.spacing(6),
   '& > button + button': {
     marginTop: theme.spacing(2),
   },
   [theme.breakpoints.down('md')]: {
-    marginBottom: theme.spacing(6),
+    marginBottom: theme.spacing(2),
   },
 }));
 
@@ -260,6 +314,9 @@ const Input = styled('input')(({ theme }) => ({
   outline: 'none',
   border: 'none',
   boxShadow: 'inset 0 1px 4px rgba(57, 34, 11, 0.15)',
+  '&::placeholder': {
+    color: '#906f44',
+  },
   [theme.breakpoints.down('md')]: {
     fontSize: 14,
     padding: theme.spacing(1),
@@ -352,13 +409,33 @@ const Form = ({
   return (
     <>
       <Title>Dave & Ivy</Title>
-      <Subtitle>The Cloisters Castle</Subtitle>
-      <Substitle2>10440 Falls Rd, Timonium, MD 21093</Substitle2>
+      <MiniTitle>bid thy presence to their most joyous union</MiniTitle>
 
-      <Date>November 9th, 2025</Date>
+      <LocationContainer>
+        <Image
+          unoptimized
+          src={Church.src}
+          height={isMobile ? 48 : 64}
+          width={isMobile ? 48 : 64}
+          alt="church"
+        />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Subtitle>The Cloisters Castle</Subtitle>
+          <Substitle2>10440 Falls Rd, Timonium, MD 21093</Substitle2>
+          <Date>November 9th, 2025 @ 4pm</Date>
+        </Box>
+      </LocationContainer>
 
       <RSVP>Thy response is humbly beseeched</RSVP>
-      <RespondBy>Please respond by 9/1/2025</RespondBy>
+      <RespondBy>
+        Please respond by <span>9/1/2025</span>
+      </RespondBy>
 
       <FirstQuestion>
         {(!disabledFieldSet.has('response') ||
@@ -437,10 +514,9 @@ const Form = ({
           <p>Do you have any dietary restrictions?</p>
         )}
         <span>
-          A menu of what food that will be provided as an example is available
-          under <i>Sample Menu</i>{' '}
-          {isMobile ? 'in the navigation below' : 'to your right'}. This is
-          highly tentative and will be finalized closer to the date.
+          A menu of what food will be provided is under <i>Sample Menu</i>{' '}
+          {isMobile ? 'in the navigation below' : 'to your right'}. This menu is
+          tentative and will be finalized closer to the date.
         </span>
         <Input
           type="text"
@@ -469,10 +545,11 @@ const Form = ({
               <AltResponseItemPlaceholder />
             )}
             <SecondaryQuestion>
-              <p>Yes, book me a room!</p>
+              <p>Yes, I'll book with the party!</p>
               <span>
-                We will be providing a shuttle to and from the wedding venue.
-                Details TBD.
+                We are planning to book a block of rooms at a hotel and provide
+                a shuttle back and forth from the hotel and venue. Hotel details
+                coming soon.
               </span>
             </SecondaryQuestion>
           </ResponseItem>
@@ -492,15 +569,15 @@ const Form = ({
             <SecondaryQuestion>
               <p>No, I&apos;m good.</p>
               <span>
-                I will be making my own arrangements or I live locally and do
-                not need a hotel.
+                I will be making my own arrangements or I live locally and am
+                not planning to need a hotel.
               </span>
             </SecondaryQuestion>
           </ResponseItem>
         </TertiaryQuestion>
       )}
 
-      <SubmitButton onClick={handleSubmit}>Submit Response</SubmitButton>
+      <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
       <ErrorMessage style={{ opacity: error ? 1 : 0 }}>
         Alas, an error occurred. Please try again or contact the Lord or Lady of
         the event.

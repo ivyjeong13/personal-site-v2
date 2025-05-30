@@ -48,6 +48,8 @@ const SpeechBubble = styled(Box)(({ theme }) => ({
     fontFamily: pixelify.style.fontFamily,
     fontWeight: 400,
     fontSize: 24,
+    lineHeight: '36px',
+    paddingRight: 200,
   },
   '& p+p': {
     marginTop: theme.spacing(1),
@@ -200,7 +202,7 @@ const Messenger = ({
           </>
         ) : (
           <>
-            <p style={{ fontWeight: 600 }}>{displayedGreeting}</p>
+            <p>{displayedGreeting}</p>
             <p>{displayedMessage}</p>
             <NextButton>Click any key to continue...</NextButton>
           </>

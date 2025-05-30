@@ -237,9 +237,21 @@ const InfoSnippet = styled('div')(({ theme }) => ({
     fontSize: 22,
     fontFamily: pixelify.style.fontFamily,
     fontWeight: 400,
-    lineHeight: '32px',
+    lineHeight: '38px',
     color: '#d3d8e0',
   },
+
+  '& p + p': {
+    marginTop: theme.spacing(2),
+  },
+
+  '& p > b': {
+    fontFamily: jacquard24.style.fontFamily,
+    fontWeight: 400,
+    fontSize: 36,
+    padding: `0 ${theme.spacing(1)}`,
+  },
+
   '& a': {
     color: '#1591EA',
     '&:hover': {
@@ -250,8 +262,12 @@ const InfoSnippet = styled('div')(({ theme }) => ({
     padding: theme.spacing(2),
     margin: `${theme.spacing(4)} auto`,
     '& p': {
-      fontSize: 14,
+      fontSize: 16,
       lineHeight: '28px',
+    },
+
+    '& p > b': {
+      fontSize: 28,
     },
   },
 }));
@@ -287,9 +303,12 @@ const InfoHeader = styled('h2')(({ theme }) => ({
     marginTop: theme.spacing(1),
   },
   [theme.breakpoints.down('md')]: {
-    fontSize: 48,
+    fontSize: 38,
+    textAlign: 'center',
+    textWrap: 'nowrap',
     '& > span': {
-      paddingRight: theme.spacing(1),
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
     },
     '&:before': {
       height: 1,
@@ -363,6 +382,7 @@ const InfoTitleContent = styled('div')(({ theme }) => ({
     fontFamily: jacquard24.style.fontFamily,
     fontWeight: 400,
     textAlign: 'center',
+    lineHeight: '150px',
   },
   '& span': {
     fontSize: 92,
@@ -371,9 +391,10 @@ const InfoTitleContent = styled('div')(({ theme }) => ({
     textAlign: 'center',
   },
   [theme.breakpoints.down('md')]: {
+    paddingBottom: 0,
     '& h1': {
-      fontSize: 72,
-      lineHeight: '58px',
+      fontSize: 52,
+      lineHeight: '48px',
       marginTop: theme.spacing(1),
     },
     '& span': {
@@ -430,7 +451,7 @@ const InfoClosing = styled('div')(({ theme }) => ({
     '& h4': {
       fontSize: 36,
       '&:before': {
-        height: 1,
+        height: 0,
       },
     },
   },
@@ -961,7 +982,13 @@ const Info = ({
             >
               <Scene
                 viewportWidth={viewportDimensions.width}
-                width={isMobile ? 900 : viewportDimensions.width}
+                width={
+                  isMobile
+                    ? 900
+                    : viewportDimensions.width > 1400
+                      ? 1400
+                      : viewportDimensions.width
+                }
                 height={isMobile ? viewportDimensions.height - 100 : 700}
                 characters={characters}
                 isMobile={isMobile}
@@ -977,10 +1004,38 @@ const Info = ({
           <InfoHeader>
             <span>Where&apos;s it at?</span>
           </InfoHeader>
+          <Box
+            sx={{
+              borderRadius: '50%',
+              overflow: 'hidden',
+              width: 200,
+              height: 200,
+              margin: `${theme.spacing(4)} auto`,
+            }}
+          >
+            <img
+              src="https://res.cloudinary.com/dwnebujkh/image/upload/v1748646449/cloisters_bguiyr.jpg"
+              width={200}
+              height={200}
+            />
+          </Box>
           <Location>
             <LocationButton /> The Cloisters Castle
           </Location>
           <Subtitle>10440 Falls Rd, Timonium, MD 21093</Subtitle>
+        </InfoSnippet>
+
+        <InfoSnippet>
+          <InfoHeader>
+            <span>When should I be there?</span>
+          </InfoHeader>
+          <p>
+            The celebration begins at <b>4pm</b> on <b>November 9th, 2025.</b>
+          </p>
+          <p>
+            The venue closes at <b>9pm</b> for quests. Afterparty details to
+            come!
+          </p>
         </InfoSnippet>
 
         <InfoSnippet>
@@ -1065,11 +1120,10 @@ const Info = ({
             </Attire>
           </Box>
           <p>
-            Attire of medieval, viking, or around that time period preferred.
-            Doesn&apos;t need to be historically accurate, fantasy is our thing!
-            Bring your best witch&apos;s hat, inflatable dragon costume, or
-            potato potato sack. And if you&apos;re really not feeling it, as
-            long as it&apos;s regular ol suit or dress, we&apos;ll take it. :D
+            Attire of medieval, viking, or "around that time period but in a
+            faraway land" preferred. Doesn&apos;t need to be historically
+            accurate, fantasy is our thing! Bring your best witch&apos;s hat,
+            inflatable dragon costume, or potato sack.
           </p>
         </InfoSnippet>
 
@@ -1078,9 +1132,9 @@ const Info = ({
             <span>Adults Only</span>
           </InfoHeader>
           <p>
-            A friendly remind that this is a grown up party; please leave your
-            children in the responsible care of someone we&apos;re not looking
-            to hand some drinks to.
+            Due to the nature of the festivities, this is an adults-only event.
+            Please leave your children in the responsible care of someone we
+            aren&apos;t looking to hand drinks to.
           </p>
         </InfoSnippet>
 
@@ -1113,7 +1167,7 @@ const Info = ({
             <p>
               Join us in welcoming the Pilgrims of the Deep Run, a Traditional
               Irish band from Baltimore. They&apos;ll be livening up the
-              fesitivites with a plethora of pub songs & dance tunes. Check them
+              fesitivites with an arsenal of pub songs & dance tunes. Check them
               out{' '}
               <a
                 href="https://www.thepilgrimsofdeeprun.com/"

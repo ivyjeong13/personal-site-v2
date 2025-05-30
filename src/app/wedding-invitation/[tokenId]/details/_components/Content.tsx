@@ -24,6 +24,7 @@ import Info from './Info';
 import Quests from './quests';
 import Menu from './Menu';
 import theme from '@/common/theme';
+import DrunkDragon from './DrunkDragon';
 
 declare global {
   interface Window {
@@ -152,6 +153,12 @@ const TopScroll = styled(Box)(({ theme }) => ({
   backgroundRepeat: 'no-repeat',
   imageRendering: 'pixelated',
   flexShrink: 0,
+  [theme.breakpoints.down(1320)]: {
+    backgroundImage: `url(${TopScrollMobileImage.src})`,
+  },
+  [theme.breakpoints.down(1024)]: {
+    backgroundSize: 'cover',
+  },
   [theme.breakpoints.down('md')]: {
     height: 73,
     maxWidth: 375,
@@ -169,6 +176,12 @@ const BottomScroll = styled(Box)(({ theme }) => ({
   backgroundRepeat: 'no-repeat',
   imageRendering: 'pixelated',
   flexShrink: 0,
+  [theme.breakpoints.down(1320)]: {
+    backgroundImage: `url(${TopScrollMobileImage.src})`,
+  },
+  [theme.breakpoints.down(1024)]: {
+    backgroundSize: 'cover',
+  },
   [theme.breakpoints.down('md')]: {
     height: 73,
     maxWidth: 375,
@@ -264,6 +277,24 @@ const ViewContent = styled(Box)(({ theme }) => ({
   },
 }));
 
+const DrunkDragonContainer = styled(Box)(({ theme }) => ({
+  position: 'fixed',
+  bottom: 0,
+  left: '50%',
+  transform: 'translateX(-50%)',
+  maxWidth: 1400,
+  zIndex: 99,
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'flex-end',
+  opacity: 0,
+  transition: 'opacity 1s ease-in-out',
+  pointerEvents: 'none',
+  [theme.breakpoints.down(1275)]: {
+    display: 'none',
+  },
+}));
+
 const Details = ({
   guestId,
   disabledFields,
@@ -286,13 +317,15 @@ const Details = ({
   const audioMutedRef = useRef(audioMuted);
   const selectedViewRef = useRef(selectedView);
   const [isIOS, setIsIOS] = useState(false);
+  const [showDragon, setShowDragon] = useState(false);
+  const [dragonDeath, setDragonDeath] = useState(false);
 
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
     noSsr: true,
   });
 
   const ViewHeights = {
-    rsvp: isMobile ? 1250 : 1500,
+    rsvp: isMobile ? 1450 : 1700,
     menu: isMobile ? 1984 : 2350,
     info: isMobile ? 325 : 600,
     quests: 550,
@@ -390,6 +423,14 @@ const Details = ({
     };
 
     playAudio();
+
+    if (selectedView !== 'info' && !showDragon) {
+      setTimeout(() => {
+        setShowDragon(true);
+      }, 1500);
+    } else if (selectedView === 'info' && showDragon) {
+      setShowDragon(false);
+    }
   }, [selectedView, audioMuted, isClient, audioContext]);
 
   useEffect(() => {
@@ -429,6 +470,11 @@ const Details = ({
       return;
     }
     setHeight(0);
+    if (view === 'info') {
+      setDragonDeath(true);
+    } else {
+      setDragonDeath(false);
+    }
     const height = ViewHeights[view];
     setTimeout(() => {
       setShowSuccess(false);
@@ -603,6 +649,18 @@ const Details = ({
             </Tag>
           </TagContainer>
         )}
+
+        <DrunkDragonContainer sx={{ opacity: showDragon ? 1 : 0 }}>
+          <Box
+            sx={{
+              width: 400,
+              height: 320,
+              transform: 'translateX(100px)',
+            }}
+          >
+            <DrunkDragon death={dragonDeath} />
+          </Box>
+        </DrunkDragonContainer>
 
         <TopScroll />
         <ScrollOuter

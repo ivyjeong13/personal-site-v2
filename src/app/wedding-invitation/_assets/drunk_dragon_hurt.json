@@ -1,0 +1,55 @@
+{
+    "frames": {
+      "DragonHurt_001": {
+        "frame": { "x": 14, "y": 8, "w": 73, "h": 63 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 14, "y": 8, "w": 73, "h": 63 },
+        "sourceSize": { "w": 73, "h": 63 }
+      },
+      "DragonHurt_002": {
+        "frame": { "x": 97, "y": 8, "w": 73, "h": 63 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 97, "y": 8, "w": 73, "h": 63 },
+        "sourceSize": { "w": 73, "h": 63 }
+      },
+      "DragonHurt_003": {
+        "frame": { "x": 191, "y": 8, "w": 73, "h": 63 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 191, "y": 8, "w": 73, "h": 63 },
+        "sourceSize": { "w": 73, "h": 63 }
+      },
+      "DragonHurt_004": {
+        "frame": { "x": 284, "y": 8, "w": 73, "h": 63 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 284, "y": 8, "w": 73, "h": 63 },
+        "sourceSize": { "w": 73, "h": 63 }
+      },
+      "DragonHurt_005": {
+        "frame": { "x": 374, "y": 8, "w": 73, "h": 63 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 374, "y": 8, "w": 73, "h": 63 },
+        "sourceSize": { "w": 73, "h": 63 }
+      },
+      "DragonHurt_006": {
+        "frame": { "x": 464, "y": 8, "w": 73, "h": 63 },
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": { "x": 464, "y": 8, "w": 73, "h": 63 },
+        "sourceSize": { "w": 73, "h": 63 }
+      }
+    },
+    "meta": {
+      "app": "https://www.codeandweb.com/texturepacker",
+      "version": "1.0",
+      "image": "https://res.cloudinary.com/dwnebujkh/image/upload/v1748638491/drunk_dragon_hurt_90x76_pa4dhn.png",
+      "format": "RGBA8888",
+      "size": { "w": 540, "h": 76 },
+      "scale": "1"
+    }
+  }
+  

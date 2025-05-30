@@ -10,6 +10,10 @@ import SpritesJsonI from '../_assets/sprites_i.json';
 import SpritesJsonJ from '../_assets/sprites_j.json';
 import SpritesJsonK from '../_assets/sprites_k.json';
 
+import DrunkDragonIdle from '../_assets/drunk_dragon_idle.json';
+import DrunkDragonHurt from '../_assets/drunk_dragon_hurt.json';
+import DrunkDragonDead from '../_assets/drunk_dragon_death.json';
+
 export const spritesMap = new Map<string, object>([
   ['sprites_a.json', SpritesJsonA],
   ['sprites_b.json', SpritesJsonB],
@@ -22,4 +26,10 @@ export const spritesMap = new Map<string, object>([
   ['sprites_i.json', SpritesJsonI],
   ['sprites_j.json', SpritesJsonJ],
   ['sprites_k.json', SpritesJsonK],
+]);
+
+export const dragonSpriteMap = new Map<string, object>([
+  ['drunk_dragon_idle.json', DrunkDragonIdle],
+  ['drunk_dragon_hurt.json', DrunkDragonHurt],
+  ['drunk_dragon_death.json', DrunkDragonDead],
 ]);
