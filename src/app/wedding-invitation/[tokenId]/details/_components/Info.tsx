@@ -480,6 +480,9 @@ const SelectAvatarTextContent = styled('div')(({ theme }) => ({
   },
 }));
 
+// Add this before the Character component
+const characterPositions: { x: number; y: number }[] = [];
+
 function Character({
   canvasWidth,
   canvasHeight,
@@ -500,14 +503,39 @@ function Character({
   // Calculate Y position in bottom half of canvas
   const minY = -(canvasHeight / 2); // Bottom of canvas
   const maxY = 0; // Middle of canvas
-  const randomY = minY + Math.random() * (maxY - minY);
 
   // Calculate random X position within canvas width
   // Adjust padding based on mobile viewport
   const padding = isMobile ? 100 : 50;
   const minX = -(canvasWidth / 2) + padding;
   const maxX = canvasWidth / 2 - padding;
-  const randomX = minX + Math.random() * (maxX - minX);
+
+  // Minimum distance between characters
+  const minDistance = isMobile ? 150 : 200;
+
+  // Try to find a non-overlapping position
+  let randomX: number;
+  let randomY: number;
+  let attempts = 0;
+  const maxAttempts = 50;
+
+  do {
+    randomY = minY + Math.random() * (maxY - minY);
+    randomX = minX + Math.random() * (maxX - minX);
+    attempts++;
+
+    // If we've tried too many times, just use the last position
+    if (attempts >= maxAttempts) break;
+  } while (
+    characterPositions.some(
+      (pos) =>
+        Math.sqrt(Math.pow(pos.x - randomX, 2) + Math.pow(pos.y - randomY, 2)) <
+        minDistance,
+    )
+  );
+
+  // Add this position to our tracking array
+  characterPositions.push({ x: randomX, y: randomY });
 
   // Calculate z position based on y position
   // Characters with more negative Y (farther from 0) should have higher z value
