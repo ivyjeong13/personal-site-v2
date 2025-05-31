@@ -328,17 +328,19 @@ const Form = ({
   guestId,
   onSuccess,
   disabledFields,
+  showWithUs,
 }: {
   guestId: number;
   onSuccess: (response: 'yes' | 'no', isNew: boolean) => void;
   disabledFields?: string[] | null;
+  showWithUs?: boolean;
 }) => {
   const client = createClient();
   const [fields, setFields] = useState<{
     id?: number;
     response?: 'yes' | 'no';
     plus_one?: boolean;
-    hotel?: boolean;
+    hotel?: number; // 0 - no, 1 - yes, 2 - staying with us
     food_restrictions?: string;
   }>({
     response: undefined,
@@ -528,12 +530,36 @@ const Form = ({
         />
       </TertiaryQuestion>
 
+      {showWithUs && (
+        <TertiaryQuestion sx={{ paddingTop: theme.spacing(4) }}>
+          <p>For our far traveled guests, would you like to stay with us?</p>
+
+          <ResponseItem onClick={() => setFields({ ...fields, hotel: 2 })}>
+            {fields.hotel === 2 ? (
+              <Image
+                src={SealImage.src}
+                alt="stamp"
+                width={altStampWidth}
+                height={altStampWidth}
+                unoptimized
+              />
+            ) : (
+              <AltResponseItemPlaceholder />
+            )}
+            <SecondaryQuestion>
+              <p>Yes, I&apos;d like to stay with you!</p>
+              <span>We'd love to host you while you're here. :)</span>
+            </SecondaryQuestion>
+          </ResponseItem>
+        </TertiaryQuestion>
+      )}
+
       {!disabledFieldSet.has('hotel') && (
         <TertiaryQuestion sx={{ paddingTop: theme.spacing(4) }}>
           <p>Would you like to book a hotel with the party?</p>
 
-          <ResponseItem onClick={() => setFields({ ...fields, hotel: true })}>
-            {fields.hotel === true ? (
+          <ResponseItem onClick={() => setFields({ ...fields, hotel: 1 })}>
+            {fields.hotel === 1 ? (
               <Image
                 src={SealImage.src}
                 alt="stamp"
@@ -554,8 +580,8 @@ const Form = ({
             </SecondaryQuestion>
           </ResponseItem>
 
-          <ResponseItem onClick={() => setFields({ ...fields, hotel: false })}>
-            {fields.hotel === false ? (
+          <ResponseItem onClick={() => setFields({ ...fields, hotel: 0 })}>
+            {fields.hotel === 0 ? (
               <Image
                 src={SealImage.src}
                 alt="stamp"

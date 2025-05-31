@@ -298,9 +298,11 @@ const DrunkDragonContainer = styled(Box)(({ theme }) => ({
 const Details = ({
   guestId,
   disabledFields,
+  showWithUs,
 }: {
   guestId: number;
   disabledFields?: string[] | null;
+  showWithUs?: boolean;
 }) => {
   const [height, setHeight] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -325,7 +327,7 @@ const Details = ({
   });
 
   const ViewHeights = {
-    rsvp: isMobile ? 1450 : 1700,
+    rsvp: 1900,
     menu: isMobile ? 1984 : 2350,
     info: isMobile ? 325 : 600,
     quests: 550,
@@ -732,6 +734,7 @@ const Details = ({
                       guestId={guestId}
                       onSuccess={handleSuccess}
                       disabledFields={disabledFields}
+                      showWithUs={showWithUs}
                     />
                   )}
                 </>

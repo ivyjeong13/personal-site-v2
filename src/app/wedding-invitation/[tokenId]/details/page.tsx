@@ -12,12 +12,17 @@ const WeddingDetailsPage = async ({ params }: Props) => {
   const server = await createClient();
   const { data } = await server
     .from('token')
-    .select('*, wedding_guest(disabled_fields)')
+    .select('*, wedding_guest(disabled_fields, show_with_us)')
     .eq('token', params.tokenId);
   const guestId = data?.[0]?.guest_id;
   const disabledFields = data?.[0]?.wedding_guest?.disabled_fields;
+  const showWithUs = data?.[0]?.wedding_guest?.show_with_us ?? false;
   return guestId ? (
-    <Content guestId={guestId} disabledFields={disabledFields} />
+    <Content
+      guestId={guestId}
+      disabledFields={disabledFields}
+      showWithUs={showWithUs}
+    />
   ) : (
     <div>Unauthorized</div>
   );
