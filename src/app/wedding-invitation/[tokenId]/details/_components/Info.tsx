@@ -1120,8 +1120,8 @@ const Info = ({
             </Attire>
           </Box>
           <p>
-            Attire of medieval, viking, or "around that time period but in a
-            faraway land" preferred. Doesn&apos;t need to be historically
+            Attire of medieval, viking, or &quot;around that time period but in
+            a faraway land&quot; preferred. Doesn&apos;t need to be historically
             accurate, fantasy is our thing! Bring your best witch&apos;s hat,
             inflatable dragon costume, or potato sack.
           </p>

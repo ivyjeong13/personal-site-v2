@@ -545,7 +545,7 @@ const Form = ({
               <AltResponseItemPlaceholder />
             )}
             <SecondaryQuestion>
-              <p>Yes, I'll book with the party!</p>
+              <p>Yes, I&apos;ll book with the party!</p>
               <span>
                 We are planning to book a block of rooms at a hotel and provide
                 a shuttle back and forth from the hotel and venue. Hotel details
