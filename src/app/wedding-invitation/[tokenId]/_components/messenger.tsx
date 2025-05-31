@@ -60,6 +60,7 @@ const SpeechBubble = styled(Box)(({ theme }) => ({
     paddingRight: theme.spacing(1),
     '& p': {
       fontSize: 16,
+      paddingRight: 0,
     },
   },
 }));
