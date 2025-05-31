@@ -548,7 +548,7 @@ const Form = ({
             )}
             <SecondaryQuestion>
               <p>Yes, I&apos;d like to stay with you!</p>
-              <span>We'd love to host you while you're here. :)</span>
+              <span>We&apos;d love to host you while you&apos;re here. :)</span>
             </SecondaryQuestion>
           </ResponseItem>
         </TertiaryQuestion>
