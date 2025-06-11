@@ -322,9 +322,9 @@ const NavBar = styled('div')(({ theme }) => ({
   right: 0,
   width: '100%',
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'flex-start',
   gap: theme.spacing(2),
-  paddingRight: theme.spacing(4),
+  paddingLeft: theme.spacing(4),
   zIndex: 1,
   '& p': {
     color: '#000',
@@ -1193,10 +1193,9 @@ const Info = ({
               unoptimized
             />
             <p>
-              Join us in welcoming the Pilgrims of the Deep Run, a Traditional
-              Irish band from Baltimore. They&apos;ll be livening up the
-              fesitivites with an arsenal of pub songs & dance tunes. Check them
-              out{' '}
+              Join us in welcoming The Pilgrims of Deep Run, a Traditional Irish
+              band from Baltimore. They&apos;ll be livening up the fesitivites
+              with an arsenal of pub songs & dance tunes. Check them out{' '}
               <a
                 href="https://www.thepilgrimsofdeeprun.com/"
                 target="_blank"
