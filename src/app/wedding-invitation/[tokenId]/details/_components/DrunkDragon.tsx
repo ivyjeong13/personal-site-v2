@@ -23,6 +23,15 @@ function Character({
   const [texture, setTexture] = useState<Texture | null>(null);
   const frameTime = 1 / 6; // 3 FPS
   const timeRef = useRef(0);
+  const prevAnimationFrameRef = useRef(animationFrame);
+
+  // Reset currentFrame when animationFrame changes
+  useEffect(() => {
+    if (prevAnimationFrameRef.current !== animationFrame) {
+      setCurrentFrame(0);
+      prevAnimationFrameRef.current = animationFrame;
+    }
+  }, [animationFrame]);
 
   // Load sprite sheet and data
   useEffect(() => {
@@ -143,7 +152,7 @@ const Scene = ({ death }: { death: boolean }) => {
     setTimeout(() => {
       setCharacter(frames[0]);
       setIsAnimating(false);
-    }, 1100); // Adjust timing based on your animation duration
+    }, 850); // Adjust timing based on your animation duration
   };
 
   useEffect(() => {

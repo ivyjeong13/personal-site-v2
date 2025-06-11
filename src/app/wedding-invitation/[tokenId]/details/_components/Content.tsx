@@ -321,6 +321,7 @@ const Details = ({
   const [isIOS, setIsIOS] = useState(false);
   const [showDragon, setShowDragon] = useState(false);
   const [dragonDeath, setDragonDeath] = useState(false);
+  const [removeDragon, setRemoveDragon] = useState(false);
 
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
     noSsr: true,
@@ -352,6 +353,7 @@ const Details = ({
 
     setAudioMuted(storedAudioMuted);
     setSelectedView(initialView);
+    setRemoveDragon(initialView === 'info');
     audioMutedRef.current = storedAudioMuted;
     selectedViewRef.current = initialView;
 
@@ -427,11 +429,15 @@ const Details = ({
     playAudio();
 
     if (selectedView !== 'info' && !showDragon) {
+      setRemoveDragon(false);
       setTimeout(() => {
         setShowDragon(true);
       }, 1500);
     } else if (selectedView === 'info' && showDragon) {
       setShowDragon(false);
+      setTimeout(() => {
+        setRemoveDragon(true);
+      }, 1000);
     }
   }, [selectedView, audioMuted, isClient, audioContext]);
 
@@ -652,17 +658,19 @@ const Details = ({
           </TagContainer>
         )}
 
-        <DrunkDragonContainer sx={{ opacity: showDragon ? 1 : 0 }}>
-          <Box
-            sx={{
-              width: 400,
-              height: 320,
-              transform: 'translateX(100px)',
-            }}
-          >
-            <DrunkDragon death={dragonDeath} />
-          </Box>
-        </DrunkDragonContainer>
+        {!removeDragon && (
+          <DrunkDragonContainer sx={{ opacity: showDragon ? 1 : 0 }}>
+            <Box
+              sx={{
+                width: 400,
+                height: 320,
+                transform: 'translateX(100px)',
+              }}
+            >
+              <DrunkDragon death={dragonDeath} />
+            </Box>
+          </DrunkDragonContainer>
+        )}
 
         <TopScroll />
         <ScrollOuter
