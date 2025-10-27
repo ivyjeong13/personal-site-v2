@@ -1247,7 +1247,7 @@ const Info = ({
           <p>
             For those wishing to continue the festivities, we will continue the
             party at our home. Drinks, karaoke/Rock Band, video/board games,
-            drinks, & drinks. We'll provide snacks & midnight food!
+            drinks, & drinks. We&apos;ll provide snacks & midnight food!
           </p>
         </InfoSnippet>
 
