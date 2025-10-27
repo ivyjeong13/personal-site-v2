@@ -1061,9 +1061,12 @@ const Info = ({
             The celebration begins at <b>4pm</b> on <b>November 9th, 2025.</b>
           </p>
           <p>
-            The venue closes at <b>9pm</b> for quests. Afterparty details to
-            come!
+            The ceremony will start at <b>4:30pm</b>.
           </p>
+          <p>
+            The venue closes at <b>9pm</b> for quests.
+          </p>
+          <p>{'Your prescence is the only present we need. <3'}</p>
         </InfoSnippet>
 
         <InfoSnippet>
@@ -1213,7 +1216,38 @@ const Info = ({
             <span>Shuttle Details</span>
           </InfoHeader>
           <p>
-            Details will be posted here closer to the date. Check back soon!
+            <b>Pickup Times</b>
+          </p>
+          <p>
+            Metropolitan Shuttle will be providing a shuttle service to and from
+            the venue.
+          </p>
+          <p>
+            <b>1:00pm</b> - Arrive for pickup @ Washington Westin National
+            Harbor Hotel. It will depart at 1:15PM.
+          </p>
+          <p>
+            <b>1:30pm</b> - Arrive for pickup @ our home - 6719 Sand Cherry Way
+            Clinton MD. It will depart from 1:30 - 1:45PM.
+          </p>
+
+          <p>
+            <b>Dropoff Times</b>
+          </p>
+          <p>
+            Shuttle will arrive at the venue around 9:00pm. It will drop off at
+            the above locations.
+          </p>
+        </InfoSnippet>
+
+        <InfoSnippet>
+          <InfoHeader>
+            <span>Afterparty</span>
+          </InfoHeader>
+          <p>
+            For those wishing to continue the festivities, we will continue the
+            party at our home. Drinks, karaoke/Rock Band, video/board games,
+            drinks, & drinks. We'll provide snacks & midnight food!
           </p>
         </InfoSnippet>
 
